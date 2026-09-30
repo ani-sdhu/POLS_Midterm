@@ -1,0 +1,311 @@
+{
+ "_note": "Core methodological vocabulary (Inventory: Core Vocabulary + recurring concepts). Used for term<->definition multiple choice.",
+ "terms": [
+  {
+   "id": "v-unit",
+   "term": "Unit of observation",
+   "def": "The entity each row of the data describes (e.g., a résumé, a voter, a restaurant, a state).",
+   "section": "2.1"
+  },
+  {
+   "id": "v-obsvar",
+   "term": "Observation vs. variable",
+   "def": "An observation is one unit's record (a row); a variable is one measured characteristic across units (a column).",
+   "section": "1.3.5"
+  },
+  {
+   "id": "v-n",
+   "term": "Sample size (n)",
+   "def": "The number of observations in the data used for an analysis.",
+   "section": "2.4.1"
+  },
+  {
+   "id": "v-treat",
+   "term": "Treatment variable",
+   "def": "The causal variable of interest, whose effect on an outcome we want to learn; it need not be medical.",
+   "section": "2.1"
+  },
+  {
+   "id": "v-outcome",
+   "term": "Outcome variable",
+   "def": "The variable a study tries to explain or predict; its values are compared across treatment conditions.",
+   "section": "2.1"
+  },
+  {
+   "id": "v-tgroup",
+   "term": "Treatment group",
+   "def": "The units that receive the treatment (T = 1).",
+   "section": "2.4.1"
+  },
+  {
+   "id": "v-cgroup",
+   "term": "Control group",
+   "def": "The units that do not receive the treatment (T = 0), whose outcomes stand in for the treated units' counterfactuals.",
+   "section": "2.4.1"
+  },
+  {
+   "id": "v-pretreat",
+   "term": "Pretreatment variable (covariate)",
+   "def": "A characteristic measured or determined before treatment is assigned, so the treatment cannot affect it.",
+   "section": "2.3"
+  },
+  {
+   "id": "v-counterfactual",
+   "term": "Counterfactual",
+   "def": "What would have happened to a unit if a key condition, such as its treatment status, had been different.",
+   "section": "2.3"
+  },
+  {
+   "id": "v-potential",
+   "term": "Potential outcomes",
+   "def": "The outcomes Y(1) and Y(0) a unit would have under treatment and under control; only one is ever observed.",
+   "section": "2.3"
+  },
+  {
+   "id": "v-expdata",
+   "term": "Experimental data",
+   "def": "Data from a design in which the researcher manipulates the treatment variable to study its effect on the outcome.",
+   "section": "2.1"
+  },
+  {
+   "id": "v-obsstudy",
+   "term": "Observational study",
+   "def": "A study in which the researcher does not intervene but observes naturally occurring treatment and collects data.",
+   "section": "2.5"
+  },
+  {
+   "id": "v-natexp",
+   "term": "Natural experiment",
+   "def": "An observational setting in which treatment is assigned as if at random by nature or circumstance, not by the researcher.",
+   "section": "2.8"
+  },
+  {
+   "id": "v-panel",
+   "term": "Longitudinal (panel) data",
+   "def": "Multiple measurements taken over time on the same units.",
+   "section": "2.5.3"
+  },
+  {
+   "id": "v-cross",
+   "term": "Cross-section comparison design",
+   "def": "Comparing treated and control units measured at the same point in time after treatment.",
+   "section": "2.5.1"
+  },
+  {
+   "id": "v-selection",
+   "term": "Selection bias",
+   "def": "Confounding bias that arises because units self-select into the treatment.",
+   "section": "2.5.2"
+  },
+  {
+   "id": "v-balance",
+   "term": "Balance check",
+   "def": "Comparing pretreatment covariates across treatment groups to see whether the groups are similar, as randomization should make them.",
+   "section": "2.4.2"
+  },
+  {
+   "id": "v-dummy",
+   "term": "Binary (dummy) variable",
+   "def": "A variable taking the value 1 if a condition holds and 0 otherwise; its mean is the proportion of 1s.",
+   "section": "2.1"
+  },
+  {
+   "id": "v-factor",
+   "term": "Factor variable",
+   "def": "A categorical variable that takes a finite number of distinct values, called levels.",
+   "section": "2.2.5"
+  },
+  {
+   "id": "v-contingency",
+   "term": "Contingency table",
+   "def": "A cross-tabulation of the number of observations in each combination of categories of two or more variables.",
+   "section": "2.1"
+  },
+  {
+   "id": "v-diffmeans",
+   "term": "Difference-in-means estimator",
+   "def": "The average outcome in the treatment group minus the average outcome in the control group.",
+   "section": "2.4.1"
+  },
+  {
+   "id": "v-satt",
+   "term": "SATT",
+   "def": "The sample average treatment effect for the treated: the average causal effect among the treated units only.",
+   "section": "2.5.3"
+  },
+  {
+   "id": "v-parallel",
+   "term": "Parallel trends assumption",
+   "def": "Without treatment, the treated group's outcome would have followed the same time trend as the control group's.",
+   "section": "2.5.3"
+  },
+  {
+   "id": "v-population",
+   "term": "Target population",
+   "def": "The full set of units a researcher wants to learn about by studying a sample.",
+   "section": "3.4"
+  },
+  {
+   "id": "v-frame",
+   "term": "Sampling frame",
+   "def": "The complete list of potential respondents from which a sample is drawn.",
+   "section": "3.4.1"
+  },
+  {
+   "id": "v-quota",
+   "term": "Quota sampling",
+   "def": "Interviewing fixed quotas of respondents with certain characteristics so the sample matches the population on those observed traits.",
+   "section": "3.4.1"
+  },
+  {
+   "id": "v-cluster",
+   "term": "Multistage cluster sampling",
+   "def": "Sampling larger units first (e.g., districts), then randomly selecting smaller units (villages, households) within the selected ones.",
+   "section": "3.4.1"
+  },
+  {
+   "id": "v-socdes",
+   "term": "Social desirability bias",
+   "def": "Respondents give the answer seen as socially acceptable rather than their truthful answer.",
+   "section": "3.4.2"
+  },
+  {
+   "id": "v-listexp",
+   "term": "List experiment (item count technique)",
+   "def": "Respondents report only how many list items they support; the treatment list adds a sensitive item, and the difference in mean counts estimates support for it.",
+   "section": "3.4.2"
+  },
+  {
+   "id": "v-floorceil",
+   "term": "Floor and ceiling effects",
+   "def": "In a list experiment, answering the minimum (0) or maximum count reveals a respondent's true answer to the sensitive item.",
+   "section": "3.4.2"
+  },
+  {
+   "id": "v-randresp",
+   "term": "Randomized response technique",
+   "def": "Respondents privately randomize (e.g., roll a die) to decide whether to answer honestly, protecting individual answers while allowing aggregate estimates.",
+   "section": "3.4.2"
+  },
+  {
+   "id": "v-listwise",
+   "term": "Listwise deletion",
+   "def": "Dropping every observation that has a missing value on at least one variable.",
+   "section": "3.2"
+  },
+  {
+   "id": "v-latent",
+   "term": "Latent concept",
+   "def": "An unobservable characteristic, such as ideology or ability, that must be measured through a model of observed behavior.",
+   "section": "3.5"
+  },
+  {
+   "id": "v-idealpoint",
+   "term": "Ideal point",
+   "def": "A legislator's most preferred position in a spatial model of ideology; they vote for whichever option (proposal or status quo) is closer to it.",
+   "section": "3.5"
+  },
+  {
+   "id": "v-irt",
+   "term": "Item response theory",
+   "def": "A class of measurement models from educational testing that estimate examinees' abilities and questions' difficulties from their answers.",
+   "section": "3.5"
+  },
+  {
+   "id": "v-polarization",
+   "term": "Political polarization",
+   "def": "The ideological centers of the two parties moving apart over time.",
+   "section": "3.6.1"
+  },
+  {
+   "id": "v-lorenz",
+   "term": "Lorenz curve",
+   "def": "A curve plotting the cumulative share of income against the cumulative share of people sorted from lowest to highest income.",
+   "section": "3.6.2"
+  },
+  {
+   "id": "v-unsup",
+   "term": "Unsupervised learning",
+   "def": "Methods, such as clustering, that discover hidden structure in data without an outcome variable.",
+   "section": "3.7.3"
+  },
+  {
+   "id": "v-centroid",
+   "term": "Centroid",
+   "def": "The center of a cluster, equal to the within-cluster mean of each variable.",
+   "section": "3.7.3"
+  },
+  {
+   "id": "v-residual",
+   "term": "Residual",
+   "def": "The observed outcome minus its fitted value from a model.",
+   "section": "4.2.3"
+  },
+  {
+   "id": "v-fitted",
+   "term": "Fitted (predicted) value",
+   "def": "The value of the outcome a model predicts for a given value of the predictor.",
+   "section": "4.2.3"
+  },
+  {
+   "id": "v-tss",
+   "term": "Total sum of squares (TSS)",
+   "def": "The sum of squared deviations of the outcome from its mean: the outcome's total variation.",
+   "section": "4.2.6"
+  },
+  {
+   "id": "v-overfit",
+   "term": "Overfitting",
+   "def": "Tailoring a model so closely to one sample that it predicts poorly in other samples.",
+   "section": "4.2.6"
+  },
+  {
+   "id": "v-outlier",
+   "term": "Outlier",
+   "def": "An observation whose value is extremely different from the rest of the data, such as one with a very large residual.",
+   "section": "4.2.6"
+  },
+  {
+   "id": "v-baselevel",
+   "term": "Base (reference) level",
+   "def": "The factor level omitted from a regression with an intercept; other levels' coefficients are measured relative to it.",
+   "section": "4.3.2"
+  },
+  {
+   "id": "v-df",
+   "term": "Degrees of freedom",
+   "def": "The number of observations free to vary: the number of observations minus the number of estimated parameters (\\(n - p - 1\\)).",
+   "section": "4.3.2"
+  },
+  {
+   "id": "v-hte",
+   "term": "Heterogeneous treatment effects",
+   "def": "Treatment effects that differ in size or direction across units or subgroups.",
+   "section": "4.3.3"
+  },
+  {
+   "id": "v-ceteris",
+   "term": "Ceteris paribus",
+   "def": "Holding all other predictors constant when interpreting one coefficient.",
+   "section": "4.3.2"
+  },
+  {
+   "id": "v-placebo",
+   "term": "Placebo test",
+   "def": "Estimating an effect that is known to be zero in theory, such as an effect on a past outcome, to check a design's validity.",
+   "section": "4.3.4"
+  },
+  {
+   "id": "v-confusion",
+   "term": "Confusion matrix",
+   "def": "A table cross-classifying predicted and actual outcomes into true positives, false positives, false negatives, and true negatives.",
+   "section": "4.1.3"
+  },
+  {
+   "id": "v-twoparty",
+   "term": "Two-party vote share",
+   "def": "A candidate's votes divided by the votes cast for the two major-party candidates only.",
+   "section": "4.2.1"
+  }
+ ]
+}

@@ -1,0 +1,5408 @@
+{
+ "chapters": [
+  {
+   "id": "ch1",
+   "rmd": "Week 1/INTRO/intro.Rmd",
+   "files": {
+    "UNpop.csv": "Week 1/INTRO/UNpop.csv",
+    "UNpop.RData": "Week 1/INTRO/UNpop.RData"
+   }
+  },
+  {
+   "id": "ch2",
+   "rmd": "Data Sets/CAUSALITY/causality.Rmd",
+   "files": {
+    "resume.csv": "Data Sets/CAUSALITY/resume.csv",
+    "social.csv": "Data Sets/CAUSALITY/social.csv",
+    "minwage.csv": "Data Sets/CAUSALITY/minwage.csv"
+   }
+  },
+  {
+   "id": "ch3",
+   "rmd": "Data Sets/MEASUREMENT/measurement.Rmd",
+   "files": {
+    "afghan.csv": "Data Sets/MEASUREMENT/afghan.csv",
+    "afghan-village.csv": "Data Sets/MEASUREMENT/afghan-village.csv",
+    "congress.csv": "Data Sets/MEASUREMENT/congress.csv",
+    "USGini.csv": "Data Sets/MEASUREMENT/USGini.csv"
+   }
+  },
+  {
+   "id": "ch4",
+   "rmd": "Data Sets/PREDICTION/prediction.Rmd",
+   "files": {
+    "pres08.csv": "Data Sets/DISCOVERY/pres08.csv",
+    "polls08.csv": "Data Sets/UNCERTAINTY/polls08.csv",
+    "pollsUS08.csv": "Data Sets/PREDICTION/pollsUS08.csv",
+    "face.csv": "Data Sets/PREDICTION/face.csv",
+    "pres12.csv": "Data Sets/DISCOVERY/pres12.csv",
+    "florida.csv": "Data Sets/PREDICTION/florida.csv",
+    "women.csv": "Data Sets/PREDICTION/women.csv",
+    "social.csv": "Data Sets/PREDICTION/social.csv",
+    "MPs.csv": "Data Sets/PREDICTION/MPs.csv"
+   }
+  }
+ ],
+ "steps": [
+  {
+   "id": "ch1-001",
+   "ch": "ch1",
+   "section": "1.2",
+   "title": "How to Use this Book",
+   "group": 1,
+   "comment": "",
+   "code": "install.packages(\"swirl\") # install the package",
+   "eval": false
+  },
+  {
+   "id": "ch1-002",
+   "ch": "ch1",
+   "section": "1.2",
+   "title": "How to Use this Book",
+   "group": 1,
+   "comment": "",
+   "code": "library(swirl) # load the package",
+   "eval": false
+  },
+  {
+   "id": "ch1-003",
+   "ch": "ch1",
+   "section": "1.2",
+   "title": "How to Use this Book",
+   "group": 1,
+   "comment": "",
+   "code": "install_course_github(\"kosukeimai\", \"qss-swirl\") # install the course",
+   "eval": false
+  },
+  {
+   "id": "ch1-004",
+   "ch": "ch1",
+   "section": "1.2",
+   "title": "How to Use this Book",
+   "group": 1,
+   "comment": "",
+   "code": "library(swirl)",
+   "eval": false
+  },
+  {
+   "id": "ch1-005",
+   "ch": "ch1",
+   "section": "1.2",
+   "title": "How to Use this Book",
+   "group": 1,
+   "comment": "",
+   "code": "swirl()",
+   "eval": false
+  },
+  {
+   "id": "ch1-006",
+   "ch": "ch1",
+   "section": "1.3.1",
+   "title": "Arithmetic Operations",
+   "group": 2,
+   "comment": "",
+   "code": "5 + 3",
+   "eval": true
+  },
+  {
+   "id": "ch1-007",
+   "ch": "ch1",
+   "section": "1.3.1",
+   "title": "Arithmetic Operations",
+   "group": 2,
+   "comment": "",
+   "code": "5 - 3",
+   "eval": true
+  },
+  {
+   "id": "ch1-008",
+   "ch": "ch1",
+   "section": "1.3.1",
+   "title": "Arithmetic Operations",
+   "group": 2,
+   "comment": "",
+   "code": "5 / 3",
+   "eval": true
+  },
+  {
+   "id": "ch1-009",
+   "ch": "ch1",
+   "section": "1.3.1",
+   "title": "Arithmetic Operations",
+   "group": 2,
+   "comment": "",
+   "code": "5 ^ 3",
+   "eval": true
+  },
+  {
+   "id": "ch1-010",
+   "ch": "ch1",
+   "section": "1.3.1",
+   "title": "Arithmetic Operations",
+   "group": 2,
+   "comment": "",
+   "code": "5 * (10 - 3)",
+   "eval": true
+  },
+  {
+   "id": "ch1-011",
+   "ch": "ch1",
+   "section": "1.3.1",
+   "title": "Arithmetic Operations",
+   "group": 2,
+   "comment": "",
+   "code": "sqrt(4)",
+   "eval": true
+  },
+  {
+   "id": "ch1-012",
+   "ch": "ch1",
+   "section": "1.3.2",
+   "title": "Objects",
+   "group": 3,
+   "comment": "",
+   "code": "result <- 5 + 3",
+   "eval": true
+  },
+  {
+   "id": "ch1-013",
+   "ch": "ch1",
+   "section": "1.3.2",
+   "title": "Objects",
+   "group": 3,
+   "comment": "",
+   "code": "result",
+   "eval": true
+  },
+  {
+   "id": "ch1-014",
+   "ch": "ch1",
+   "section": "1.3.2",
+   "title": "Objects",
+   "group": 3,
+   "comment": "",
+   "code": "print(result)",
+   "eval": true
+  },
+  {
+   "id": "ch1-015",
+   "ch": "ch1",
+   "section": "1.3.2",
+   "title": "Objects",
+   "group": 3,
+   "comment": "",
+   "code": "result <- 5 - 3",
+   "eval": true
+  },
+  {
+   "id": "ch1-016",
+   "ch": "ch1",
+   "section": "1.3.2",
+   "title": "Objects",
+   "group": 3,
+   "comment": "",
+   "code": "result",
+   "eval": true
+  },
+  {
+   "id": "ch1-017",
+   "ch": "ch1",
+   "section": "1.3.2",
+   "title": "Objects",
+   "group": 4,
+   "comment": "",
+   "code": "kosuke <- \"instructor\"",
+   "eval": true
+  },
+  {
+   "id": "ch1-018",
+   "ch": "ch1",
+   "section": "1.3.2",
+   "title": "Objects",
+   "group": 4,
+   "comment": "",
+   "code": "kosuke",
+   "eval": true
+  },
+  {
+   "id": "ch1-019",
+   "ch": "ch1",
+   "section": "1.3.2",
+   "title": "Objects",
+   "group": 4,
+   "comment": "",
+   "code": "kosuke <- \"instructor and author\"",
+   "eval": true
+  },
+  {
+   "id": "ch1-020",
+   "ch": "ch1",
+   "section": "1.3.2",
+   "title": "Objects",
+   "group": 4,
+   "comment": "",
+   "code": "kosuke",
+   "eval": true
+  },
+  {
+   "id": "ch1-021",
+   "ch": "ch1",
+   "section": "1.3.2",
+   "title": "Objects",
+   "group": 5,
+   "comment": "",
+   "code": "Result <- \"5\"",
+   "eval": true
+  },
+  {
+   "id": "ch1-022",
+   "ch": "ch1",
+   "section": "1.3.2",
+   "title": "Objects",
+   "group": 5,
+   "comment": "",
+   "code": "Result",
+   "eval": true
+  },
+  {
+   "id": "ch1-023",
+   "ch": "ch1",
+   "section": "1.3.2",
+   "title": "Objects",
+   "group": 5,
+   "comment": "",
+   "code": "result",
+   "eval": true
+  },
+  {
+   "id": "ch1-024",
+   "ch": "ch1",
+   "section": "1.3.2",
+   "title": "Objects",
+   "group": 6,
+   "comment": "",
+   "code": "class(result)",
+   "eval": true
+  },
+  {
+   "id": "ch1-025",
+   "ch": "ch1",
+   "section": "1.3.2",
+   "title": "Objects",
+   "group": 6,
+   "comment": "",
+   "code": "Result",
+   "eval": true
+  },
+  {
+   "id": "ch1-026",
+   "ch": "ch1",
+   "section": "1.3.2",
+   "title": "Objects",
+   "group": 6,
+   "comment": "",
+   "code": "class(Result)",
+   "eval": true
+  },
+  {
+   "id": "ch1-027",
+   "ch": "ch1",
+   "section": "1.3.2",
+   "title": "Objects",
+   "group": 6,
+   "comment": "",
+   "code": "class(sqrt)",
+   "eval": true
+  },
+  {
+   "id": "ch1-028",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 7,
+   "comment": "",
+   "code": "world.pop <- c(2525779, 3026003, 3691173, 4449049, 5320817, 6127700, 6916183)",
+   "eval": true
+  },
+  {
+   "id": "ch1-029",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 7,
+   "comment": "",
+   "code": "world.pop",
+   "eval": true
+  },
+  {
+   "id": "ch1-030",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 8,
+   "comment": "",
+   "code": "pop.first <- c(2525779, 3026003, 3691173)",
+   "eval": true
+  },
+  {
+   "id": "ch1-031",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 8,
+   "comment": "",
+   "code": "pop.second <- c(4449049, 5320817, 6127700, 6916183)",
+   "eval": true
+  },
+  {
+   "id": "ch1-032",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 8,
+   "comment": "",
+   "code": "pop.all <- c(pop.first, pop.second)",
+   "eval": true
+  },
+  {
+   "id": "ch1-033",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 8,
+   "comment": "",
+   "code": "pop.all",
+   "eval": true
+  },
+  {
+   "id": "ch1-034",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 9,
+   "comment": "",
+   "code": "world.pop[2]",
+   "eval": true
+  },
+  {
+   "id": "ch1-035",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 9,
+   "comment": "",
+   "code": "world.pop[c(2, 4)]",
+   "eval": true
+  },
+  {
+   "id": "ch1-036",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 9,
+   "comment": "",
+   "code": "world.pop[c(4, 2)]",
+   "eval": true
+  },
+  {
+   "id": "ch1-037",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 9,
+   "comment": "",
+   "code": "world.pop[-3]",
+   "eval": true
+  },
+  {
+   "id": "ch1-038",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 10,
+   "comment": "",
+   "code": "pop.million <- world.pop / 1000",
+   "eval": true
+  },
+  {
+   "id": "ch1-039",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 10,
+   "comment": "",
+   "code": "pop.million",
+   "eval": true
+  },
+  {
+   "id": "ch1-040",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 11,
+   "comment": "",
+   "code": "pop.rate <- world.pop / world.pop[1]",
+   "eval": true
+  },
+  {
+   "id": "ch1-041",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 11,
+   "comment": "",
+   "code": "pop.rate",
+   "eval": true
+  },
+  {
+   "id": "ch1-042",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 12,
+   "comment": "",
+   "code": "pop.increase <- world.pop[-1] - world.pop[-7]",
+   "eval": true
+  },
+  {
+   "id": "ch1-043",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 12,
+   "comment": "",
+   "code": "percent.increase <- (pop.increase / world.pop[-7]) * 100",
+   "eval": true
+  },
+  {
+   "id": "ch1-044",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 12,
+   "comment": "",
+   "code": "percent.increase",
+   "eval": true
+  },
+  {
+   "id": "ch1-045",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 12,
+   "comment": "",
+   "code": "percent.increase[c(1, 2)] <- c(20, 22)",
+   "eval": true
+  },
+  {
+   "id": "ch1-046",
+   "ch": "ch1",
+   "section": "1.3.3",
+   "title": "Vectors",
+   "group": 12,
+   "comment": "",
+   "code": "percent.increase",
+   "eval": true
+  },
+  {
+   "id": "ch1-047",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 13,
+   "comment": "",
+   "code": "length(world.pop)",
+   "eval": true
+  },
+  {
+   "id": "ch1-048",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 13,
+   "comment": "",
+   "code": "min(world.pop)",
+   "eval": true
+  },
+  {
+   "id": "ch1-049",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 13,
+   "comment": "",
+   "code": "max(world.pop)",
+   "eval": true
+  },
+  {
+   "id": "ch1-050",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 13,
+   "comment": "",
+   "code": "range(world.pop)",
+   "eval": true
+  },
+  {
+   "id": "ch1-051",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 13,
+   "comment": "",
+   "code": "mean(world.pop)",
+   "eval": true
+  },
+  {
+   "id": "ch1-052",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 13,
+   "comment": "",
+   "code": "sum(world.pop) / length(world.pop)",
+   "eval": true
+  },
+  {
+   "id": "ch1-053",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 14,
+   "comment": "",
+   "code": "year <- seq(from = 1950, to = 2010, by = 10)",
+   "eval": true
+  },
+  {
+   "id": "ch1-054",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 14,
+   "comment": "",
+   "code": "year",
+   "eval": true
+  },
+  {
+   "id": "ch1-055",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 15,
+   "comment": "",
+   "code": "seq(to = 2010, by = 10, from = 1950)",
+   "eval": true
+  },
+  {
+   "id": "ch1-056",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 16,
+   "comment": "",
+   "code": "seq(from = 2010, to = 1950, by = -10)",
+   "eval": true
+  },
+  {
+   "id": "ch1-057",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 16,
+   "comment": "",
+   "code": "2008:2012",
+   "eval": true
+  },
+  {
+   "id": "ch1-058",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 16,
+   "comment": "",
+   "code": "2012:2008",
+   "eval": true
+  },
+  {
+   "id": "ch1-059",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 17,
+   "comment": "",
+   "code": "names(world.pop)",
+   "eval": true
+  },
+  {
+   "id": "ch1-060",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 17,
+   "comment": "",
+   "code": "names(world.pop) <- year",
+   "eval": true
+  },
+  {
+   "id": "ch1-061",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 17,
+   "comment": "",
+   "code": "names(world.pop)",
+   "eval": true
+  },
+  {
+   "id": "ch1-062",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 17,
+   "comment": "",
+   "code": "world.pop",
+   "eval": true
+  },
+  {
+   "id": "ch1-063",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 19,
+   "comment": "",
+   "code": "my.summary <- function(x){ # function takes one input\n  s.out <- sum(x)\n  l.out <- length(x)\n  m.out <- s.out / l.out\n  out <- c(s.out, l.out, m.out) # define the output\n  names(out) <- c(\"sum\", \"length\", \"mean\") # add labels\n  return(out) # end function by calling output\n}",
+   "eval": true
+  },
+  {
+   "id": "ch1-064",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 19,
+   "comment": "",
+   "code": "z <- 1:10",
+   "eval": true
+  },
+  {
+   "id": "ch1-065",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 19,
+   "comment": "",
+   "code": "my.summary(z)",
+   "eval": true
+  },
+  {
+   "id": "ch1-066",
+   "ch": "ch1",
+   "section": "1.3.4",
+   "title": "Functions",
+   "group": 19,
+   "comment": "",
+   "code": "my.summary(world.pop)",
+   "eval": true
+  },
+  {
+   "id": "ch1-067",
+   "ch": "ch1",
+   "section": "1.3.5",
+   "title": "Data Files",
+   "group": 21,
+   "comment": "",
+   "code": "UNpop <- read.csv(\"UNpop.csv\")",
+   "eval": true
+  },
+  {
+   "id": "ch1-068",
+   "ch": "ch1",
+   "section": "1.3.5",
+   "title": "Data Files",
+   "group": 21,
+   "comment": "",
+   "code": "class(UNpop)",
+   "eval": true
+  },
+  {
+   "id": "ch1-069",
+   "ch": "ch1",
+   "section": "1.3.5",
+   "title": "Data Files",
+   "group": 22,
+   "comment": "",
+   "code": "load(\"UNpop.RData\")",
+   "eval": true
+  },
+  {
+   "id": "ch1-070",
+   "ch": "ch1",
+   "section": "1.3.5",
+   "title": "Data Files",
+   "group": 23,
+   "comment": "",
+   "code": "names(UNpop)",
+   "eval": true
+  },
+  {
+   "id": "ch1-071",
+   "ch": "ch1",
+   "section": "1.3.5",
+   "title": "Data Files",
+   "group": 23,
+   "comment": "",
+   "code": "nrow(UNpop)",
+   "eval": true
+  },
+  {
+   "id": "ch1-072",
+   "ch": "ch1",
+   "section": "1.3.5",
+   "title": "Data Files",
+   "group": 23,
+   "comment": "",
+   "code": "ncol(UNpop)",
+   "eval": true
+  },
+  {
+   "id": "ch1-073",
+   "ch": "ch1",
+   "section": "1.3.5",
+   "title": "Data Files",
+   "group": 23,
+   "comment": "",
+   "code": "dim(UNpop)",
+   "eval": true
+  },
+  {
+   "id": "ch1-074",
+   "ch": "ch1",
+   "section": "1.3.5",
+   "title": "Data Files",
+   "group": 23,
+   "comment": "",
+   "code": "summary(UNpop)",
+   "eval": true
+  },
+  {
+   "id": "ch1-075",
+   "ch": "ch1",
+   "section": "1.3.5",
+   "title": "Data Files",
+   "group": 24,
+   "comment": "",
+   "code": "UNpop$world.pop",
+   "eval": true
+  },
+  {
+   "id": "ch1-076",
+   "ch": "ch1",
+   "section": "1.3.5",
+   "title": "Data Files",
+   "group": 25,
+   "comment": "",
+   "code": "UNpop[, \"world.pop\"] # extract the column called \"world.pop\"",
+   "eval": true
+  },
+  {
+   "id": "ch1-077",
+   "ch": "ch1",
+   "section": "1.3.5",
+   "title": "Data Files",
+   "group": 25,
+   "comment": "",
+   "code": "UNpop[c(1, 2, 3),]   # extract the first three rows (and all columns)",
+   "eval": true
+  },
+  {
+   "id": "ch1-078",
+   "ch": "ch1",
+   "section": "1.3.5",
+   "title": "Data Files",
+   "group": 25,
+   "comment": "",
+   "code": "UNpop[1:3, \"year\"]   # extract the first three rows of the \"year\" column",
+   "eval": true
+  },
+  {
+   "id": "ch1-079",
+   "ch": "ch1",
+   "section": "1.3.5",
+   "title": "Data Files",
+   "group": 26,
+   "comment": "take elements 1, 3, 5, ... of the \"world.pop\" variable",
+   "code": "UNpop$world.pop[seq(from = 1, to = nrow(UNpop), by = 2)]",
+   "eval": true
+  },
+  {
+   "id": "ch1-080",
+   "ch": "ch1",
+   "section": "1.3.5",
+   "title": "Data Files",
+   "group": 27,
+   "comment": "",
+   "code": "world.pop <- c(UNpop$world.pop, NA)",
+   "eval": true
+  },
+  {
+   "id": "ch1-081",
+   "ch": "ch1",
+   "section": "1.3.5",
+   "title": "Data Files",
+   "group": 27,
+   "comment": "",
+   "code": "world.pop",
+   "eval": true
+  },
+  {
+   "id": "ch1-082",
+   "ch": "ch1",
+   "section": "1.3.5",
+   "title": "Data Files",
+   "group": 27,
+   "comment": "",
+   "code": "mean(world.pop)",
+   "eval": true
+  },
+  {
+   "id": "ch1-083",
+   "ch": "ch1",
+   "section": "1.3.5",
+   "title": "Data Files",
+   "group": 27,
+   "comment": "",
+   "code": "mean(world.pop, na.rm = TRUE)",
+   "eval": true
+  },
+  {
+   "id": "ch1-084",
+   "ch": "ch1",
+   "section": "1.3.7",
+   "title": "Packages",
+   "group": 32,
+   "comment": "",
+   "code": "install.packages(\"foreign\") # install package",
+   "eval": false
+  },
+  {
+   "id": "ch1-085",
+   "ch": "ch1",
+   "section": "1.3.7",
+   "title": "Packages",
+   "group": 32,
+   "comment": "",
+   "code": "library(\"foreign\") # load package",
+   "eval": false
+  },
+  {
+   "id": "ch1-086",
+   "ch": "ch1",
+   "section": "1.3.7",
+   "title": "Packages",
+   "group": 33,
+   "comment": "",
+   "code": "read.dta(\"UNpop.dta\")",
+   "eval": false
+  },
+  {
+   "id": "ch1-087",
+   "ch": "ch1",
+   "section": "1.3.7",
+   "title": "Packages",
+   "group": 33,
+   "comment": "",
+   "code": "read.spss(\"UNpop.sav\")",
+   "eval": false
+  },
+  {
+   "id": "ch1-088",
+   "ch": "ch1",
+   "section": "1.3.7",
+   "title": "Packages",
+   "group": 34,
+   "comment": "",
+   "code": "write.dta(UNpop, file = \"UNpop.dta\")",
+   "eval": false
+  },
+  {
+   "id": "ch1-089",
+   "ch": "ch1",
+   "section": "1.3.8",
+   "title": "Programming and Learning Tips",
+   "group": 35,
+   "comment": "",
+   "code": "source(\"UNpop.R\")",
+   "eval": false
+  },
+  {
+   "id": "ch1-090",
+   "ch": "ch1",
+   "section": "1.3.8",
+   "title": "Programming and Learning Tips",
+   "group": 37,
+   "comment": "",
+   "code": "library(foreign)",
+   "eval": false
+  },
+  {
+   "id": "ch1-091",
+   "ch": "ch1",
+   "section": "1.3.8",
+   "title": "Programming and Learning Tips",
+   "group": 37,
+   "comment": "",
+   "code": "UNpop <- read.csv(\"UNpop.csv\")",
+   "eval": false
+  },
+  {
+   "id": "ch1-092",
+   "ch": "ch1",
+   "section": "1.3.8",
+   "title": "Programming and Learning Tips",
+   "group": 37,
+   "comment": "",
+   "code": "UNpop$world.pop <- UNpop$world.pop / 1000  # population in millions",
+   "eval": false
+  },
+  {
+   "id": "ch1-093",
+   "ch": "ch1",
+   "section": "1.3.8",
+   "title": "Programming and Learning Tips",
+   "group": 37,
+   "comment": "",
+   "code": "write.dta(UNpop, file = \"UNpop.dta\")",
+   "eval": false
+  },
+  {
+   "id": "ch1-094",
+   "ch": "ch1",
+   "section": "1.3.8",
+   "title": "Programming and Learning Tips",
+   "group": 38,
+   "comment": "",
+   "code": "library(lintr)",
+   "eval": false
+  },
+  {
+   "id": "ch1-095",
+   "ch": "ch1",
+   "section": "1.3.8",
+   "title": "Programming and Learning Tips",
+   "group": 38,
+   "comment": "",
+   "code": "lint(\"UNpop.R\")",
+   "eval": false
+  },
+  {
+   "id": "ch2-001",
+   "ch": "ch2",
+   "section": "2.1",
+   "title": "Racial Discrimination in the Labor Market",
+   "group": 1,
+   "comment": "",
+   "code": "resume <- read.csv(\"resume.csv\")",
+   "eval": true
+  },
+  {
+   "id": "ch2-002",
+   "ch": "ch2",
+   "section": "2.1",
+   "title": "Racial Discrimination in the Labor Market",
+   "group": 2,
+   "comment": "",
+   "code": "dim(resume)",
+   "eval": true
+  },
+  {
+   "id": "ch2-003",
+   "ch": "ch2",
+   "section": "2.1",
+   "title": "Racial Discrimination in the Labor Market",
+   "group": 2,
+   "comment": "",
+   "code": "head(resume)",
+   "eval": true
+  },
+  {
+   "id": "ch2-004",
+   "ch": "ch2",
+   "section": "2.1",
+   "title": "Racial Discrimination in the Labor Market",
+   "group": 2,
+   "comment": "",
+   "code": "summary(resume)",
+   "eval": true
+  },
+  {
+   "id": "ch2-005",
+   "ch": "ch2",
+   "section": "2.1",
+   "title": "Racial Discrimination in the Labor Market",
+   "group": 3,
+   "comment": "",
+   "code": "race.call.tab <- table(race = resume$race, call = resume$call)",
+   "eval": true
+  },
+  {
+   "id": "ch2-006",
+   "ch": "ch2",
+   "section": "2.1",
+   "title": "Racial Discrimination in the Labor Market",
+   "group": 3,
+   "comment": "",
+   "code": "race.call.tab",
+   "eval": true
+  },
+  {
+   "id": "ch2-007",
+   "ch": "ch2",
+   "section": "2.1",
+   "title": "Racial Discrimination in the Labor Market",
+   "group": 4,
+   "comment": "",
+   "code": "addmargins(race.call.tab)",
+   "eval": true
+  },
+  {
+   "id": "ch2-008",
+   "ch": "ch2",
+   "section": "2.1",
+   "title": "Racial Discrimination in the Labor Market",
+   "group": 5,
+   "comment": "overall callback rate: total callbacks divided by the sample size",
+   "code": "sum(race.call.tab[, 2]) / nrow(resume)",
+   "eval": true
+  },
+  {
+   "id": "ch2-009",
+   "ch": "ch2",
+   "section": "2.1",
+   "title": "Racial Discrimination in the Labor Market",
+   "group": 6,
+   "comment": "callback rates for each race",
+   "code": "race.call.tab[1, 2] / sum(race.call.tab[1, ]) # black",
+   "eval": true
+  },
+  {
+   "id": "ch2-010",
+   "ch": "ch2",
+   "section": "2.1",
+   "title": "Racial Discrimination in the Labor Market",
+   "group": 6,
+   "comment": "",
+   "code": "race.call.tab[2, 2] / sum(race.call.tab[2, ]) # white",
+   "eval": true
+  },
+  {
+   "id": "ch2-011",
+   "ch": "ch2",
+   "section": "2.1",
+   "title": "Racial Discrimination in the Labor Market",
+   "group": 7,
+   "comment": "",
+   "code": "race.call.tab[1, ]  # the first row",
+   "eval": true
+  },
+  {
+   "id": "ch2-012",
+   "ch": "ch2",
+   "section": "2.1",
+   "title": "Racial Discrimination in the Labor Market",
+   "group": 7,
+   "comment": "",
+   "code": "race.call.tab[, 2]  # the second column",
+   "eval": true
+  },
+  {
+   "id": "ch2-013",
+   "ch": "ch2",
+   "section": "2.1",
+   "title": "Racial Discrimination in the Labor Market",
+   "group": 8,
+   "comment": "",
+   "code": "mean(resume$call)",
+   "eval": true
+  },
+  {
+   "id": "ch2-014",
+   "ch": "ch2",
+   "section": "2.2",
+   "title": "Subsetting the Data in R",
+   "group": 9,
+   "comment": "",
+   "code": "class(TRUE)",
+   "eval": true
+  },
+  {
+   "id": "ch2-015",
+   "ch": "ch2",
+   "section": "2.2",
+   "title": "Subsetting the Data in R",
+   "group": 10,
+   "comment": "",
+   "code": "as.integer(TRUE)",
+   "eval": true
+  },
+  {
+   "id": "ch2-016",
+   "ch": "ch2",
+   "section": "2.2",
+   "title": "Subsetting the Data in R",
+   "group": 10,
+   "comment": "",
+   "code": "as.integer(FALSE)",
+   "eval": true
+  },
+  {
+   "id": "ch2-017",
+   "ch": "ch2",
+   "section": "2.2",
+   "title": "Subsetting the Data in R",
+   "group": 11,
+   "comment": "",
+   "code": "x <- c(TRUE, FALSE, TRUE) # a vector with logical values",
+   "eval": true
+  },
+  {
+   "id": "ch2-018",
+   "ch": "ch2",
+   "section": "2.2",
+   "title": "Subsetting the Data in R",
+   "group": 12,
+   "comment": "",
+   "code": "mean(x) # proportion of TRUEs",
+   "eval": true
+  },
+  {
+   "id": "ch2-019",
+   "ch": "ch2",
+   "section": "2.2",
+   "title": "Subsetting the Data in R",
+   "group": 12,
+   "comment": "",
+   "code": "sum(x) # number of TRUEs",
+   "eval": true
+  },
+  {
+   "id": "ch2-020",
+   "ch": "ch2",
+   "section": "2.2",
+   "title": "Subsetting the Data in R",
+   "group": 13,
+   "comment": "",
+   "code": "FALSE & TRUE",
+   "eval": true
+  },
+  {
+   "id": "ch2-021",
+   "ch": "ch2",
+   "section": "2.2",
+   "title": "Subsetting the Data in R",
+   "group": 13,
+   "comment": "",
+   "code": "TRUE & TRUE",
+   "eval": true
+  },
+  {
+   "id": "ch2-022",
+   "ch": "ch2",
+   "section": "2.2",
+   "title": "Subsetting the Data in R",
+   "group": 13,
+   "comment": "",
+   "code": "TRUE | FALSE",
+   "eval": true
+  },
+  {
+   "id": "ch2-023",
+   "ch": "ch2",
+   "section": "2.2",
+   "title": "Subsetting the Data in R",
+   "group": 13,
+   "comment": "",
+   "code": "FALSE | FALSE",
+   "eval": true
+  },
+  {
+   "id": "ch2-024",
+   "ch": "ch2",
+   "section": "2.2",
+   "title": "Subsetting the Data in R",
+   "group": 13,
+   "comment": "",
+   "code": "TRUE & FALSE & TRUE",
+   "eval": true
+  },
+  {
+   "id": "ch2-025",
+   "ch": "ch2",
+   "section": "2.2",
+   "title": "Subsetting the Data in R",
+   "group": 14,
+   "comment": "",
+   "code": "(TRUE | FALSE) & FALSE # the parentheses evaluate to TRUE",
+   "eval": true
+  },
+  {
+   "id": "ch2-026",
+   "ch": "ch2",
+   "section": "2.2",
+   "title": "Subsetting the Data in R",
+   "group": 14,
+   "comment": "",
+   "code": "TRUE | (FALSE & FALSE) # the parentheses evaluate to FALSE",
+   "eval": true
+  },
+  {
+   "id": "ch2-027",
+   "ch": "ch2",
+   "section": "2.2",
+   "title": "Subsetting the Data in R",
+   "group": 15,
+   "comment": "",
+   "code": "TF1 <- c(TRUE, FALSE, FALSE)",
+   "eval": true
+  },
+  {
+   "id": "ch2-028",
+   "ch": "ch2",
+   "section": "2.2",
+   "title": "Subsetting the Data in R",
+   "group": 15,
+   "comment": "",
+   "code": "TF2 <- c(TRUE, FALSE, TRUE)",
+   "eval": true
+  },
+  {
+   "id": "ch2-029",
+   "ch": "ch2",
+   "section": "2.2",
+   "title": "Subsetting the Data in R",
+   "group": 15,
+   "comment": "",
+   "code": "TF1 | TF2",
+   "eval": true
+  },
+  {
+   "id": "ch2-030",
+   "ch": "ch2",
+   "section": "2.2",
+   "title": "Subsetting the Data in R",
+   "group": 15,
+   "comment": "",
+   "code": "TF1 & TF2",
+   "eval": true
+  },
+  {
+   "id": "ch2-031",
+   "ch": "ch2",
+   "section": "2.2.2",
+   "title": "Relational Operators",
+   "group": 16,
+   "comment": "",
+   "code": "4 > 3",
+   "eval": true
+  },
+  {
+   "id": "ch2-032",
+   "ch": "ch2",
+   "section": "2.2.2",
+   "title": "Relational Operators",
+   "group": 17,
+   "comment": "",
+   "code": "\"Hello\" == \"hello\"  # R is case-sensitive",
+   "eval": true
+  },
+  {
+   "id": "ch2-033",
+   "ch": "ch2",
+   "section": "2.2.2",
+   "title": "Relational Operators",
+   "group": 17,
+   "comment": "",
+   "code": "\"Hello\" != \"hello\"",
+   "eval": true
+  },
+  {
+   "id": "ch2-034",
+   "ch": "ch2",
+   "section": "2.2.2",
+   "title": "Relational Operators",
+   "group": 18,
+   "comment": "",
+   "code": "x <- c(3, 2, 1, -2, -1)",
+   "eval": true
+  },
+  {
+   "id": "ch2-035",
+   "ch": "ch2",
+   "section": "2.2.2",
+   "title": "Relational Operators",
+   "group": 18,
+   "comment": "",
+   "code": "x >= 2",
+   "eval": true
+  },
+  {
+   "id": "ch2-036",
+   "ch": "ch2",
+   "section": "2.2.2",
+   "title": "Relational Operators",
+   "group": 18,
+   "comment": "",
+   "code": "x != 1",
+   "eval": true
+  },
+  {
+   "id": "ch2-037",
+   "ch": "ch2",
+   "section": "2.2.2",
+   "title": "Relational Operators",
+   "group": 19,
+   "comment": "logical conjunction of two vectors with logical values",
+   "code": "(x > 0) & (x <= 2)",
+   "eval": true
+  },
+  {
+   "id": "ch2-038",
+   "ch": "ch2",
+   "section": "2.2.2",
+   "title": "Relational Operators",
+   "group": 19,
+   "comment": "logical disjunction of two vectors with logical values",
+   "code": "(x > 2) | (x <= -1)",
+   "eval": true
+  },
+  {
+   "id": "ch2-039",
+   "ch": "ch2",
+   "section": "2.2.2",
+   "title": "Relational Operators",
+   "group": 20,
+   "comment": "",
+   "code": "x.int <- (x > 0) & (x <= 2) # logical vector",
+   "eval": true
+  },
+  {
+   "id": "ch2-040",
+   "ch": "ch2",
+   "section": "2.2.2",
+   "title": "Relational Operators",
+   "group": 20,
+   "comment": "",
+   "code": "x.int",
+   "eval": true
+  },
+  {
+   "id": "ch2-041",
+   "ch": "ch2",
+   "section": "2.2.2",
+   "title": "Relational Operators",
+   "group": 21,
+   "comment": "",
+   "code": "mean(x.int) # proportion of TRUEs",
+   "eval": true
+  },
+  {
+   "id": "ch2-042",
+   "ch": "ch2",
+   "section": "2.2.2",
+   "title": "Relational Operators",
+   "group": 21,
+   "comment": "",
+   "code": "sum(x.int)  # number of TRUEs",
+   "eval": true
+  },
+  {
+   "id": "ch2-043",
+   "ch": "ch2",
+   "section": "2.2.3",
+   "title": "Subsetting",
+   "group": 22,
+   "comment": "callback rate for black-sounding names",
+   "code": "mean(resume$call[resume$race == \"black\"])",
+   "eval": true
+  },
+  {
+   "id": "ch2-044",
+   "ch": "ch2",
+   "section": "2.2.3",
+   "title": "Subsetting",
+   "group": 23,
+   "comment": "race of first 5 observations",
+   "code": "resume$race[1:5]",
+   "eval": true
+  },
+  {
+   "id": "ch2-045",
+   "ch": "ch2",
+   "section": "2.2.3",
+   "title": "Subsetting",
+   "group": 24,
+   "comment": "comparison of first 5 observations",
+   "code": "(resume$race == \"black\")[1:5]",
+   "eval": true
+  },
+  {
+   "id": "ch2-046",
+   "ch": "ch2",
+   "section": "2.2.3",
+   "title": "Subsetting",
+   "group": 25,
+   "comment": "",
+   "code": "dim(resume) # dimension of original data frame",
+   "eval": true
+  },
+  {
+   "id": "ch2-047",
+   "ch": "ch2",
+   "section": "2.2.3",
+   "title": "Subsetting",
+   "group": 26,
+   "comment": "subset blacks only",
+   "code": "resumeB <- resume[resume$race == \"black\", ]",
+   "eval": true
+  },
+  {
+   "id": "ch2-048",
+   "ch": "ch2",
+   "section": "2.2.3",
+   "title": "Subsetting",
+   "group": 26,
+   "comment": "",
+   "code": "dim(resumeB) # this data.frame has fewer rows than the original data.frame",
+   "eval": true
+  },
+  {
+   "id": "ch2-049",
+   "ch": "ch2",
+   "section": "2.2.3",
+   "title": "Subsetting",
+   "group": 26,
+   "comment": "",
+   "code": "mean(resumeB$call) # callback rate for blacks",
+   "eval": true
+  },
+  {
+   "id": "ch2-050",
+   "ch": "ch2",
+   "section": "2.2.3",
+   "title": "Subsetting",
+   "group": 27,
+   "comment": "keep \"call\" and \"firstname\" variables\nalso keep observations with black female-sounding names",
+   "code": "resumeBf <- subset(resume, select = c(\"call\", \"firstname\"),\n                   subset = (race == \"black\" & sex == \"female\"))",
+   "eval": true
+  },
+  {
+   "id": "ch2-051",
+   "ch": "ch2",
+   "section": "2.2.3",
+   "title": "Subsetting",
+   "group": 27,
+   "comment": "",
+   "code": "head(resumeBf)",
+   "eval": true
+  },
+  {
+   "id": "ch2-052",
+   "ch": "ch2",
+   "section": "2.2.3",
+   "title": "Subsetting",
+   "group": 28,
+   "comment": "## an alternative syntax with the same results\nresumeBf <- resume[resume$race == \"black\" & resume$sex == \"female\",\nc(\"call\", \"firstname\")]\nblack male",
+   "code": "resumeBm <- subset(resume, subset = (race == \"black\") & (sex == \"male\"))",
+   "eval": true
+  },
+  {
+   "id": "ch2-053",
+   "ch": "ch2",
+   "section": "2.2.3",
+   "title": "Subsetting",
+   "group": 28,
+   "comment": "white female",
+   "code": "resumeWf <- subset(resume, subset = (race == \"white\") & (sex == \"female\"))",
+   "eval": true
+  },
+  {
+   "id": "ch2-054",
+   "ch": "ch2",
+   "section": "2.2.3",
+   "title": "Subsetting",
+   "group": 28,
+   "comment": "white male",
+   "code": "resumeWm <- subset(resume, subset = (race == \"white\") & (sex == \"male\"))",
+   "eval": true
+  },
+  {
+   "id": "ch2-055",
+   "ch": "ch2",
+   "section": "2.2.3",
+   "title": "Subsetting",
+   "group": 28,
+   "comment": "racial gaps",
+   "code": "mean(resumeWf$call) - mean(resumeBf$call) # among females",
+   "eval": true
+  },
+  {
+   "id": "ch2-056",
+   "ch": "ch2",
+   "section": "2.2.3",
+   "title": "Subsetting",
+   "group": 28,
+   "comment": "",
+   "code": "mean(resumeWm$call) - mean(resumeBm$call) # among males",
+   "eval": true
+  },
+  {
+   "id": "ch2-057",
+   "ch": "ch2",
+   "section": "2.2.4",
+   "title": "Simple Conditional Statements",
+   "group": 29,
+   "comment": "",
+   "code": "resume$BlackFemale <- ifelse(resume$race == \"black\" &\n                                 resume$sex == \"female\", 1, 0)",
+   "eval": true
+  },
+  {
+   "id": "ch2-058",
+   "ch": "ch2",
+   "section": "2.2.4",
+   "title": "Simple Conditional Statements",
+   "group": 29,
+   "comment": "",
+   "code": "table(race = resume$race, sex = resume$sex,\n      BlackFemale = resume$BlackFemale)",
+   "eval": true
+  },
+  {
+   "id": "ch2-059",
+   "ch": "ch2",
+   "section": "2.2.5",
+   "title": "Factor Variables",
+   "group": 30,
+   "comment": "",
+   "code": "resume$type <- NA",
+   "eval": true
+  },
+  {
+   "id": "ch2-060",
+   "ch": "ch2",
+   "section": "2.2.5",
+   "title": "Factor Variables",
+   "group": 30,
+   "comment": "",
+   "code": "resume$type[resume$race == \"black\" & resume$sex == \"female\"] <- \"BlackFemale\"",
+   "eval": true
+  },
+  {
+   "id": "ch2-061",
+   "ch": "ch2",
+   "section": "2.2.5",
+   "title": "Factor Variables",
+   "group": 30,
+   "comment": "",
+   "code": "resume$type[resume$race == \"black\" & resume$sex == \"male\"] <- \"BlackMale\"",
+   "eval": true
+  },
+  {
+   "id": "ch2-062",
+   "ch": "ch2",
+   "section": "2.2.5",
+   "title": "Factor Variables",
+   "group": 30,
+   "comment": "",
+   "code": "resume$type[resume$race == \"white\" & resume$sex == \"female\"] <- \"WhiteFemale\"",
+   "eval": true
+  },
+  {
+   "id": "ch2-063",
+   "ch": "ch2",
+   "section": "2.2.5",
+   "title": "Factor Variables",
+   "group": 30,
+   "comment": "",
+   "code": "resume$type[resume$race == \"white\" & resume$sex == \"male\"] <- \"WhiteMale\"",
+   "eval": true
+  },
+  {
+   "id": "ch2-064",
+   "ch": "ch2",
+   "section": "2.2.5",
+   "title": "Factor Variables",
+   "group": 31,
+   "comment": "check object class",
+   "code": "class(resume$type)",
+   "eval": true
+  },
+  {
+   "id": "ch2-065",
+   "ch": "ch2",
+   "section": "2.2.5",
+   "title": "Factor Variables",
+   "group": 32,
+   "comment": "coerce new character variable into a factor variable",
+   "code": "resume$type <- as.factor(resume$type)",
+   "eval": true
+  },
+  {
+   "id": "ch2-066",
+   "ch": "ch2",
+   "section": "2.2.5",
+   "title": "Factor Variables",
+   "group": 32,
+   "comment": "list all levels of a factor variable",
+   "code": "levels(resume$type)",
+   "eval": true
+  },
+  {
+   "id": "ch2-067",
+   "ch": "ch2",
+   "section": "2.2.5",
+   "title": "Factor Variables",
+   "group": 33,
+   "comment": "obtain the number of observations for each level",
+   "code": "table(resume$type)",
+   "eval": true
+  },
+  {
+   "id": "ch2-068",
+   "ch": "ch2",
+   "section": "2.2.5",
+   "title": "Factor Variables",
+   "group": 33,
+   "comment": "",
+   "code": "tapply(resume$call, resume$type, mean)",
+   "eval": true
+  },
+  {
+   "id": "ch2-069",
+   "ch": "ch2",
+   "section": "2.2.5",
+   "title": "Factor Variables",
+   "group": 34,
+   "comment": "turn first name into a factor variable",
+   "code": "resume$firstname <- as.factor(resume$firstname)",
+   "eval": true
+  },
+  {
+   "id": "ch2-070",
+   "ch": "ch2",
+   "section": "2.2.5",
+   "title": "Factor Variables",
+   "group": 34,
+   "comment": "compute callback rate for each first name",
+   "code": "callback.name <- tapply(resume$call, resume$firstname, mean)",
+   "eval": true
+  },
+  {
+   "id": "ch2-071",
+   "ch": "ch2",
+   "section": "2.2.5",
+   "title": "Factor Variables",
+   "group": 34,
+   "comment": "sort the result in the increasing order",
+   "code": "sort(callback.name)",
+   "eval": true
+  },
+  {
+   "id": "ch2-072",
+   "ch": "ch2",
+   "section": "2.3",
+   "title": "Causal Effects and the Counterfactual",
+   "group": 35,
+   "comment": "",
+   "code": "resume[1, ]",
+   "eval": true
+  },
+  {
+   "id": "ch2-073",
+   "ch": "ch2",
+   "section": "2.4.2",
+   "title": "Social Pressure and Voter Turnout",
+   "group": 36,
+   "comment": "",
+   "code": "social <- read.csv(\"social.csv\") # load the data",
+   "eval": true
+  },
+  {
+   "id": "ch2-074",
+   "ch": "ch2",
+   "section": "2.4.2",
+   "title": "Social Pressure and Voter Turnout",
+   "group": 37,
+   "comment": "",
+   "code": "summary(social) # summarize the data",
+   "eval": true
+  },
+  {
+   "id": "ch2-075",
+   "ch": "ch2",
+   "section": "2.4.2",
+   "title": "Social Pressure and Voter Turnout",
+   "group": 38,
+   "comment": "turnout for each group",
+   "code": "tapply(social$primary2006, social$messages, mean)",
+   "eval": true
+  },
+  {
+   "id": "ch2-076",
+   "ch": "ch2",
+   "section": "2.4.2",
+   "title": "Social Pressure and Voter Turnout",
+   "group": 39,
+   "comment": "turnout for control group",
+   "code": "mean(social$primary2006[social$messages == \"Control\"])",
+   "eval": true
+  },
+  {
+   "id": "ch2-077",
+   "ch": "ch2",
+   "section": "2.4.2",
+   "title": "Social Pressure and Voter Turnout",
+   "group": 40,
+   "comment": "subtract control group turnout from each group",
+   "code": "tapply(social$primary2006, social$messages, mean) -\n    mean(social$primary2006[social$messages == \"Control\"])",
+   "eval": true
+  },
+  {
+   "id": "ch2-078",
+   "ch": "ch2",
+   "section": "2.4.2",
+   "title": "Social Pressure and Voter Turnout",
+   "group": 41,
+   "comment": "",
+   "code": "social$age <- 2006 - social$yearofbirth # create age variable",
+   "eval": true
+  },
+  {
+   "id": "ch2-079",
+   "ch": "ch2",
+   "section": "2.4.2",
+   "title": "Social Pressure and Voter Turnout",
+   "group": 41,
+   "comment": "",
+   "code": "tapply(social$age, social$messages, mean)",
+   "eval": true
+  },
+  {
+   "id": "ch2-080",
+   "ch": "ch2",
+   "section": "2.4.2",
+   "title": "Social Pressure and Voter Turnout",
+   "group": 41,
+   "comment": "",
+   "code": "tapply(social$primary2004, social$messages, mean)",
+   "eval": true
+  },
+  {
+   "id": "ch2-081",
+   "ch": "ch2",
+   "section": "2.4.2",
+   "title": "Social Pressure and Voter Turnout",
+   "group": 41,
+   "comment": "",
+   "code": "tapply(social$hhsize, social$messages, mean)",
+   "eval": true
+  },
+  {
+   "id": "ch2-082",
+   "ch": "ch2",
+   "section": "2.5.1",
+   "title": "Minimum Wage and Unemployment",
+   "group": 42,
+   "comment": "",
+   "code": "minwage <- read.csv(\"minwage.csv\") # load the data",
+   "eval": true
+  },
+  {
+   "id": "ch2-083",
+   "ch": "ch2",
+   "section": "2.5.1",
+   "title": "Minimum Wage and Unemployment",
+   "group": 43,
+   "comment": "",
+   "code": "dim(minwage) # dimension of data",
+   "eval": true
+  },
+  {
+   "id": "ch2-084",
+   "ch": "ch2",
+   "section": "2.5.1",
+   "title": "Minimum Wage and Unemployment",
+   "group": 43,
+   "comment": "",
+   "code": "summary(minwage) # summary of data",
+   "eval": true
+  },
+  {
+   "id": "ch2-085",
+   "ch": "ch2",
+   "section": "2.5.1",
+   "title": "Minimum Wage and Unemployment",
+   "group": 44,
+   "comment": "subsetting the data into two states",
+   "code": "minwageNJ <- subset(minwage, subset = (location != \"PA\"))",
+   "eval": true
+  },
+  {
+   "id": "ch2-086",
+   "ch": "ch2",
+   "section": "2.5.1",
+   "title": "Minimum Wage and Unemployment",
+   "group": 44,
+   "comment": "",
+   "code": "minwagePA <- subset(minwage, subset = (location == \"PA\"))",
+   "eval": true
+  },
+  {
+   "id": "ch2-087",
+   "ch": "ch2",
+   "section": "2.5.1",
+   "title": "Minimum Wage and Unemployment",
+   "group": 45,
+   "comment": "proportion of restaurants whose wage is less than $5.05",
+   "code": "mean(minwageNJ$wageBefore < 5.05) # NJ before",
+   "eval": true
+  },
+  {
+   "id": "ch2-088",
+   "ch": "ch2",
+   "section": "2.5.1",
+   "title": "Minimum Wage and Unemployment",
+   "group": 45,
+   "comment": "",
+   "code": "mean(minwageNJ$wageAfter < 5.05)  # NJ after",
+   "eval": true
+  },
+  {
+   "id": "ch2-089",
+   "ch": "ch2",
+   "section": "2.5.1",
+   "title": "Minimum Wage and Unemployment",
+   "group": 45,
+   "comment": "",
+   "code": "mean(minwagePA$wageBefore < 5.05) # PA before",
+   "eval": true
+  },
+  {
+   "id": "ch2-090",
+   "ch": "ch2",
+   "section": "2.5.1",
+   "title": "Minimum Wage and Unemployment",
+   "group": 45,
+   "comment": "",
+   "code": "mean(minwagePA$wageAfter < 5.05)  # PA after",
+   "eval": true
+  },
+  {
+   "id": "ch2-091",
+   "ch": "ch2",
+   "section": "2.5.1",
+   "title": "Minimum Wage and Unemployment",
+   "group": 46,
+   "comment": "create a variable for proportion of full-time employees in NJ and PA",
+   "code": "minwageNJ$fullPropAfter <- minwageNJ$fullAfter /\n    (minwageNJ$fullAfter + minwageNJ$partAfter)",
+   "eval": true
+  },
+  {
+   "id": "ch2-092",
+   "ch": "ch2",
+   "section": "2.5.1",
+   "title": "Minimum Wage and Unemployment",
+   "group": 46,
+   "comment": "",
+   "code": "minwagePA$fullPropAfter <- minwagePA$fullAfter /\n    (minwagePA$fullAfter + minwagePA$partAfter)",
+   "eval": true
+  },
+  {
+   "id": "ch2-093",
+   "ch": "ch2",
+   "section": "2.5.1",
+   "title": "Minimum Wage and Unemployment",
+   "group": 47,
+   "comment": "compute the difference in means",
+   "code": "mean(minwageNJ$fullPropAfter) - mean(minwagePA$fullPropAfter)",
+   "eval": true
+  },
+  {
+   "id": "ch2-094",
+   "ch": "ch2",
+   "section": "2.5.2",
+   "title": "Confounding Bias",
+   "group": 48,
+   "comment": "",
+   "code": "prop.table(table(minwageNJ$chain))",
+   "eval": true
+  },
+  {
+   "id": "ch2-095",
+   "ch": "ch2",
+   "section": "2.5.2",
+   "title": "Confounding Bias",
+   "group": 48,
+   "comment": "",
+   "code": "prop.table(table(minwagePA$chain))",
+   "eval": true
+  },
+  {
+   "id": "ch2-096",
+   "ch": "ch2",
+   "section": "2.5.2",
+   "title": "Confounding Bias",
+   "group": 49,
+   "comment": "subset Burger King only",
+   "code": "minwageNJ.bk <- subset(minwageNJ, subset = (chain == \"burgerking\"))",
+   "eval": true
+  },
+  {
+   "id": "ch2-097",
+   "ch": "ch2",
+   "section": "2.5.2",
+   "title": "Confounding Bias",
+   "group": 49,
+   "comment": "",
+   "code": "minwagePA.bk <- subset(minwagePA, subset = (chain == \"burgerking\"))",
+   "eval": true
+  },
+  {
+   "id": "ch2-098",
+   "ch": "ch2",
+   "section": "2.5.2",
+   "title": "Confounding Bias",
+   "group": 50,
+   "comment": "comparison of full-time employment rates",
+   "code": "mean(minwageNJ.bk$fullPropAfter) - mean(minwagePA.bk$fullPropAfter)",
+   "eval": true
+  },
+  {
+   "id": "ch2-099",
+   "ch": "ch2",
+   "section": "2.5.2",
+   "title": "Confounding Bias",
+   "group": 51,
+   "comment": "",
+   "code": "minwageNJ.bk.subset <-\n    subset(minwageNJ.bk, subset = ((location != \"shoreNJ\") &\n                                       (location != \"centralNJ\")))",
+   "eval": true
+  },
+  {
+   "id": "ch2-100",
+   "ch": "ch2",
+   "section": "2.5.2",
+   "title": "Confounding Bias",
+   "group": 52,
+   "comment": "",
+   "code": "mean(minwageNJ.bk.subset$fullPropAfter) - mean(minwagePA.bk$fullPropAfter)",
+   "eval": true
+  },
+  {
+   "id": "ch2-101",
+   "ch": "ch2",
+   "section": "2.5.3",
+   "title": "Before-and-After and Difference-in-Differences Designs",
+   "group": 53,
+   "comment": "full-time employment proportion in the previous period for NJ",
+   "code": "minwageNJ$fullPropBefore <- minwageNJ$fullBefore /\n    (minwageNJ$fullBefore + minwageNJ$partBefore)",
+   "eval": true
+  },
+  {
+   "id": "ch2-102",
+   "ch": "ch2",
+   "section": "2.5.3",
+   "title": "Before-and-After and Difference-in-Differences Designs",
+   "group": 54,
+   "comment": "mean difference between before and after the minimum wage increase",
+   "code": "NJdiff <- mean(minwageNJ$fullPropAfter) - mean(minwageNJ$fullPropBefore)",
+   "eval": true
+  },
+  {
+   "id": "ch2-103",
+   "ch": "ch2",
+   "section": "2.5.3",
+   "title": "Before-and-After and Difference-in-Differences Designs",
+   "group": 54,
+   "comment": "",
+   "code": "NJdiff",
+   "eval": true
+  },
+  {
+   "id": "ch2-104",
+   "ch": "ch2",
+   "section": "2.5.3",
+   "title": "Before-and-After and Difference-in-Differences Designs",
+   "group": 55,
+   "comment": "full-time employment proportion in the previous period for PA",
+   "code": "minwagePA$fullPropBefore <- minwagePA$fullBefore /\n    (minwagePA$fullBefore + minwagePA$partBefore)",
+   "eval": true
+  },
+  {
+   "id": "ch2-105",
+   "ch": "ch2",
+   "section": "2.5.3",
+   "title": "Before-and-After and Difference-in-Differences Designs",
+   "group": 55,
+   "comment": "mean difference between before and after for PA",
+   "code": "PAdiff <- mean(minwagePA$fullPropAfter) - mean(minwagePA$fullPropBefore)",
+   "eval": true
+  },
+  {
+   "id": "ch2-106",
+   "ch": "ch2",
+   "section": "2.5.3",
+   "title": "Before-and-After and Difference-in-Differences Designs",
+   "group": 55,
+   "comment": "difference-in-differences",
+   "code": "NJdiff - PAdiff",
+   "eval": true
+  },
+  {
+   "id": "ch2-107",
+   "ch": "ch2",
+   "section": "2.5.3",
+   "title": "Before-and-After and Difference-in-Differences Designs",
+   "group": 56,
+   "comment": "full-time employment proportion in the previous period for PA",
+   "code": "minwagePA$fullPropBefore <- minwagePA$fullBefore /\n    (minwagePA$fullBefore + minwagePA$partBefore)",
+   "eval": true
+  },
+  {
+   "id": "ch2-108",
+   "ch": "ch2",
+   "section": "2.5.3",
+   "title": "Before-and-After and Difference-in-Differences Designs",
+   "group": 56,
+   "comment": "mean difference between before and after for PA",
+   "code": "PAdiff <- mean(minwagePA$fullPropAfter) - mean(minwagePA$fullPropBefore)",
+   "eval": true
+  },
+  {
+   "id": "ch2-109",
+   "ch": "ch2",
+   "section": "2.5.3",
+   "title": "Before-and-After and Difference-in-Differences Designs",
+   "group": 56,
+   "comment": "difference-in-differences",
+   "code": "NJdiff - PAdiff",
+   "eval": true
+  },
+  {
+   "id": "ch2-110",
+   "ch": "ch2",
+   "section": "2.6.1",
+   "title": "Quantiles",
+   "group": 57,
+   "comment": "cross-section comparison between NJ and PA",
+   "code": "median(minwageNJ$fullPropAfter) - median(minwagePA$fullPropAfter)",
+   "eval": true
+  },
+  {
+   "id": "ch2-111",
+   "ch": "ch2",
+   "section": "2.6.1",
+   "title": "Quantiles",
+   "group": 57,
+   "comment": "before and after comparison",
+   "code": "NJdiff.med <- median(minwageNJ$fullPropAfter) -\n    median(minwageNJ$fullPropBefore)",
+   "eval": true
+  },
+  {
+   "id": "ch2-112",
+   "ch": "ch2",
+   "section": "2.6.1",
+   "title": "Quantiles",
+   "group": 57,
+   "comment": "",
+   "code": "NJdiff.med",
+   "eval": true
+  },
+  {
+   "id": "ch2-113",
+   "ch": "ch2",
+   "section": "2.6.1",
+   "title": "Quantiles",
+   "group": 57,
+   "comment": "median difference-in-differences",
+   "code": "PAdiff.med <- median(minwagePA$fullPropAfter) -\n    median(minwagePA$fullPropBefore)",
+   "eval": true
+  },
+  {
+   "id": "ch2-114",
+   "ch": "ch2",
+   "section": "2.6.1",
+   "title": "Quantiles",
+   "group": 57,
+   "comment": "",
+   "code": "NJdiff.med - PAdiff.med",
+   "eval": true
+  },
+  {
+   "id": "ch2-115",
+   "ch": "ch2",
+   "section": "2.6.1",
+   "title": "Quantiles",
+   "group": 58,
+   "comment": "summary shows quartiles as well as minimum, maximum, and mean",
+   "code": "summary(minwageNJ$wageBefore)",
+   "eval": true
+  },
+  {
+   "id": "ch2-116",
+   "ch": "ch2",
+   "section": "2.6.1",
+   "title": "Quantiles",
+   "group": 58,
+   "comment": "",
+   "code": "summary(minwageNJ$wageAfter)",
+   "eval": true
+  },
+  {
+   "id": "ch2-117",
+   "ch": "ch2",
+   "section": "2.6.1",
+   "title": "Quantiles",
+   "group": 58,
+   "comment": "interquartile range",
+   "code": "IQR(minwageNJ$wageBefore)",
+   "eval": true
+  },
+  {
+   "id": "ch2-118",
+   "ch": "ch2",
+   "section": "2.6.1",
+   "title": "Quantiles",
+   "group": 58,
+   "comment": "",
+   "code": "IQR(minwageNJ$wageAfter)",
+   "eval": true
+  },
+  {
+   "id": "ch2-119",
+   "ch": "ch2",
+   "section": "2.6.1",
+   "title": "Quantiles",
+   "group": 59,
+   "comment": "deciles (10 groups)",
+   "code": "quantile(minwageNJ$wageBefore, probs = seq(from = 0, to = 1, by = 0.1))",
+   "eval": true
+  },
+  {
+   "id": "ch2-120",
+   "ch": "ch2",
+   "section": "2.6.1",
+   "title": "Quantiles",
+   "group": 59,
+   "comment": "",
+   "code": "quantile(minwageNJ$wageAfter, probs = seq(from = 0, to = 1, by = 0.1))",
+   "eval": true
+  },
+  {
+   "id": "ch2-121",
+   "ch": "ch2",
+   "section": "2.6.2",
+   "title": "Standard Deviation",
+   "group": 60,
+   "comment": "",
+   "code": "sqrt(mean((minwageNJ$fullPropAfter - minwageNJ$fullPropBefore)^2))",
+   "eval": true
+  },
+  {
+   "id": "ch2-122",
+   "ch": "ch2",
+   "section": "2.6.2",
+   "title": "Standard Deviation",
+   "group": 60,
+   "comment": "",
+   "code": "mean(minwageNJ$fullPropAfter - minwageNJ$fullPropBefore)",
+   "eval": true
+  },
+  {
+   "id": "ch2-123",
+   "ch": "ch2",
+   "section": "2.6.2",
+   "title": "Standard Deviation",
+   "group": 61,
+   "comment": "standard deviation",
+   "code": "sd(minwageNJ$fullPropBefore)",
+   "eval": true
+  },
+  {
+   "id": "ch2-124",
+   "ch": "ch2",
+   "section": "2.6.2",
+   "title": "Standard Deviation",
+   "group": 61,
+   "comment": "",
+   "code": "sd(minwageNJ$fullPropAfter)",
+   "eval": true
+  },
+  {
+   "id": "ch2-125",
+   "ch": "ch2",
+   "section": "2.6.2",
+   "title": "Standard Deviation",
+   "group": 61,
+   "comment": "variance",
+   "code": "var(minwageNJ$fullPropBefore)",
+   "eval": true
+  },
+  {
+   "id": "ch2-126",
+   "ch": "ch2",
+   "section": "2.6.2",
+   "title": "Standard Deviation",
+   "group": 61,
+   "comment": "",
+   "code": "var(minwageNJ$fullPropAfter)",
+   "eval": true
+  },
+  {
+   "id": "ch3-001",
+   "ch": "ch3",
+   "section": "3.1",
+   "title": "Measuring Civilian Victimization during Wartime",
+   "group": 1,
+   "comment": "load data",
+   "code": "afghan <- read.csv(\"afghan.csv\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-002",
+   "ch": "ch3",
+   "section": "3.1",
+   "title": "Measuring Civilian Victimization during Wartime",
+   "group": 2,
+   "comment": "summarize variables of interest",
+   "code": "summary(afghan$age)",
+   "eval": true
+  },
+  {
+   "id": "ch3-003",
+   "ch": "ch3",
+   "section": "3.1",
+   "title": "Measuring Civilian Victimization during Wartime",
+   "group": 2,
+   "comment": "",
+   "code": "summary(afghan$educ.years)",
+   "eval": true
+  },
+  {
+   "id": "ch3-004",
+   "ch": "ch3",
+   "section": "3.1",
+   "title": "Measuring Civilian Victimization during Wartime",
+   "group": 2,
+   "comment": "",
+   "code": "summary(afghan$employed)",
+   "eval": true
+  },
+  {
+   "id": "ch3-005",
+   "ch": "ch3",
+   "section": "3.1",
+   "title": "Measuring Civilian Victimization during Wartime",
+   "group": 2,
+   "comment": "",
+   "code": "summary(afghan$income)",
+   "eval": true
+  },
+  {
+   "id": "ch3-006",
+   "ch": "ch3",
+   "section": "3.1",
+   "title": "Measuring Civilian Victimization during Wartime",
+   "group": 3,
+   "comment": "",
+   "code": "prop.table(table(ISAF = afghan$violent.exp.ISAF,\n                 Taliban = afghan$violent.exp.taliban))",
+   "eval": true
+  },
+  {
+   "id": "ch3-007",
+   "ch": "ch3",
+   "section": "3.2",
+   "title": "Handling Missing Data in R",
+   "group": 4,
+   "comment": "print income data for first 10 respondents",
+   "code": "head(afghan$income, n = 10)",
+   "eval": true
+  },
+  {
+   "id": "ch3-008",
+   "ch": "ch3",
+   "section": "3.2",
+   "title": "Handling Missing Data in R",
+   "group": 5,
+   "comment": "indicate whether respondents' income is missing",
+   "code": "head(is.na(afghan$income), n = 10)",
+   "eval": true
+  },
+  {
+   "id": "ch3-009",
+   "ch": "ch3",
+   "section": "3.2",
+   "title": "Handling Missing Data in R",
+   "group": 5,
+   "comment": "",
+   "code": "sum(is.na(afghan$income))  # count of missing values",
+   "eval": true
+  },
+  {
+   "id": "ch3-010",
+   "ch": "ch3",
+   "section": "3.2",
+   "title": "Handling Missing Data in R",
+   "group": 5,
+   "comment": "",
+   "code": "mean(is.na(afghan$income)) # proportion missing",
+   "eval": true
+  },
+  {
+   "id": "ch3-011",
+   "ch": "ch3",
+   "section": "3.2",
+   "title": "Handling Missing Data in R",
+   "group": 6,
+   "comment": "",
+   "code": "x <- c(1, 2, 3, NA)",
+   "eval": true
+  },
+  {
+   "id": "ch3-012",
+   "ch": "ch3",
+   "section": "3.2",
+   "title": "Handling Missing Data in R",
+   "group": 6,
+   "comment": "",
+   "code": "mean(x)",
+   "eval": true
+  },
+  {
+   "id": "ch3-013",
+   "ch": "ch3",
+   "section": "3.2",
+   "title": "Handling Missing Data in R",
+   "group": 6,
+   "comment": "",
+   "code": "mean(x, na.rm = TRUE)",
+   "eval": true
+  },
+  {
+   "id": "ch3-014",
+   "ch": "ch3",
+   "section": "3.2",
+   "title": "Handling Missing Data in R",
+   "group": 7,
+   "comment": "",
+   "code": "prop.table(table(ISAF = afghan$violent.exp.ISAF,\n                 Taliban = afghan$violent.exp.taliban, exclude = NULL))",
+   "eval": true
+  },
+  {
+   "id": "ch3-015",
+   "ch": "ch3",
+   "section": "3.2",
+   "title": "Handling Missing Data in R",
+   "group": 8,
+   "comment": "",
+   "code": "afghan.sub <- na.omit(afghan)  # listwise deletion",
+   "eval": true
+  },
+  {
+   "id": "ch3-016",
+   "ch": "ch3",
+   "section": "3.2",
+   "title": "Handling Missing Data in R",
+   "group": 8,
+   "comment": "",
+   "code": "nrow(afghan.sub)",
+   "eval": true
+  },
+  {
+   "id": "ch3-017",
+   "ch": "ch3",
+   "section": "3.2",
+   "title": "Handling Missing Data in R",
+   "group": 8,
+   "comment": "",
+   "code": "length(na.omit(afghan$income))",
+   "eval": true
+  },
+  {
+   "id": "ch3-018",
+   "ch": "ch3",
+   "section": "3.3.1",
+   "title": "Bar Plot",
+   "group": 9,
+   "comment": "a vector of proportions to plot",
+   "code": "ISAF.ptable <- prop.table(table(ISAF = afghan$violent.exp.ISAF,\n                                exclude = NULL))",
+   "eval": true
+  },
+  {
+   "id": "ch3-019",
+   "ch": "ch3",
+   "section": "3.3.1",
+   "title": "Bar Plot",
+   "group": 9,
+   "comment": "",
+   "code": "ISAF.ptable",
+   "eval": true
+  },
+  {
+   "id": "ch3-020",
+   "ch": "ch3",
+   "section": "3.3.1",
+   "title": "Bar Plot",
+   "group": 10,
+   "comment": "make barplots by specifying a certain range for y-axis",
+   "code": "barplot(ISAF.ptable,\n        names.arg = c(\"No harm\", \"Harm\", \"Nonresponse\"),\n        main = \"Civilian victimization by the ISAF\",\n        xlab = \"Response category\",\n        ylab = \"Proportion of the respondents\", ylim = c(0, 0.7))",
+   "eval": true
+  },
+  {
+   "id": "ch3-021",
+   "ch": "ch3",
+   "section": "3.3.1",
+   "title": "Bar Plot",
+   "group": 11,
+   "comment": "repeat the same for the victimization by Taliban",
+   "code": "Taliban.ptable <- prop.table(table(Taliban = afghan$violent.exp.taliban,\n                         exclude = NULL))",
+   "eval": true
+  },
+  {
+   "id": "ch3-022",
+   "ch": "ch3",
+   "section": "3.3.1",
+   "title": "Bar Plot",
+   "group": 11,
+   "comment": "",
+   "code": "barplot(Taliban.ptable,\n        names.arg = c(\"No harm\", \"Harm\", \"Nonresponse\"),\n        main = \"Civilian victimization by the Taliban\",\n        xlab = \"Response category\",\n        ylab = \"Proportion of the respondents\", ylim = c(0, 0.7))",
+   "eval": true
+  },
+  {
+   "id": "ch3-023",
+   "ch": "ch3",
+   "section": "3.3.2",
+   "title": "Histogram",
+   "group": 12,
+   "comment": "",
+   "code": "hist(afghan$age, freq = FALSE, ylim = c(0, 0.04), xlab = \"Age\",\n     main = \"Distribution of respondent's age\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-024",
+   "ch": "ch3",
+   "section": "3.3.2",
+   "title": "Histogram",
+   "group": 13,
+   "comment": "histogram of education.  use `breaks' to choose bins",
+   "code": "hist(afghan$educ.years, freq = FALSE,\n     breaks = seq(from = -0.5, to = 18.5, by = 1),\n     xlab = \"Years of education\",\n     main = \"Distribution of respondent's education\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-025",
+   "ch": "ch3",
+   "section": "3.3.2",
+   "title": "Histogram",
+   "group": 14,
+   "comment": "add a text label at (x, y) = (3, 0.5)",
+   "code": "text(x = 3, y = 0.5, \"median\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-026",
+   "ch": "ch3",
+   "section": "3.3.2",
+   "title": "Histogram",
+   "group": 15,
+   "comment": "add a vertical line representing median",
+   "code": "abline(v = median(afghan$educ.years))",
+   "eval": true
+  },
+  {
+   "id": "ch3-027",
+   "ch": "ch3",
+   "section": "3.3.2",
+   "title": "Histogram",
+   "group": 16,
+   "comment": "adding a vertical line representing median",
+   "code": "lines(x = rep(median(afghan$educ.years), 2), y = c(0, 0.5))",
+   "eval": true
+  },
+  {
+   "id": "ch3-028",
+   "ch": "ch3",
+   "section": "3.3.3",
+   "title": "Box Plot",
+   "group": 17,
+   "comment": "",
+   "code": "boxplot(educ.years ~ province, data = afghan,\n        main = \"Education by province\", ylab = \"Years of education\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-029",
+   "ch": "ch3",
+   "section": "3.3.3",
+   "title": "Box Plot",
+   "group": 18,
+   "comment": "",
+   "code": "tapply(afghan$violent.exp.taliban, afghan$province, mean, na.rm = TRUE)",
+   "eval": true
+  },
+  {
+   "id": "ch3-030",
+   "ch": "ch3",
+   "section": "3.3.3",
+   "title": "Box Plot",
+   "group": 18,
+   "comment": "",
+   "code": "tapply(afghan$violent.exp.ISAF, afghan$province, mean, na.rm = TRUE)",
+   "eval": true
+  },
+  {
+   "id": "ch3-031",
+   "ch": "ch3",
+   "section": "3.3.3",
+   "title": "Box Plot",
+   "group": 20,
+   "comment": "",
+   "code": "pdf(file = \"educ.pdf\", height = 5, width = 5)",
+   "eval": false
+  },
+  {
+   "id": "ch3-032",
+   "ch": "ch3",
+   "section": "3.3.3",
+   "title": "Box Plot",
+   "group": 20,
+   "comment": "",
+   "code": "boxplot(educ.years ~ province, data = afghan,\n         main = \"Education by Province\", ylab = \"Years of education\")",
+   "eval": false
+  },
+  {
+   "id": "ch3-033",
+   "ch": "ch3",
+   "section": "3.3.3",
+   "title": "Box Plot",
+   "group": 20,
+   "comment": "",
+   "code": "dev.off()",
+   "eval": false
+  },
+  {
+   "id": "ch3-034",
+   "ch": "ch3",
+   "section": "3.3.3",
+   "title": "Box Plot",
+   "group": 21,
+   "comment": "",
+   "code": "pdf(file = \"hist.pdf\", height = 4, width = 8)",
+   "eval": false
+  },
+  {
+   "id": "ch3-035",
+   "ch": "ch3",
+   "section": "3.3.3",
+   "title": "Box Plot",
+   "group": 21,
+   "comment": "for simplicity omit the texts and lines from the earlier example",
+   "code": "hist(afghan$age, freq = FALSE,\n      xlab = \"Age\", ylim = c(0, 0.04),\n      main = \"Distribution of Respondent's Age\")",
+   "eval": false
+  },
+  {
+   "id": "ch3-036",
+   "ch": "ch3",
+   "section": "3.3.3",
+   "title": "Box Plot",
+   "group": 21,
+   "comment": "",
+   "code": "hist(afghan$educ.years, freq = FALSE,\n      breaks = seq(from = -0.5, to = 18.5, by = 1),\n      xlab = \"Years of education\", xlim = c(0, 20),\n      main = \"Distribution of Respondent's Education\")",
+   "eval": false
+  },
+  {
+   "id": "ch3-037",
+   "ch": "ch3",
+   "section": "3.3.3",
+   "title": "Box Plot",
+   "group": 21,
+   "comment": "",
+   "code": "dev.off()",
+   "eval": false
+  },
+  {
+   "id": "ch3-038",
+   "ch": "ch3",
+   "section": "3.4.1",
+   "title": "The Role of Randomization",
+   "group": 22,
+   "comment": "load village data",
+   "code": "afghan.village <- read.csv(\"afghan-village.csv\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-039",
+   "ch": "ch3",
+   "section": "3.4.1",
+   "title": "The Role of Randomization",
+   "group": 23,
+   "comment": "boxplots for altitude",
+   "code": "boxplot(altitude ~ village.surveyed, data = afghan.village,\n        ylab = \"Altitude (meter)\", names = c(\"Nonsampled\", \"Sampled\"))",
+   "eval": true
+  },
+  {
+   "id": "ch3-040",
+   "ch": "ch3",
+   "section": "3.4.1",
+   "title": "The Role of Randomization",
+   "group": 24,
+   "comment": "boxplots for log population",
+   "code": "boxplot(log(population) ~ village.surveyed, data = afghan.village,\n        ylab = \"log population\", names = c(\"Nonsampled\", \"Sampled\"))",
+   "eval": true
+  },
+  {
+   "id": "ch3-041",
+   "ch": "ch3",
+   "section": "3.4.2",
+   "title": "Nonresponse and Other Sources of Bias",
+   "group": 25,
+   "comment": "",
+   "code": "tapply(is.na(afghan$violent.exp.taliban), afghan$province, mean)",
+   "eval": true
+  },
+  {
+   "id": "ch3-042",
+   "ch": "ch3",
+   "section": "3.4.2",
+   "title": "Nonresponse and Other Sources of Bias",
+   "group": 25,
+   "comment": "",
+   "code": "tapply(is.na(afghan$violent.exp.ISAF), afghan$province, mean)",
+   "eval": true
+  },
+  {
+   "id": "ch3-043",
+   "ch": "ch3",
+   "section": "3.4.2",
+   "title": "Nonresponse and Other Sources of Bias",
+   "group": 26,
+   "comment": "",
+   "code": "mean(afghan$list.response[afghan$list.group == \"ISAF\"]) -\n    mean(afghan$list.response[afghan$list.group == \"control\"])",
+   "eval": true
+  },
+  {
+   "id": "ch3-044",
+   "ch": "ch3",
+   "section": "3.4.2",
+   "title": "Nonresponse and Other Sources of Bias",
+   "group": 27,
+   "comment": "",
+   "code": "table(response = afghan$list.response, group = afghan$list.group)",
+   "eval": true
+  },
+  {
+   "id": "ch3-045",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 28,
+   "comment": "",
+   "code": "congress <- read.csv(\"congress.csv\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-046",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 29,
+   "comment": "subset the data by party",
+   "code": "rep <- subset(congress, subset = (party == \"Republican\"))",
+   "eval": true
+  },
+  {
+   "id": "ch3-047",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 29,
+   "comment": "",
+   "code": "dem <- congress[congress$party == \"Democrat\", ] # another way to subset",
+   "eval": true
+  },
+  {
+   "id": "ch3-048",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 30,
+   "comment": "80th and 112th congress",
+   "code": "rep80 <- subset(rep, subset = (congress == 80))",
+   "eval": true
+  },
+  {
+   "id": "ch3-049",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 30,
+   "comment": "",
+   "code": "dem80 <- subset(dem, subset = (congress == 80))",
+   "eval": true
+  },
+  {
+   "id": "ch3-050",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 30,
+   "comment": "",
+   "code": "rep112 <- subset(rep, subset = (congress == 112))",
+   "eval": true
+  },
+  {
+   "id": "ch3-051",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 30,
+   "comment": "",
+   "code": "dem112 <- subset(dem, subset = (congress == 112))",
+   "eval": true
+  },
+  {
+   "id": "ch3-052",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 31,
+   "comment": "preparing the labels and axis limits to avoid repetition",
+   "code": "xlab <- \"Economic liberalism/conservatism\"",
+   "eval": true
+  },
+  {
+   "id": "ch3-053",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 31,
+   "comment": "",
+   "code": "ylab <- \"Racial liberalism/conservatism\"",
+   "eval": true
+  },
+  {
+   "id": "ch3-054",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 31,
+   "comment": "",
+   "code": "lim <- c(-1.5, 1.5)",
+   "eval": true
+  },
+  {
+   "id": "ch3-055",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 32,
+   "comment": "scatterplot for the 80th Congress",
+   "code": "plot(dem80$dwnom1, dem80$dwnom2, pch = 16, col = \"blue\",\n     xlim = lim, ylim = lim, xlab = xlab, ylab = ylab,\n     main = \"80th Congress\") # democrats",
+   "eval": true
+  },
+  {
+   "id": "ch3-056",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 32,
+   "comment": "",
+   "code": "points(rep80$dwnom1, rep80$dwnom2, pch = 17, col = \"red\") # republicans",
+   "eval": true
+  },
+  {
+   "id": "ch3-057",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 32,
+   "comment": "",
+   "code": "text(-0.75, 1, \"Democrats\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-058",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 32,
+   "comment": "",
+   "code": "text(1, -1, \"Republicans\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-059",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 33,
+   "comment": "scatterplot for the 112th Congress",
+   "code": "plot(dem112$dwnom1, dem112$dwnom2, pch = 16, col = \"blue\",\n     xlim = lim, ylim = lim, xlab = xlab, ylab = ylab,\n     main = \"112th Congress\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-060",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 33,
+   "comment": "",
+   "code": "points(rep112$dwnom1, rep112$dwnom2, pch = 17, col = \"red\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-061",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 34,
+   "comment": "party median for each congress",
+   "code": "dem.median <- tapply(dem$dwnom1, dem$congress, median)",
+   "eval": true
+  },
+  {
+   "id": "ch3-062",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 34,
+   "comment": "",
+   "code": "rep.median <- tapply(rep$dwnom1, rep$congress, median)",
+   "eval": true
+  },
+  {
+   "id": "ch3-063",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 35,
+   "comment": "Democrats",
+   "code": "plot(names(dem.median), dem.median, col = \"blue\", type = \"l\",\n     xlim = c(80, 115), ylim = c(-1, 1), xlab = \"Congress\",\n     ylab = \"DW-NOMINATE score (1st dimension)\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-064",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 35,
+   "comment": "add Republicans",
+   "code": "lines(names(rep.median), rep.median, col = \"red\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-065",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 35,
+   "comment": "",
+   "code": "text(110, -0.6, \"Democratic\\n Party\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-066",
+   "ch": "ch3",
+   "section": "3.6.1",
+   "title": "Scatter Plot",
+   "group": 35,
+   "comment": "",
+   "code": "text(110, 0.85, \"Republican\\n Party\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-067",
+   "ch": "ch3",
+   "section": "3.6.2",
+   "title": "Correlation",
+   "group": 36,
+   "comment": "Gini coefficient data",
+   "code": "gini <- read.csv(\"USGini.csv\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-068",
+   "ch": "ch3",
+   "section": "3.6.2",
+   "title": "Correlation",
+   "group": 37,
+   "comment": "time-series plot for partisan difference",
+   "code": "plot(seq(from = 1947.5, to = 2011.5, by = 2),\n     rep.median - dem.median, xlab = \"Year\",\n     ylab = \"Republican median -\\n Democratic median\",\n     main = \"Political polarization\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-069",
+   "ch": "ch3",
+   "section": "3.6.2",
+   "title": "Correlation",
+   "group": 37,
+   "comment": "time-series plot for Gini coefficient",
+   "code": "plot(gini$year, gini$gini, ylim = c(0.35, 0.45), xlab = \"Year\",\n     ylab = \"Gini coefficient\", main = \"Income inequality\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-070",
+   "ch": "ch3",
+   "section": "3.6.2",
+   "title": "Correlation",
+   "group": 38,
+   "comment": "",
+   "code": "cor(gini$gini[seq(from = 2, to = nrow(gini), by = 2)],\n    rep.median - dem.median)",
+   "eval": true
+  },
+  {
+   "id": "ch3-071",
+   "ch": "ch3",
+   "section": "3.6.3",
+   "title": "Quantile-Quantile Plot",
+   "group": 39,
+   "comment": "",
+   "code": "hist(dem112$dwnom2, freq = FALSE, main = \"Democrats\",\n     xlim = c(-1.5, 1.5), ylim = c(0, 1.75),\n     xlab = \"Racial liberalism/conservatism dimension\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-072",
+   "ch": "ch3",
+   "section": "3.6.3",
+   "title": "Quantile-Quantile Plot",
+   "group": 39,
+   "comment": "",
+   "code": "hist(rep112$dwnom2, freq = FALSE, main = \"Republicans\",\n     xlim = c(-1.5, 1.5), ylim = c(0, 1.75),\n     xlab = \"Racial liberalism/conservatism dimension\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-073",
+   "ch": "ch3",
+   "section": "3.6.3",
+   "title": "Quantile-Quantile Plot",
+   "group": 40,
+   "comment": "",
+   "code": "qqplot(dem112$dwnom2, rep112$dwnom2, xlab = \"Democrats\",\n       ylab = \"Republicans\", xlim = c(-1.5, 1.5), ylim = c(-1.5, 1.5),\n       main = \"Racial liberalism/conservatism dimension\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-074",
+   "ch": "ch3",
+   "section": "3.6.3",
+   "title": "Quantile-Quantile Plot",
+   "group": 40,
+   "comment": "",
+   "code": "abline(0, 1) # 45 degree line",
+   "eval": true
+  },
+  {
+   "id": "ch3-075",
+   "ch": "ch3",
+   "section": "3.7",
+   "title": "Clustering",
+   "group": 41,
+   "comment": "3x4 matrix filled by row; first argument take actual entries",
+   "code": "x <- matrix(1:12, nrow = 3, ncol = 4, byrow = TRUE)",
+   "eval": true
+  },
+  {
+   "id": "ch3-076",
+   "ch": "ch3",
+   "section": "3.7",
+   "title": "Clustering",
+   "group": 41,
+   "comment": "",
+   "code": "rownames(x) <- c(\"a\", \"b\", \"c\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-077",
+   "ch": "ch3",
+   "section": "3.7",
+   "title": "Clustering",
+   "group": 41,
+   "comment": "",
+   "code": "colnames(x) <- c(\"d\", \"e\", \"f\", \"g\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-078",
+   "ch": "ch3",
+   "section": "3.7",
+   "title": "Clustering",
+   "group": 41,
+   "comment": "",
+   "code": "dim(x) # dimension",
+   "eval": true
+  },
+  {
+   "id": "ch3-079",
+   "ch": "ch3",
+   "section": "3.7",
+   "title": "Clustering",
+   "group": 41,
+   "comment": "",
+   "code": "x",
+   "eval": true
+  },
+  {
+   "id": "ch3-080",
+   "ch": "ch3",
+   "section": "3.7",
+   "title": "Clustering",
+   "group": 42,
+   "comment": "data frame can take different data types",
+   "code": "y <- data.frame(y1 = as.factor(c(\"a\", \"b\", \"c\")), y2 = c(0.1, 0.2, 0.3))",
+   "eval": true
+  },
+  {
+   "id": "ch3-081",
+   "ch": "ch3",
+   "section": "3.7",
+   "title": "Clustering",
+   "group": 42,
+   "comment": "",
+   "code": "class(y$y1)",
+   "eval": true
+  },
+  {
+   "id": "ch3-082",
+   "ch": "ch3",
+   "section": "3.7",
+   "title": "Clustering",
+   "group": 42,
+   "comment": "",
+   "code": "class(y$y2)",
+   "eval": true
+  },
+  {
+   "id": "ch3-083",
+   "ch": "ch3",
+   "section": "3.7",
+   "title": "Clustering",
+   "group": 43,
+   "comment": "as.matrix() converts both variables to character",
+   "code": "z <- as.matrix(y)",
+   "eval": true
+  },
+  {
+   "id": "ch3-084",
+   "ch": "ch3",
+   "section": "3.7",
+   "title": "Clustering",
+   "group": 43,
+   "comment": "",
+   "code": "z",
+   "eval": true
+  },
+  {
+   "id": "ch3-085",
+   "ch": "ch3",
+   "section": "3.7",
+   "title": "Clustering",
+   "group": 44,
+   "comment": "column sums",
+   "code": "colSums(x)",
+   "eval": true
+  },
+  {
+   "id": "ch3-086",
+   "ch": "ch3",
+   "section": "3.7",
+   "title": "Clustering",
+   "group": 44,
+   "comment": "row means",
+   "code": "rowMeans(x)",
+   "eval": true
+  },
+  {
+   "id": "ch3-087",
+   "ch": "ch3",
+   "section": "3.7",
+   "title": "Clustering",
+   "group": 44,
+   "comment": "column sums",
+   "code": "apply(x, 2, sum)",
+   "eval": true
+  },
+  {
+   "id": "ch3-088",
+   "ch": "ch3",
+   "section": "3.7",
+   "title": "Clustering",
+   "group": 44,
+   "comment": "row means",
+   "code": "apply(x, 1, mean)",
+   "eval": true
+  },
+  {
+   "id": "ch3-089",
+   "ch": "ch3",
+   "section": "3.7",
+   "title": "Clustering",
+   "group": 44,
+   "comment": "standard deviation for each row",
+   "code": "apply(x, 1, sd)",
+   "eval": true
+  },
+  {
+   "id": "ch3-090",
+   "ch": "ch3",
+   "section": "3.7.2",
+   "title": "List in R",
+   "group": 45,
+   "comment": "create a list",
+   "code": "x <- list(y1 = 1:10, y2 = c(\"hi\", \"hello\", \"hey\"),\n          y3 = data.frame(z1 = 1:3, z2 = c(\"good\", \"bad\", \"ugly\")))",
+   "eval": true
+  },
+  {
+   "id": "ch3-091",
+   "ch": "ch3",
+   "section": "3.7.2",
+   "title": "List in R",
+   "group": 45,
+   "comment": "3 ways of extracting elements from a list",
+   "code": "x$y1 # first element",
+   "eval": true
+  },
+  {
+   "id": "ch3-092",
+   "ch": "ch3",
+   "section": "3.7.2",
+   "title": "List in R",
+   "group": 45,
+   "comment": "",
+   "code": "x[[2]] # second element",
+   "eval": true
+  },
+  {
+   "id": "ch3-093",
+   "ch": "ch3",
+   "section": "3.7.2",
+   "title": "List in R",
+   "group": 45,
+   "comment": "",
+   "code": "x[[\"y3\"]] # third element",
+   "eval": true
+  },
+  {
+   "id": "ch3-094",
+   "ch": "ch3",
+   "section": "3.7.3",
+   "title": "The k-Means Algorithm",
+   "group": 46,
+   "comment": "",
+   "code": "names(x)  # names of all elements",
+   "eval": true
+  },
+  {
+   "id": "ch3-095",
+   "ch": "ch3",
+   "section": "3.7.3",
+   "title": "The k-Means Algorithm",
+   "group": 46,
+   "comment": "",
+   "code": "length(x) # number of elements",
+   "eval": true
+  },
+  {
+   "id": "ch3-096",
+   "ch": "ch3",
+   "section": "3.7.3",
+   "title": "The k-Means Algorithm",
+   "group": 47,
+   "comment": "",
+   "code": "dwnom80 <- cbind(congress$dwnom1[congress$congress == 80],\n                 congress$dwnom2[congress$congress == 80])",
+   "eval": true
+  },
+  {
+   "id": "ch3-097",
+   "ch": "ch3",
+   "section": "3.7.3",
+   "title": "The k-Means Algorithm",
+   "group": 47,
+   "comment": "",
+   "code": "dwnom112 <- cbind(congress$dwnom1[congress$congress == 112],\n                 congress$dwnom2[congress$congress == 112])",
+   "eval": true
+  },
+  {
+   "id": "ch3-098",
+   "ch": "ch3",
+   "section": "3.7.3",
+   "title": "The k-Means Algorithm",
+   "group": 48,
+   "comment": "kmeans with 2 clusters",
+   "code": "k80two.out <- kmeans(dwnom80, centers = 2, nstart = 5)",
+   "eval": true
+  },
+  {
+   "id": "ch3-099",
+   "ch": "ch3",
+   "section": "3.7.3",
+   "title": "The k-Means Algorithm",
+   "group": 48,
+   "comment": "",
+   "code": "k112two.out <- kmeans(dwnom112, centers = 2, nstart = 5)",
+   "eval": true
+  },
+  {
+   "id": "ch3-100",
+   "ch": "ch3",
+   "section": "3.7.3",
+   "title": "The k-Means Algorithm",
+   "group": 49,
+   "comment": "elements of a list",
+   "code": "names(k80two.out)",
+   "eval": true
+  },
+  {
+   "id": "ch3-101",
+   "ch": "ch3",
+   "section": "3.7.3",
+   "title": "The k-Means Algorithm",
+   "group": 50,
+   "comment": "final centroids",
+   "code": "k80two.out$centers",
+   "eval": true
+  },
+  {
+   "id": "ch3-102",
+   "ch": "ch3",
+   "section": "3.7.3",
+   "title": "The k-Means Algorithm",
+   "group": 50,
+   "comment": "",
+   "code": "k112two.out$centers",
+   "eval": true
+  },
+  {
+   "id": "ch3-103",
+   "ch": "ch3",
+   "section": "3.7.3",
+   "title": "The k-Means Algorithm",
+   "group": 51,
+   "comment": "number of observations for each cluster by party",
+   "code": "table(party = congress$party[congress$congress == 80],\n      cluster = k80two.out$cluster)",
+   "eval": true
+  },
+  {
+   "id": "ch3-104",
+   "ch": "ch3",
+   "section": "3.7.3",
+   "title": "The k-Means Algorithm",
+   "group": 51,
+   "comment": "",
+   "code": "table(party = congress$party[congress$congress == 112],\n      cluster = k112two.out$cluster)",
+   "eval": true
+  },
+  {
+   "id": "ch3-105",
+   "ch": "ch3",
+   "section": "3.7.3",
+   "title": "The k-Means Algorithm",
+   "group": 52,
+   "comment": "kmeans with 4 clusters",
+   "code": "k80four.out <- kmeans(dwnom80, centers = 4, nstart = 5)",
+   "eval": true
+  },
+  {
+   "id": "ch3-106",
+   "ch": "ch3",
+   "section": "3.7.3",
+   "title": "The k-Means Algorithm",
+   "group": 52,
+   "comment": "",
+   "code": "k112four.out <- kmeans(dwnom112, centers = 4, nstart = 5)",
+   "eval": true
+  },
+  {
+   "id": "ch3-107",
+   "ch": "ch3",
+   "section": "3.7.3",
+   "title": "The k-Means Algorithm",
+   "group": 53,
+   "comment": "plotting the results using the labels and limits defined earlier",
+   "code": "plot(dwnom80, col = k80four.out$cluster + 1, xlab = xlab, ylab = ylab,\n     xlim = lim, ylim = lim, main = \"80th Congress\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-108",
+   "ch": "ch3",
+   "section": "3.7.3",
+   "title": "The k-Means Algorithm",
+   "group": 54,
+   "comment": "plotting the centroids",
+   "code": "points(k80four.out$centers, pch = 8, cex = 2)",
+   "eval": true
+  },
+  {
+   "id": "ch3-109",
+   "ch": "ch3",
+   "section": "3.7.3",
+   "title": "The k-Means Algorithm",
+   "group": 55,
+   "comment": "112th congress",
+   "code": "plot(dwnom112, col = k112four.out$cluster + 1, xlab = xlab, ylab = ylab,\n     xlim = lim, ylim = lim, main = \"112th Congress\")",
+   "eval": true
+  },
+  {
+   "id": "ch3-110",
+   "ch": "ch3",
+   "section": "3.7.3",
+   "title": "The k-Means Algorithm",
+   "group": 55,
+   "comment": "",
+   "code": "points(k112four.out$centers, pch = 8, cex = 2)",
+   "eval": true
+  },
+  {
+   "id": "ch3-111",
+   "ch": "ch3",
+   "section": "3.7.3",
+   "title": "The k-Means Algorithm",
+   "group": 56,
+   "comment": "",
+   "code": "palette()",
+   "eval": true
+  },
+  {
+   "id": "ch4-001",
+   "ch": "ch4",
+   "section": "4.1.1",
+   "title": "Loops in R",
+   "group": 1,
+   "comment": "",
+   "code": "values <- c(2, 4, 6)",
+   "eval": true
+  },
+  {
+   "id": "ch4-002",
+   "ch": "ch4",
+   "section": "4.1.1",
+   "title": "Loops in R",
+   "group": 1,
+   "comment": "",
+   "code": "n <- length(values) # number of elements in `values'",
+   "eval": true
+  },
+  {
+   "id": "ch4-003",
+   "ch": "ch4",
+   "section": "4.1.1",
+   "title": "Loops in R",
+   "group": 1,
+   "comment": "",
+   "code": "results <- rep(NA, n) # empty container vector for storing the results",
+   "eval": true
+  },
+  {
+   "id": "ch4-004",
+   "ch": "ch4",
+   "section": "4.1.1",
+   "title": "Loops in R",
+   "group": 2,
+   "comment": "loop counter `i' will take values on 1, 2, ..., n in that order",
+   "code": "for (i in 1:n) {\n    ## store the result of multiplication as the ith element of\n    ## `results' vector\n    results[i] <- values[i] * 2\n    cat(values[i], \"times 2 is equal to\", results[i], \"\\n\")\n}",
+   "eval": true
+  },
+  {
+   "id": "ch4-005",
+   "ch": "ch4",
+   "section": "4.1.1",
+   "title": "Loops in R",
+   "group": 2,
+   "comment": "",
+   "code": "results",
+   "eval": true
+  },
+  {
+   "id": "ch4-006",
+   "ch": "ch4",
+   "section": "4.1.1",
+   "title": "Loops in R",
+   "group": 3,
+   "comment": "check if the code runs when i = 1",
+   "code": "i <- 1",
+   "eval": true
+  },
+  {
+   "id": "ch4-007",
+   "ch": "ch4",
+   "section": "4.1.1",
+   "title": "Loops in R",
+   "group": 3,
+   "comment": "",
+   "code": "x <- values[i] * 2",
+   "eval": true
+  },
+  {
+   "id": "ch4-008",
+   "ch": "ch4",
+   "section": "4.1.1",
+   "title": "Loops in R",
+   "group": 3,
+   "comment": "",
+   "code": "cat(values[i], \"times 2 is equal to\", x, \"\\n\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-009",
+   "ch": "ch4",
+   "section": "4.1.2",
+   "title": "General Conditional Statements in R",
+   "group": 4,
+   "comment": "define the operation to be executed",
+   "code": "operation <- \"add\"",
+   "eval": true
+  },
+  {
+   "id": "ch4-010",
+   "ch": "ch4",
+   "section": "4.1.2",
+   "title": "General Conditional Statements in R",
+   "group": 4,
+   "comment": "",
+   "code": "if (operation == \"add\") {\n    cat(\"I will perform addition 4 + 4\\n\")\n    4 + 4\n}",
+   "eval": true
+  },
+  {
+   "id": "ch4-011",
+   "ch": "ch4",
+   "section": "4.1.2",
+   "title": "General Conditional Statements in R",
+   "group": 4,
+   "comment": "",
+   "code": "if (operation == \"multiply\") {\n    cat(\"I will perform multiplication 4 * 4\\n\")\n    4 * 4\n}",
+   "eval": true
+  },
+  {
+   "id": "ch4-012",
+   "ch": "ch4",
+   "section": "4.1.2",
+   "title": "General Conditional Statements in R",
+   "group": 5,
+   "comment": "Note that `operation' is redefined",
+   "code": "operation <- \"multiply\"",
+   "eval": true
+  },
+  {
+   "id": "ch4-013",
+   "ch": "ch4",
+   "section": "4.1.2",
+   "title": "General Conditional Statements in R",
+   "group": 5,
+   "comment": "",
+   "code": "if (operation == \"add\") {\n    cat(\"I will perform addition 4 + 4\")\n    4 + 4\n} else {\n    cat(\"I will perform multiplication 4 * 4\")\n    4 * 4\n}",
+   "eval": true
+  },
+  {
+   "id": "ch4-014",
+   "ch": "ch4",
+   "section": "4.1.2",
+   "title": "General Conditional Statements in R",
+   "group": 6,
+   "comment": "Note that `operation' is redefined",
+   "code": "operation <- \"subtract\"",
+   "eval": true
+  },
+  {
+   "id": "ch4-015",
+   "ch": "ch4",
+   "section": "4.1.2",
+   "title": "General Conditional Statements in R",
+   "group": 6,
+   "comment": "",
+   "code": "if (operation == \"add\") {\n    cat(\"I will perform addition 4 + 4\\n\")\n    4 + 4\n} else if (operation == \"multiply\") {\n    cat(\"I will perform multiplication 4 * 4\\n\")\n    4 * 4\n} else {\n    cat(\"`\", operation, \"' is invalid. Use either `add' or `multiply'.\\n\",\n        sep = \"\")\n}",
+   "eval": true
+  },
+  {
+   "id": "ch4-016",
+   "ch": "ch4",
+   "section": "4.1.2",
+   "title": "General Conditional Statements in R",
+   "group": 7,
+   "comment": "",
+   "code": "values <- 1:5",
+   "eval": true
+  },
+  {
+   "id": "ch4-017",
+   "ch": "ch4",
+   "section": "4.1.2",
+   "title": "General Conditional Statements in R",
+   "group": 7,
+   "comment": "",
+   "code": "n <-  length(values)",
+   "eval": true
+  },
+  {
+   "id": "ch4-018",
+   "ch": "ch4",
+   "section": "4.1.2",
+   "title": "General Conditional Statements in R",
+   "group": 7,
+   "comment": "",
+   "code": "results <- rep(NA, n)",
+   "eval": true
+  },
+  {
+   "id": "ch4-019",
+   "ch": "ch4",
+   "section": "4.1.2",
+   "title": "General Conditional Statements in R",
+   "group": 7,
+   "comment": "",
+   "code": "for (i in 1:n) {\n    ## x and r get overwritten in each iteration\n    x <- values[i]\n    r <- x %% 2  # remainder when divided by 2 to check whether even or odd\n    if (r == 0) { # remainder is zero\n        cat(x, \"is even and I will perform addition\",\n            x, \"+\", x, \"\\n\")\n        results[i] <- x + x\n    } else { # remainder is not zero\n        cat(x, \"is odd and I will perform multiplication\",\n            x, \"*\", x, \"\\n\")\n        results[i] <- x * x\n    }\n}",
+   "eval": true
+  },
+  {
+   "id": "ch4-020",
+   "ch": "ch4",
+   "section": "4.1.2",
+   "title": "General Conditional Statements in R",
+   "group": 7,
+   "comment": "",
+   "code": "results",
+   "eval": true
+  },
+  {
+   "id": "ch4-021",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 8,
+   "comment": "load election results, by state",
+   "code": "pres08 <- read.csv(\"pres08.csv\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-022",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 8,
+   "comment": "load polling data",
+   "code": "polls08 <- read.csv(\"polls08.csv\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-023",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 8,
+   "comment": "compute Obama's margin",
+   "code": "polls08$margin <- polls08$Obama - polls08$McCain",
+   "eval": true
+  },
+  {
+   "id": "ch4-024",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 8,
+   "comment": "",
+   "code": "pres08$margin <- pres08$Obama - pres08$McCain",
+   "eval": true
+  },
+  {
+   "id": "ch4-025",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 9,
+   "comment": "",
+   "code": "x <- as.Date(\"2008-11-04\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-026",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 9,
+   "comment": "",
+   "code": "y <- as.Date(\"2008/9/1\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-027",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 9,
+   "comment": "",
+   "code": "x - y # number of days between 2008/9/1 and 11/4",
+   "eval": true
+  },
+  {
+   "id": "ch4-028",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 10,
+   "comment": "convert to a Date object",
+   "code": "polls08$middate <- as.Date(polls08$middate)",
+   "eval": true
+  },
+  {
+   "id": "ch4-029",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 11,
+   "comment": "computer the number of days to the election day",
+   "code": "polls08$DaysToElection <- as.Date(\"2008-11-04\") - polls08$middate",
+   "eval": true
+  },
+  {
+   "id": "ch4-030",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 11,
+   "comment": "",
+   "code": "poll.pred <- rep(NA, 51) # initialize a vector place holder",
+   "eval": true
+  },
+  {
+   "id": "ch4-031",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 12,
+   "comment": "extract unique state names which the loop will iterate through",
+   "code": "st.names <- unique(polls08$state)",
+   "eval": true
+  },
+  {
+   "id": "ch4-032",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 13,
+   "comment": "add state names as labels for easy interpretation later on",
+   "code": "names(poll.pred) <- as.character(st.names)",
+   "eval": true
+  },
+  {
+   "id": "ch4-033",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 14,
+   "comment": "loop across 50 states plus DC",
+   "code": "for (i in 1:51){\n    ## subset the ith state\n    state.data <- subset(polls08, subset = (state == st.names[i]))\n    ## further subset the latest polls within the state\n    latest <- subset(state.data, DaysToElection == min(DaysToElection))\n    ## compute the mean of latest polls and store it\n    poll.pred[i] <- mean(latest$margin)\n}",
+   "eval": true
+  },
+  {
+   "id": "ch4-034",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 15,
+   "comment": "error of latest polls",
+   "code": "errors <- pres08$margin - poll.pred",
+   "eval": true
+  },
+  {
+   "id": "ch4-035",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 15,
+   "comment": "",
+   "code": "names(errors) <- st.names # add state names",
+   "eval": true
+  },
+  {
+   "id": "ch4-036",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 15,
+   "comment": "",
+   "code": "mean(errors) # mean prediction error",
+   "eval": true
+  },
+  {
+   "id": "ch4-037",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 16,
+   "comment": "",
+   "code": "sqrt(mean(errors^2))",
+   "eval": true
+  },
+  {
+   "id": "ch4-038",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 17,
+   "comment": "histogram",
+   "code": "hist(errors, freq = FALSE, ylim = c(0, 0.08),\n     main = \"Poll prediction error\",\n     xlab = \"Error in predicted margin for Obama (percentage points)\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-039",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 17,
+   "comment": "add mean",
+   "code": "abline(v = mean(errors), lty = \"dashed\", col = \"red\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-040",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 17,
+   "comment": "",
+   "code": "text(x = -7, y = 0.07, \"average error\", col = \"red\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-041",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 18,
+   "comment": "type = \"n\" generates \"empty\" plot",
+   "code": "plot(poll.pred, pres08$margin, type = \"n\", main = \"\", xlab = \"Poll results\",\n     xlim = c(-40, 90), ylim = c(-40, 90), ylab = \"Actual election results\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-042",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 18,
+   "comment": "add state abbreviations",
+   "code": "text(x = poll.pred, y = pres08$margin, labels = pres08$state, col = \"blue\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-043",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 18,
+   "comment": "lines",
+   "code": "abline(a = 0, b = 1, lty = \"dashed\") # 45 degree line",
+   "eval": true
+  },
+  {
+   "id": "ch4-044",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 18,
+   "comment": "",
+   "code": "abline(v = 0)  # vertical line at 0",
+   "eval": true
+  },
+  {
+   "id": "ch4-045",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 18,
+   "comment": "",
+   "code": "abline(h = 0)  # horizontal line at 0",
+   "eval": true
+  },
+  {
+   "id": "ch4-046",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 19,
+   "comment": "which state polls called wrong?",
+   "code": "pres08$state[sign(poll.pred) != sign(pres08$margin)]",
+   "eval": true
+  },
+  {
+   "id": "ch4-047",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 19,
+   "comment": "what was the actual margin for these states?",
+   "code": "pres08$margin[sign(poll.pred) != sign(pres08$margin)]",
+   "eval": true
+  },
+  {
+   "id": "ch4-048",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 20,
+   "comment": "actual results: total number of electoral votes won by Obama",
+   "code": "sum(pres08$EV[pres08$margin > 0])",
+   "eval": true
+  },
+  {
+   "id": "ch4-049",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 20,
+   "comment": "poll prediction",
+   "code": "sum(pres08$EV[poll.pred > 0])",
+   "eval": true
+  },
+  {
+   "id": "ch4-050",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 21,
+   "comment": "load the data",
+   "code": "pollsUS08 <- read.csv(\"pollsUS08.csv\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-051",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 22,
+   "comment": "compute number of days to the election as before",
+   "code": "pollsUS08$middate <- as.Date(pollsUS08$middate)",
+   "eval": true
+  },
+  {
+   "id": "ch4-052",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 22,
+   "comment": "",
+   "code": "pollsUS08$DaysToElection <- as.Date(\"2008-11-04\") - pollsUS08$middate",
+   "eval": true
+  },
+  {
+   "id": "ch4-053",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 23,
+   "comment": "empty vectors to store predictions",
+   "code": "Obama.pred <- McCain.pred <- rep(NA, 90)",
+   "eval": true
+  },
+  {
+   "id": "ch4-054",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 24,
+   "comment": "",
+   "code": "for (i in 1:90) {\n    ## take all polls conducted within the past 7 days\n    week.data <- subset(pollsUS08, subset = ((DaysToElection <= (90 - i + 7))\n                                  & (DaysToElection > (90 - i))))\n    ## compute support for each candidate using the average\n    Obama.pred[i] <- mean(week.data$Obama)\n    McCain.pred[i] <- mean(week.data$McCain)\n}",
+   "eval": true
+  },
+  {
+   "id": "ch4-055",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 25,
+   "comment": "plot going from 90 days to 1 day before the election",
+   "code": "plot(90:1, Obama.pred, type = \"b\", xlim = c(90, 0), ylim = c(40, 60),\n     col = \"blue\", xlab = \"Days to the election\",\n     ylab = \"Support for candidate (percentage points)\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-056",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 25,
+   "comment": "`type = \"b\"' gives plot that includes both points and lines",
+   "code": "lines(90:1, McCain.pred, type = \"b\", col = \"red\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-057",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 26,
+   "comment": "actual election results: pch = 19 gives solid circles",
+   "code": "points(0, 52.93, pch = 19, col = \"blue\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-058",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 26,
+   "comment": "",
+   "code": "points(0, 45.65, pch = 19, col = \"red\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-059",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 27,
+   "comment": "line indicating the election day",
+   "code": "abline(v = 0)",
+   "eval": true
+  },
+  {
+   "id": "ch4-060",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 28,
+   "comment": "labeling candidates",
+   "code": "text(80, 48, \"Obama\", col = \"blue\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-061",
+   "ch": "ch4",
+   "section": "4.1.3",
+   "title": "Poll Predictions",
+   "group": 28,
+   "comment": "",
+   "code": "text(80, 41, \"McCain\", col = \"red\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-062",
+   "ch": "ch4",
+   "section": "4.2.1",
+   "title": "Facial Appearance and Election Outcomes",
+   "group": 29,
+   "comment": "load the data",
+   "code": "face <- read.csv(\"face.csv\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-063",
+   "ch": "ch4",
+   "section": "4.2.1",
+   "title": "Facial Appearance and Election Outcomes",
+   "group": 29,
+   "comment": "two-party vote share for Democrats and Republicans",
+   "code": "face$d.share <- face$d.votes / (face$d.votes + face$r.votes)",
+   "eval": true
+  },
+  {
+   "id": "ch4-064",
+   "ch": "ch4",
+   "section": "4.2.1",
+   "title": "Facial Appearance and Election Outcomes",
+   "group": 29,
+   "comment": "",
+   "code": "face$r.share <- face$r.votes / (face$d.votes + face$r.votes)",
+   "eval": true
+  },
+  {
+   "id": "ch4-065",
+   "ch": "ch4",
+   "section": "4.2.1",
+   "title": "Facial Appearance and Election Outcomes",
+   "group": 29,
+   "comment": "",
+   "code": "face$diff.share <- face$d.share - face$r.share",
+   "eval": true
+  },
+  {
+   "id": "ch4-066",
+   "ch": "ch4",
+   "section": "4.2.1",
+   "title": "Facial Appearance and Election Outcomes",
+   "group": 30,
+   "comment": "",
+   "code": "plot(face$d.comp, face$diff.share, pch = 16,\n     col = ifelse(face$w.party == \"R\", \"red\", \"blue\"),\n     xlim = c(0, 1), ylim = c(-1, 1),\n     xlab = \"Competence scores for Democrats\",\n     ylab = \"Democratic margin in vote share\",\n     main = \"Facial competence and vote share\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-067",
+   "ch": "ch4",
+   "section": "4.2.2",
+   "title": "Correlation and Scatter Plots",
+   "group": 31,
+   "comment": "",
+   "code": "cor(face$d.comp, face$diff.share)",
+   "eval": true
+  },
+  {
+   "id": "ch4-068",
+   "ch": "ch4",
+   "section": "4.2.3",
+   "title": "Least Squares",
+   "group": 32,
+   "comment": "",
+   "code": "fit <- lm(diff.share ~ d.comp, data = face) # fit the model",
+   "eval": true
+  },
+  {
+   "id": "ch4-069",
+   "ch": "ch4",
+   "section": "4.2.3",
+   "title": "Least Squares",
+   "group": 32,
+   "comment": "",
+   "code": "fit",
+   "eval": true
+  },
+  {
+   "id": "ch4-070",
+   "ch": "ch4",
+   "section": "4.2.3",
+   "title": "Least Squares",
+   "group": 33,
+   "comment": "lm(face$diff.share ~ face$d.comp)",
+   "code": "coef(fit)  # get estimated coefficients",
+   "eval": true
+  },
+  {
+   "id": "ch4-071",
+   "ch": "ch4",
+   "section": "4.2.3",
+   "title": "Least Squares",
+   "group": 33,
+   "comment": "",
+   "code": "head(fitted(fit))  # get fitted or predicted values",
+   "eval": true
+  },
+  {
+   "id": "ch4-072",
+   "ch": "ch4",
+   "section": "4.2.3",
+   "title": "Least Squares",
+   "group": 34,
+   "comment": "",
+   "code": "plot(face$d.comp, face$diff.share, xlim = c(0, 1.05), ylim = c(-1,1),\n     xlab = \"Competence scores for Democrats\",\n     ylab = \"Democratic margin in vote share\",\n     main = \"Facial competence and vote share\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-073",
+   "ch": "ch4",
+   "section": "4.2.3",
+   "title": "Least Squares",
+   "group": 34,
+   "comment": "",
+   "code": "abline(fit) # add regression line",
+   "eval": true
+  },
+  {
+   "id": "ch4-074",
+   "ch": "ch4",
+   "section": "4.2.3",
+   "title": "Least Squares",
+   "group": 34,
+   "comment": "",
+   "code": "abline(v = 0, lty = \"dashed\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-075",
+   "ch": "ch4",
+   "section": "4.2.3",
+   "title": "Least Squares",
+   "group": 35,
+   "comment": "",
+   "code": "epsilon.hat <- resid(fit)  # residuals",
+   "eval": true
+  },
+  {
+   "id": "ch4-076",
+   "ch": "ch4",
+   "section": "4.2.3",
+   "title": "Least Squares",
+   "group": 35,
+   "comment": "",
+   "code": "sqrt(mean(epsilon.hat^2))  # RMSE",
+   "eval": true
+  },
+  {
+   "id": "ch4-077",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 36,
+   "comment": "",
+   "code": "pres12 <- read.csv(\"pres12.csv\")  # load 2012 data",
+   "eval": true
+  },
+  {
+   "id": "ch4-078",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 36,
+   "comment": "quick look at two data sets",
+   "code": "head(pres08)",
+   "eval": true
+  },
+  {
+   "id": "ch4-079",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 36,
+   "comment": "",
+   "code": "head(pres12)",
+   "eval": true
+  },
+  {
+   "id": "ch4-080",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 37,
+   "comment": "merge two data frames",
+   "code": "pres <- merge(pres08, pres12, by = \"state\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-081",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 38,
+   "comment": "summarize the merged data frame",
+   "code": "summary(pres)",
+   "eval": true
+  },
+  {
+   "id": "ch4-082",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 39,
+   "comment": "change the variable name for illustration",
+   "code": "names(pres12)[1] <- \"state.abb\"",
+   "eval": true
+  },
+  {
+   "id": "ch4-083",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 40,
+   "comment": "merging data sets using the variables of different names",
+   "code": "pres <- merge(pres08, pres12, by.x = \"state\", by.y = \"state.abb\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-084",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 40,
+   "comment": "",
+   "code": "summary(pres)",
+   "eval": true
+  },
+  {
+   "id": "ch4-085",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 41,
+   "comment": "cbinding two data frames",
+   "code": "pres1 <- cbind(pres08, pres12)",
+   "eval": true
+  },
+  {
+   "id": "ch4-086",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 41,
+   "comment": "this shows all variables are kept",
+   "code": "summary(pres1)",
+   "eval": true
+  },
+  {
+   "id": "ch4-087",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 42,
+   "comment": "DC and DE are flipped in this alternative approach",
+   "code": "pres1[8:9, ]",
+   "eval": true
+  },
+  {
+   "id": "ch4-088",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 43,
+   "comment": "merge() does not have this problem",
+   "code": "pres[8:9, ]",
+   "eval": true
+  },
+  {
+   "id": "ch4-089",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 44,
+   "comment": "",
+   "code": "pres$Obama2008.z <- scale(pres$Obama.x)",
+   "eval": true
+  },
+  {
+   "id": "ch4-090",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 44,
+   "comment": "",
+   "code": "pres$Obama2012.z <- scale(pres$Obama.y)",
+   "eval": true
+  },
+  {
+   "id": "ch4-091",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 45,
+   "comment": "intercept is estimated essentially zero",
+   "code": "fit1 <- lm(Obama2012.z ~ Obama2008.z, data = pres)",
+   "eval": true
+  },
+  {
+   "id": "ch4-092",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 45,
+   "comment": "",
+   "code": "fit1",
+   "eval": true
+  },
+  {
+   "id": "ch4-093",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 46,
+   "comment": "regression without an intercept; estimated slope is identical",
+   "code": "fit1 <- lm(Obama2012.z ~ -1 + Obama2008.z, data = pres)",
+   "eval": true
+  },
+  {
+   "id": "ch4-094",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 46,
+   "comment": "",
+   "code": "fit1",
+   "eval": true
+  },
+  {
+   "id": "ch4-095",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 47,
+   "comment": "",
+   "code": "plot(pres$Obama2008.z, pres$Obama2012.z, xlim = c(-4, 4), ylim = c(-4, 4),\n     xlab = \"Obama's standardized vote share in 2008\",\n     ylab = \"Obama's standardized vote share in 2012\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-096",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 47,
+   "comment": "",
+   "code": "abline(fit1) # draw a regression line",
+   "eval": true
+  },
+  {
+   "id": "ch4-097",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 48,
+   "comment": "bottom quartile",
+   "code": "mean((pres$Obama2012.z >\n          pres$Obama2008.z)[pres$Obama2008.z\n                            <= quantile(pres$Obama2008.z, 0.25)])",
+   "eval": true
+  },
+  {
+   "id": "ch4-098",
+   "ch": "ch4",
+   "section": "4.2.5",
+   "title": "Merging Data Sets in R",
+   "group": 49,
+   "comment": "top quartile",
+   "code": "mean((pres$Obama2012.z >\n          pres$Obama2008.z)[pres$Obama2008.z\n                            >= quantile(pres$Obama2008.z, 0.75)])",
+   "eval": true
+  },
+  {
+   "id": "ch4-099",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 50,
+   "comment": "",
+   "code": "florida <- read.csv(\"florida.csv\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-100",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 51,
+   "comment": "regress Buchanan's 2000 votes on Perot's 1996 votes",
+   "code": "fit2 <- lm(Buchanan00 ~ Perot96, data = florida)",
+   "eval": true
+  },
+  {
+   "id": "ch4-101",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 51,
+   "comment": "",
+   "code": "fit2",
+   "eval": true
+  },
+  {
+   "id": "ch4-102",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 52,
+   "comment": "compute TSS (total sum of squares) and SSR (sum of squared residuals)",
+   "code": "TSS2 <- sum((florida$Buchanan00 - mean(florida$Buchanan00))^2)",
+   "eval": true
+  },
+  {
+   "id": "ch4-103",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 52,
+   "comment": "",
+   "code": "SSR2 <- sum(resid(fit2)^2)",
+   "eval": true
+  },
+  {
+   "id": "ch4-104",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 53,
+   "comment": "Coefficient of determination",
+   "code": "(TSS2 - SSR2) / TSS2",
+   "eval": true
+  },
+  {
+   "id": "ch4-105",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 54,
+   "comment": "",
+   "code": "R2 <- function(fit) {\n    resid <- resid(fit) # residuals\n    y <- fitted(fit) + resid # outcome variable\n    TSS <- sum((y - mean(y))^2)\n    SSR <- sum(resid^2)\n    R2 <- (TSS - SSR) / TSS\n    return(R2)\n}",
+   "eval": true
+  },
+  {
+   "id": "ch4-106",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 54,
+   "comment": "",
+   "code": "R2(fit2)",
+   "eval": true
+  },
+  {
+   "id": "ch4-107",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 55,
+   "comment": "built-in R function",
+   "code": "summary(fit2)$r.squared",
+   "eval": true
+  },
+  {
+   "id": "ch4-108",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 55,
+   "comment": "",
+   "code": "R2(fit1)",
+   "eval": true
+  },
+  {
+   "id": "ch4-109",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 56,
+   "comment": "",
+   "code": "plot(fitted(fit2), resid(fit2), xlim = c(0, 1500), ylim = c(-750, 2500),\n     xlab = \"Fitted values\", ylab = \"Residuals\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-110",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 56,
+   "comment": "",
+   "code": "abline(h = 0)",
+   "eval": true
+  },
+  {
+   "id": "ch4-111",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 57,
+   "comment": "",
+   "code": "florida$county[resid(fit2) == max(resid(fit2))]",
+   "eval": true
+  },
+  {
+   "id": "ch4-112",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 58,
+   "comment": "data without Palm Beach",
+   "code": "florida.pb <- subset(florida, subset = (county != \"PalmBeach\"))",
+   "eval": true
+  },
+  {
+   "id": "ch4-113",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 59,
+   "comment": "",
+   "code": "fit3 <- lm(Buchanan00 ~ Perot96, data = florida.pb)",
+   "eval": true
+  },
+  {
+   "id": "ch4-114",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 59,
+   "comment": "",
+   "code": "fit3",
+   "eval": true
+  },
+  {
+   "id": "ch4-115",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 60,
+   "comment": "R^2 or coefficient of determination",
+   "code": "R2(fit3)",
+   "eval": true
+  },
+  {
+   "id": "ch4-116",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 61,
+   "comment": "residual plot",
+   "code": "plot(fitted(fit3), resid(fit3), xlim = c(0, 1500), ylim = c(-750, 2500),\n     xlab = \"Fitted values\", ylab = \"Residuals\",\n     main = \"Residual plot without Palm Beach\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-117",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 61,
+   "comment": "",
+   "code": "abline(h = 0) # horizontal line at 0",
+   "eval": true
+  },
+  {
+   "id": "ch4-118",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 61,
+   "comment": "",
+   "code": "plot(florida$Perot96, florida$Buchanan00, xlab = \"Perot's votes in 1996\",\n     ylab = \"Buchanan's votes in 2000\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-119",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 61,
+   "comment": "",
+   "code": "abline(fit2, lty = \"dashed\") # regression with Palm Beach",
+   "eval": true
+  },
+  {
+   "id": "ch4-120",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 61,
+   "comment": "",
+   "code": "abline(fit3) # regression without Palm Beach",
+   "eval": true
+  },
+  {
+   "id": "ch4-121",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 61,
+   "comment": "",
+   "code": "text(30000, 3250, \"Palm Beach\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-122",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 61,
+   "comment": "",
+   "code": "text(30000, 1500, \"regression\\n with Palm Beach\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-123",
+   "ch": "ch4",
+   "section": "4.2.6",
+   "title": "Model Fit",
+   "group": 61,
+   "comment": "",
+   "code": "text(30000, 400, \"regression\\n without Palm Beach\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-124",
+   "ch": "ch4",
+   "section": "4.3.1",
+   "title": "Randomized Experiments",
+   "group": 62,
+   "comment": "",
+   "code": "women <- read.csv(\"women.csv\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-125",
+   "ch": "ch4",
+   "section": "4.3.1",
+   "title": "Randomized Experiments",
+   "group": 63,
+   "comment": "proportion of female politicians in reserved GP vs. unreserved GP",
+   "code": "mean(women$female[women$reserved == 1])",
+   "eval": true
+  },
+  {
+   "id": "ch4-126",
+   "ch": "ch4",
+   "section": "4.3.1",
+   "title": "Randomized Experiments",
+   "group": 63,
+   "comment": "",
+   "code": "mean(women$female[women$reserved == 0])",
+   "eval": true
+  },
+  {
+   "id": "ch4-127",
+   "ch": "ch4",
+   "section": "4.3.1",
+   "title": "Randomized Experiments",
+   "group": 64,
+   "comment": "drinking-water facilities",
+   "code": "mean(women$water[women$reserved == 1]) -\n    mean(women$water[women$reserved == 0])",
+   "eval": true
+  },
+  {
+   "id": "ch4-128",
+   "ch": "ch4",
+   "section": "4.3.1",
+   "title": "Randomized Experiments",
+   "group": 65,
+   "comment": "irrigation facilities",
+   "code": "mean(women$irrigation[women$reserved == 1]) -\n    mean(women$irrigation[women$reserved == 0])",
+   "eval": true
+  },
+  {
+   "id": "ch4-129",
+   "ch": "ch4",
+   "section": "4.3.1",
+   "title": "Randomized Experiments",
+   "group": 66,
+   "comment": "",
+   "code": "lm(water ~ reserved, data = women)",
+   "eval": true
+  },
+  {
+   "id": "ch4-130",
+   "ch": "ch4",
+   "section": "4.3.1",
+   "title": "Randomized Experiments",
+   "group": 66,
+   "comment": "",
+   "code": "lm(irrigation ~ reserved, data = women)",
+   "eval": true
+  },
+  {
+   "id": "ch4-131",
+   "ch": "ch4",
+   "section": "4.3.2",
+   "title": "Regression with Multiple Predictors",
+   "group": 67,
+   "comment": "",
+   "code": "social <- read.csv(\"social.csv\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-132",
+   "ch": "ch4",
+   "section": "4.3.2",
+   "title": "Regression with Multiple Predictors",
+   "group": 67,
+   "comment": "",
+   "code": "levels(social$messages) # base level is `Civic'",
+   "eval": true
+  },
+  {
+   "id": "ch4-133",
+   "ch": "ch4",
+   "section": "4.3.2",
+   "title": "Regression with Multiple Predictors",
+   "group": 68,
+   "comment": "",
+   "code": "fit <- lm(primary2006 ~ messages, data = social)",
+   "eval": true
+  },
+  {
+   "id": "ch4-134",
+   "ch": "ch4",
+   "section": "4.3.2",
+   "title": "Regression with Multiple Predictors",
+   "group": 68,
+   "comment": "",
+   "code": "fit",
+   "eval": true
+  },
+  {
+   "id": "ch4-135",
+   "ch": "ch4",
+   "section": "4.3.2",
+   "title": "Regression with Multiple Predictors",
+   "group": 70,
+   "comment": "create a data frame with unique values of `messages'",
+   "code": "unique.messages <- data.frame(messages = unique(social$messages))",
+   "eval": true
+  },
+  {
+   "id": "ch4-136",
+   "ch": "ch4",
+   "section": "4.3.2",
+   "title": "Regression with Multiple Predictors",
+   "group": 70,
+   "comment": "",
+   "code": "unique.messages",
+   "eval": true
+  },
+  {
+   "id": "ch4-137",
+   "ch": "ch4",
+   "section": "4.3.2",
+   "title": "Regression with Multiple Predictors",
+   "group": 71,
+   "comment": "make prediction for each observation from this new data frame",
+   "code": "predict(fit, newdata = unique.messages)",
+   "eval": true
+  },
+  {
+   "id": "ch4-138",
+   "ch": "ch4",
+   "section": "4.3.2",
+   "title": "Regression with Multiple Predictors",
+   "group": 72,
+   "comment": "sample average",
+   "code": "tapply(social$primary2006, social$messages, mean)",
+   "eval": true
+  },
+  {
+   "id": "ch4-139",
+   "ch": "ch4",
+   "section": "4.3.2",
+   "title": "Regression with Multiple Predictors",
+   "group": 73,
+   "comment": "linear regression without intercept",
+   "code": "fit.noint <- lm(primary2006 ~ -1 + messages, data = social)",
+   "eval": true
+  },
+  {
+   "id": "ch4-140",
+   "ch": "ch4",
+   "section": "4.3.2",
+   "title": "Regression with Multiple Predictors",
+   "group": 73,
+   "comment": "",
+   "code": "fit.noint",
+   "eval": true
+  },
+  {
+   "id": "ch4-141",
+   "ch": "ch4",
+   "section": "4.3.2",
+   "title": "Regression with Multiple Predictors",
+   "group": 74,
+   "comment": "estimated average effect of `Neighbors' condition",
+   "code": "coef(fit)[\"messagesNeighbors\"] - coef(fit)[\"messagesControl\"]",
+   "eval": true
+  },
+  {
+   "id": "ch4-142",
+   "ch": "ch4",
+   "section": "4.3.2",
+   "title": "Regression with Multiple Predictors",
+   "group": 75,
+   "comment": "difference in means",
+   "code": "mean(social$primary2006[social$messages == \"Neighbors\"]) -\n    mean(social$primary2006[social$messages == \"Control\"])",
+   "eval": true
+  },
+  {
+   "id": "ch4-143",
+   "ch": "ch4",
+   "section": "4.3.2",
+   "title": "Regression with Multiple Predictors",
+   "group": 76,
+   "comment": "adjusted Rsquare",
+   "code": "adjR2 <- function(fit) {\n    resid <- resid(fit) # residuals\n    y <- fitted(fit) + resid # outcome\n    n <- length(y)\n    TSS.adj <- sum((y - mean(y))^2) / (n - 1)\n    SSR.adj <- sum(resid^2) / (n - length(coef(fit)))\n    R2.adj <- 1 - SSR.adj / TSS.adj\n    return(R2.adj)\n}",
+   "eval": true
+  },
+  {
+   "id": "ch4-144",
+   "ch": "ch4",
+   "section": "4.3.2",
+   "title": "Regression with Multiple Predictors",
+   "group": 76,
+   "comment": "",
+   "code": "adjR2(fit)",
+   "eval": true
+  },
+  {
+   "id": "ch4-145",
+   "ch": "ch4",
+   "section": "4.3.2",
+   "title": "Regression with Multiple Predictors",
+   "group": 76,
+   "comment": "",
+   "code": "R2(fit) # unadjusted Rsquare calculation",
+   "eval": true
+  },
+  {
+   "id": "ch4-146",
+   "ch": "ch4",
+   "section": "4.3.2",
+   "title": "Regression with Multiple Predictors",
+   "group": 77,
+   "comment": "",
+   "code": "summary(fit)$adj.r.squared",
+   "eval": true
+  },
+  {
+   "id": "ch4-147",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 78,
+   "comment": "average treatment effect (ate) among those who voted in 2004 primary",
+   "code": "social.voter <- subset(social, primary2004 == 1)",
+   "eval": true
+  },
+  {
+   "id": "ch4-148",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 79,
+   "comment": "",
+   "code": "ate.voter <-\n    mean(social.voter$primary2006[social.voter$messages == \"Neighbors\"]) -\n        mean(social.voter$primary2006[social.voter$messages == \"Control\"])",
+   "eval": true
+  },
+  {
+   "id": "ch4-149",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 79,
+   "comment": "",
+   "code": "ate.voter",
+   "eval": true
+  },
+  {
+   "id": "ch4-150",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 80,
+   "comment": "average effect among those who did not vote",
+   "code": "social.nonvoter <- subset(social, primary2004 == 0)",
+   "eval": true
+  },
+  {
+   "id": "ch4-151",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 81,
+   "comment": "",
+   "code": "ate.nonvoter <-\n    mean(social.nonvoter$primary2006[social.nonvoter$messages == \"Neighbors\"]) -\n        mean(social.nonvoter$primary2006[social.nonvoter$messages == \"Control\"])",
+   "eval": true
+  },
+  {
+   "id": "ch4-152",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 81,
+   "comment": "",
+   "code": "ate.nonvoter",
+   "eval": true
+  },
+  {
+   "id": "ch4-153",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 82,
+   "comment": "difference",
+   "code": "ate.voter - ate.nonvoter",
+   "eval": true
+  },
+  {
+   "id": "ch4-154",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 83,
+   "comment": "subset neighbors and control groups",
+   "code": "social.neighbor <- subset(social, (messages == \"Control\") |\n                              (messages == \"Neighbors\"))",
+   "eval": true
+  },
+  {
+   "id": "ch4-155",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 84,
+   "comment": "standard way to generate main and interaction effects",
+   "code": "fit.int <- lm(primary2006 ~ primary2004 + messages + primary2004:messages,\n              data = social.neighbor)",
+   "eval": true
+  },
+  {
+   "id": "ch4-156",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 84,
+   "comment": "",
+   "code": "fit.int",
+   "eval": true
+  },
+  {
+   "id": "ch4-157",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 86,
+   "comment": "",
+   "code": "social.neighbor$age <- 2006 - social.neighbor$yearofbirth",
+   "eval": true
+  },
+  {
+   "id": "ch4-158",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 86,
+   "comment": "",
+   "code": "summary(social.neighbor$age)",
+   "eval": true
+  },
+  {
+   "id": "ch4-159",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 87,
+   "comment": "",
+   "code": "fit.age <- lm(primary2006 ~ age * messages, data = social.neighbor)",
+   "eval": true
+  },
+  {
+   "id": "ch4-160",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 87,
+   "comment": "",
+   "code": "fit.age",
+   "eval": true
+  },
+  {
+   "id": "ch4-161",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 88,
+   "comment": "age = 25, 45, 65, 85 in Neighbors group",
+   "code": "age.neighbor <- data.frame(age = seq(from = 25, to = 85, by = 20),\n                           messages = \"Neighbors\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-162",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 89,
+   "comment": "age = 25, 45, 65, 85 in Control group",
+   "code": "age.control <- data.frame(age = seq(from = 25, to = 85, by = 20),\n                          messages = \"Control\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-163",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 90,
+   "comment": "average treatment effect for age = 25, 45, 65, 85",
+   "code": "ate.age <- predict(fit.age, newdata = age.neighbor) -\n    predict(fit.age, newdata = age.control)",
+   "eval": true
+  },
+  {
+   "id": "ch4-164",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 91,
+   "comment": "",
+   "code": "ate.age",
+   "eval": true
+  },
+  {
+   "id": "ch4-165",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 92,
+   "comment": "",
+   "code": "fit.age2 <- lm(primary2006 ~ age + I(age^2) + messages + age:messages +\n                 I(age^2):messages, data = social.neighbor)",
+   "eval": true
+  },
+  {
+   "id": "ch4-166",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 93,
+   "comment": "",
+   "code": "fit.age2",
+   "eval": true
+  },
+  {
+   "id": "ch4-167",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 94,
+   "comment": "predicted turnout rate under the ``Neighbors'' treatment condition",
+   "code": "yT.hat <- predict(fit.age2,\n                  newdata = data.frame(age = 25:85, messages = \"Neighbors\"))",
+   "eval": true
+  },
+  {
+   "id": "ch4-168",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 95,
+   "comment": "predicted turnout rate under the control condition",
+   "code": "yC.hat <- predict(fit.age2,\n                  newdata = data.frame(age = 25:85, messages = \"Control\"))",
+   "eval": true
+  },
+  {
+   "id": "ch4-169",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 96,
+   "comment": "plotting the predicted turnout rate under each condition",
+   "code": "plot(x = 25:85, y = yT.hat, type = \"l\", xlim = c(20, 90), ylim = c(0, 0.5),\n     xlab = \"Age\", ylab = \"Predicted turnout rate\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-170",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 96,
+   "comment": "",
+   "code": "lines(x = 25:85, y = yC.hat, lty = \"dashed\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-171",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 96,
+   "comment": "",
+   "code": "text(40, 0.45, \"Neighbors condition\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-172",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 96,
+   "comment": "",
+   "code": "text(45, 0.15, \"Control condition\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-173",
+   "ch": "ch4",
+   "section": "4.3.3",
+   "title": "Heterogenous Treatment Effects",
+   "group": 97,
+   "comment": "plotting the average treatment effect as a function of age",
+   "code": "plot(x = 25:85, y = yT.hat - yC.hat, type = \"l\", xlim = c(20, 90),\n     ylim = c(0, 0.1), xlab = \"Age\",\n     ylab = \"Estimated average treatment effect\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-174",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 98,
+   "comment": "load the data and subset them into two parties",
+   "code": "MPs <- read.csv(\"MPs.csv\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-175",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 98,
+   "comment": "",
+   "code": "MPs.labour <- subset(MPs, subset = (party == \"labour\"))",
+   "eval": true
+  },
+  {
+   "id": "ch4-176",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 98,
+   "comment": "",
+   "code": "MPs.tory <- subset(MPs, subset = (party == \"tory\"))",
+   "eval": true
+  },
+  {
+   "id": "ch4-177",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 99,
+   "comment": "two regressions for Labour: negative and positive margin",
+   "code": "labour.fit1 <- lm(ln.net ~ margin,\n                  data = MPs.labour[MPs.labour$margin < 0, ])",
+   "eval": true
+  },
+  {
+   "id": "ch4-178",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 99,
+   "comment": "",
+   "code": "labour.fit2 <- lm(ln.net ~ margin,\n                  data = MPs.labour[MPs.labour$margin > 0, ])",
+   "eval": true
+  },
+  {
+   "id": "ch4-179",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 100,
+   "comment": "two regressions for Tory: negative and positive margin",
+   "code": "tory.fit1 <- lm(ln.net ~ margin, data = MPs.tory[MPs.tory$margin < 0, ])",
+   "eval": true
+  },
+  {
+   "id": "ch4-180",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 100,
+   "comment": "",
+   "code": "tory.fit2 <- lm(ln.net ~ margin, data = MPs.tory[MPs.tory$margin > 0, ])",
+   "eval": true
+  },
+  {
+   "id": "ch4-181",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 101,
+   "comment": "Labour: range of predictions",
+   "code": "y1l.range <- c(min(MPs.labour$margin), 0) # min to 0",
+   "eval": true
+  },
+  {
+   "id": "ch4-182",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 101,
+   "comment": "",
+   "code": "y2l.range <- c(0, max(MPs.labour$margin)) # 0 to max",
+   "eval": true
+  },
+  {
+   "id": "ch4-183",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 102,
+   "comment": "prediction",
+   "code": "y1.labour <- predict(labour.fit1, newdata = data.frame(margin = y1l.range))",
+   "eval": true
+  },
+  {
+   "id": "ch4-184",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 102,
+   "comment": "",
+   "code": "y2.labour <- predict(labour.fit2, newdata = data.frame(margin = y2l.range))",
+   "eval": true
+  },
+  {
+   "id": "ch4-185",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 103,
+   "comment": "Tory: range of predictions",
+   "code": "y1t.range <- c(min(MPs.tory$margin), 0) # min to 0",
+   "eval": true
+  },
+  {
+   "id": "ch4-186",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 103,
+   "comment": "",
+   "code": "y2t.range <- c(0, max(MPs.tory$margin)) # 0 to max",
+   "eval": true
+  },
+  {
+   "id": "ch4-187",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 104,
+   "comment": "predict outcome",
+   "code": "y1.tory <- predict(tory.fit1, newdata = data.frame(margin = y1t.range))",
+   "eval": true
+  },
+  {
+   "id": "ch4-188",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 104,
+   "comment": "",
+   "code": "y2.tory <- predict(tory.fit2, newdata = data.frame(margin = y2t.range))",
+   "eval": true
+  },
+  {
+   "id": "ch4-189",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 105,
+   "comment": "scatterplot with regression lines for labour",
+   "code": "plot(MPs.labour$margin, MPs.labour$ln.net, main = \"Labour\",\n     xlim = c(-0.5, 0.5), ylim = c(6, 18), xlab = \"Margin of victory\",\n     ylab = \"log net wealth at death\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-190",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 105,
+   "comment": "",
+   "code": "abline(v = 0, lty = \"dashed\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-191",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 106,
+   "comment": "add regression lines",
+   "code": "lines(y1l.range, y1.labour, col = \"blue\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-192",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 106,
+   "comment": "",
+   "code": "lines(y2l.range, y2.labour, col = \"blue\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-193",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 107,
+   "comment": "scatterplot with regression lines for tory",
+   "code": "plot(MPs.tory$margin, MPs.tory$ln.net, main = \"Tory\", xlim = c(-0.5, 0.5),\n     ylim = c(6, 18), xlab = \"Margin of victory\",\n     ylab = \"log net wealth at death\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-194",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 107,
+   "comment": "",
+   "code": "abline(v = 0, lty = \"dashed\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-195",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 108,
+   "comment": "add regression lines",
+   "code": "lines(y1t.range, y1.tory, col = \"blue\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-196",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 108,
+   "comment": "",
+   "code": "lines(y2t.range, y2.tory, col = \"blue\")",
+   "eval": true
+  },
+  {
+   "id": "ch4-197",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 109,
+   "comment": "average net wealth for Tory MP",
+   "code": "tory.MP <- exp(y2.tory[1])",
+   "eval": true
+  },
+  {
+   "id": "ch4-198",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 109,
+   "comment": "",
+   "code": "tory.MP",
+   "eval": true
+  },
+  {
+   "id": "ch4-199",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 110,
+   "comment": "average net wealth for Tory non-MP",
+   "code": "tory.nonMP <- exp(y1.tory[2])",
+   "eval": true
+  },
+  {
+   "id": "ch4-200",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 110,
+   "comment": "",
+   "code": "tory.nonMP",
+   "eval": true
+  },
+  {
+   "id": "ch4-201",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 111,
+   "comment": "causal effect in pounds",
+   "code": "tory.MP - tory.nonMP",
+   "eval": true
+  },
+  {
+   "id": "ch4-202",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 112,
+   "comment": "two regressions for Tory: negative and positive margin",
+   "code": "tory.fit3 <- lm(margin.pre ~ margin, data = MPs.tory[MPs.tory$margin < 0, ])",
+   "eval": true
+  },
+  {
+   "id": "ch4-203",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 112,
+   "comment": "",
+   "code": "tory.fit4 <- lm(margin.pre ~ margin, data = MPs.tory[MPs.tory$margin > 0, ])",
+   "eval": true
+  },
+  {
+   "id": "ch4-204",
+   "ch": "ch4",
+   "section": "4.3.4",
+   "title": "Regression Discontinuity Design",
+   "group": 112,
+   "comment": "the difference between two intercepts is the estimated effect",
+   "code": "coef(tory.fit4)[1] - coef(tory.fit3)[1]",
+   "eval": true
+  }
+ ]
+}

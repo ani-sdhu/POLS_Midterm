@@ -1,0 +1,1423 @@
+{
+ "_note": "Box metadata only. The box wording itself is read verbatim from QSS Ch1-4.pdf at runtime (pdfbox.js + box_geom.json). blanks: preferred key terms to blank out when they appear in a sentence. wrong: deliberately false statements used as the answer in 'which is FALSE' questions.",
+ "boxes": [
+  {
+   "id": "box-exp",
+   "section": "2.1",
+   "page": 33,
+   "term": "Experimental research",
+   "components": [
+    {
+     "blanks": [
+      "treatment",
+      "causally affects",
+      "outcome"
+     ],
+     "wrong": [
+      "Experimental research examines how an outcome is correlated with a treatment without manipulating anything."
+     ]
+    },
+    {
+     "blanks": [
+      "assigns",
+      "treatment variable",
+      "different observations"
+     ],
+     "wrong": [
+      "It assigns the same value of the treatment variable to every observation."
+     ]
+    },
+    {
+     "blanks": [
+      "measures",
+      "outcome variable"
+     ],
+     "wrong": [
+      "It then measures each observation's pretreatment covariates only."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-causal",
+   "section": "2.3",
+   "page": 48,
+   "term": "Causal effect",
+   "components": [
+    {
+     "blanks": [
+      "each observation i",
+      "binary treatment",
+      "two potential outcomes",
+      "Yi(1) − Yi(0)"
+     ],
+     "wrong": [
+      "For each observation i, the causal effect of a binary treatment Ti is the difference between the treated group's mean and the control group's mean."
+     ]
+    },
+    {
+     "blanks": [
+      "would be realized",
+      "treatment condition",
+      "Ti = 1"
+     ],
+     "wrong": [
+      "Yi(1) is the outcome observed for unit i before treatment is assigned."
+     ]
+    },
+    {
+     "blanks": [
+      "control condition",
+      "Ti = 0"
+     ],
+     "wrong": [
+      "Yi(0) is the average outcome of all control units."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-fpci",
+   "section": "2.3",
+   "page": 48,
+   "term": "Fundamental problem of causal inference",
+   "components": [
+    {
+     "blanks": [
+      "only one",
+      "two potential outcomes"
+     ],
+     "wrong": [
+      "We observe both potential outcomes, but only for units in the treatment group."
+     ]
+    },
+    {
+     "blanks": [
+      "depends on",
+      "treatment status"
+     ],
+     "wrong": [
+      "Which potential outcome is observed is chosen by the researcher after the study."
+     ]
+    },
+    {
+     "blanks": [
+      "Yi(Ti)"
+     ],
+     "wrong": [
+      "Formally, the observed outcome Yi equals Yi(1) − Yi(0)."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-sate",
+   "section": "2.4.1",
+   "page": 49,
+   "term": "Sample average treatment effect (SATE)",
+   "components": [
+    {
+     "blanks": [
+      "sample average",
+      "individual-level causal effects"
+     ],
+     "wrong": [
+      "The SATE is the difference in average outcomes between the treated and control groups in the sample."
+     ]
+    },
+    {
+     "blanks": [
+      "(1/n)",
+      "Yi(1) − Yi(0)"
+     ],
+     "wrong": [
+      "Its formula is SATE = (1/n1) Σ_{i=1}^{n} Ti {Yi(1) − Yi(0)} (equation 2.1)."
+     ]
+    },
+    {
+     "blanks": [
+      "sample size"
+     ],
+     "wrong": [
+      "n is the number of treated units."
+     ]
+    },
+    {
+     "blanks": [
+      "summation operator",
+      "i = 1",
+      "i = n"
+     ],
+     "wrong": [
+      "Σ_{i=1}^{n} multiplies the terms together from i = 1 to i = n."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-rct",
+   "section": "2.4.1",
+   "page": 50,
+   "term": "Randomized controlled trial (RCT)",
+   "components": [
+    {
+     "blanks": [
+      "randomly assigned",
+      "treatment group",
+      "control group"
+     ],
+     "wrong": [
+      "In an RCT, each unit chooses whether to join the treatment group or the control group."
+     ]
+    },
+    {
+     "blanks": [
+      "average difference in outcome",
+      "solely to the treatment"
+     ],
+     "wrong": [
+      "Randomization guarantees that every individual's causal effect can be observed directly."
+     ]
+    },
+    {
+     "blanks": [
+      "on average",
+      "identical",
+      "pretreatment characteristics"
+     ],
+     "wrong": [
+      "This is because the two groups are exactly identical in every observed characteristic in any single sample."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-validity",
+   "section": "2.4.1",
+   "page": 50,
+   "term": "Internal and external validity",
+   "components": [
+    {
+     "blanks": [
+      "main advantage",
+      "internal validity"
+     ],
+     "wrong": [
+      "The main advantage of RCTs is their improved external validity."
+     ]
+    },
+    {
+     "blanks": [
+      "causal assumptions are satisfied"
+     ],
+     "wrong": [
+      "Internal validity is the extent to which the study's conclusions generalize beyond the study."
+     ]
+    },
+    {
+     "blanks": [
+      "weakness",
+      "external validity"
+     ],
+     "wrong": [
+      "One weakness of RCTs is a potential lack of internal validity."
+     ]
+    },
+    {
+     "blanks": [
+      "generalized beyond a particular study"
+     ],
+     "wrong": [
+      "External validity is the extent to which the causal assumptions hold within the study sample."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-hawthorne",
+   "section": "2.4.2",
+   "page": 52,
+   "term": "Hawthorne effect",
+   "components": [
+    {
+     "blanks": [
+      "behave differently",
+      "being observed"
+     ],
+     "wrong": [
+      "The Hawthorne effect is when study subjects behave differently because they were randomly assigned to the control group."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-confounder",
+   "section": "2.5.2",
+   "page": 58,
+   "term": "Confounder and confounding bias",
+   "components": [
+    {
+     "blanks": [
+      "pretreatment"
+     ],
+     "wrong": [
+      "A confounder is a posttreatment variable affected by the treatment."
+     ]
+    },
+    {
+     "blanks": [
+      "both the treatment and the outcome"
+     ],
+     "wrong": [
+      "A confounder is associated with the outcome but not with the treatment."
+     ]
+    },
+    {
+     "blanks": [
+      "confounding bias",
+      "treatment effect"
+     ],
+     "wrong": [
+      "A confounder reduces bias in the estimation of the treatment effect."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-control",
+   "section": "2.5.2",
+   "page": 60,
+   "term": "Statistical control and subclassification",
+   "components": [
+    {
+     "blanks": [
+      "reduced",
+      "statistical control"
+     ],
+     "wrong": [
+      "Confounding bias can be eliminated entirely through statistical control."
+     ]
+    },
+    {
+     "blanks": [
+      "subclassification",
+      "identical value",
+      "confounding variable"
+     ],
+     "wrong": [
+      "One example is subclassification: comparing treated and control units that have different values of a confounding variable."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-ba",
+   "section": "2.5.3",
+   "page": 61,
+   "term": "Before-and-after design",
+   "components": [
+    {
+     "blanks": [
+      "pretreatment period",
+      "posttreatment period",
+      "same set of units"
+     ],
+     "wrong": [
+      "The before-and-after design compares treated and control units after treatment only."
+     ]
+    },
+    {
+     "blanks": [
+      "specific to each unit",
+      "does not change over time"
+     ],
+     "wrong": [
+      "It adjusts for any confounding factor that changes over time."
+     ]
+    },
+    {
+     "blanks": [
+      "time-varying confounders"
+     ],
+     "wrong": [
+      "It fully addresses bias due to time-varying confounders."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-did",
+   "section": "2.5.3",
+   "page": 62,
+   "term": "Difference-in-differences (DiD)",
+   "components": [
+    {
+     "blanks": [
+      "SATT",
+      "for the treated"
+     ],
+     "wrong": [
+      "The DiD design estimates the sample average treatment effect (SATE) for all units."
+     ]
+    },
+    {
+     "blanks": [
+      "Ȳtreated,after − Ȳtreated,before",
+      "Ȳcontrol,after − Ȳcontrol,before"
+     ],
+     "wrong": [
+      "The DiD estimate is (Ȳtreated,after − Ȳcontrol,after) − (Ȳtreated,before + Ȳcontrol,before)."
+     ]
+    },
+    {
+     "blanks": [
+      "treatment group",
+      "control group"
+     ],
+     "wrong": [
+      "The first difference is the difference for the control group; the second is for the treatment group."
+     ]
+    },
+    {
+     "blanks": [
+      "counterfactual outcome",
+      "parallel"
+     ],
+     "wrong": [
+      "It assumes the treatment and control groups have identical outcome levels before treatment."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-median",
+   "section": "2.6.1",
+   "page": 64,
+   "term": "Median",
+   "components": [
+    {
+     "blanks": [
+      "x_((n+1)/2)"
+     ],
+     "wrong": [
+      "If n is odd, the median is the average of x_(n/2) and x_(n/2+1)."
+     ]
+    },
+    {
+     "blanks": [
+      "(1/2)(x_(n/2) + x_(n/2+1))"
+     ],
+     "wrong": [
+      "If n is even, the median is x_(n/2), the lower of the two middle observations."
+     ]
+    },
+    {
+     "blanks": [
+      "i-th smallest"
+     ],
+     "wrong": [
+      "x_(i) denotes the i-th observation in the order it appears in the data."
+     ]
+    },
+    {
+     "blanks": [
+      "less sensitive to outliers",
+      "robust"
+     ],
+     "wrong": [
+      "The median is more sensitive to outliers than the mean, so it is a less robust measure of center."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-quantile",
+   "section": "2.6.1",
+   "page": 66,
+   "term": "Quantiles and interquartile range",
+   "components": [
+    {
+     "blanks": [
+      "equally sized groups"
+     ],
+     "wrong": [
+      "Quantiles are data values that divide the range of the variable into equal-width intervals."
+     ]
+    },
+    {
+     "blanks": [
+      "4 groups",
+      "100 groups"
+     ],
+     "wrong": [
+      "Quartiles divide the observations into 25 groups; percentiles into 100 groups."
+     ]
+    },
+    {
+     "blanks": [
+      "lower quartile",
+      "median",
+      "upper quartile"
+     ],
+     "wrong": [
+      "The 25th percentile is the median, and the 75th percentile is the maximum."
+     ]
+    },
+    {
+     "blanks": [
+      "upper and lower quartiles",
+      "spread"
+     ],
+     "wrong": [
+      "The interquartile range is the difference between the maximum and minimum, and it measures the center of a distribution."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-sd",
+   "section": "2.6.2",
+   "page": 68,
+   "term": "Standard deviation and variance",
+   "components": [
+    {
+     "blanks": [
+      "average deviation from the mean"
+     ],
+     "wrong": [
+      "The sample standard deviation measures the average value of the data."
+     ]
+    },
+    {
+     "blanks": [
+      "(xi − x̄)²",
+      "n − 1"
+     ],
+     "wrong": [
+      "It is defined as (1/n) Σ_{i=1}^{n} |xi − x̄|, the mean absolute deviation."
+     ]
+    },
+    {
+     "blanks": [
+      "sample mean"
+     ],
+     "wrong": [
+      "x̄ is the sample median."
+     ]
+    },
+    {
+     "blanks": [
+      "2 or 3 standard deviations"
+     ],
+     "wrong": [
+      "About half of the data points lie more than 2 standard deviations away from the mean."
+     ]
+    },
+    {
+     "blanks": [
+      "square",
+      "variance"
+     ],
+     "wrong": [
+      "The square root of the standard deviation is called the variance."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-hist",
+   "section": "3.3.2",
+   "page": 83,
+   "term": "Histogram and density",
+   "components": [
+    {
+     "blanks": [
+      "bins",
+      "area",
+      "proportion of observations"
+     ],
+     "wrong": [
+      "A histogram divides the data into bins, where the height of each bin represents the proportion of observations that fall within it."
+     ]
+    },
+    {
+     "blanks": [
+      "density",
+      "divided by the width of the bin"
+     ],
+     "wrong": [
+      "The height of each bin represents density: the number of observations in the bin multiplied by the width of the bin."
+     ]
+    },
+    {
+     "blanks": [
+      "approximates the distribution"
+     ],
+     "wrong": [
+      "A histogram shows the relationship between two variables."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-box",
+   "section": "3.3.3",
+   "page": 87,
+   "term": "Box plot",
+   "components": [
+    {
+     "blanks": [
+      "median",
+      "lower and upper quartiles"
+     ],
+     "wrong": [
+      "A box plot visualizes a distribution by indicating its mean and standard deviation."
+     ]
+    },
+    {
+     "blanks": [
+      "1.5 IQR"
+     ],
+     "wrong": [
+      "It also indicates the points more than 3 standard deviations from the mean."
+     ]
+    },
+    {
+     "blanks": [
+      "compact"
+     ],
+     "wrong": [
+      "It shows the full shape of a single distribution better than a histogram."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-srs",
+   "section": "3.4.1",
+   "page": 90,
+   "term": "Simple random sampling, probability sampling, sample selection bias",
+   "components": [
+    {
+     "blanks": [
+      "most basic",
+      "probability sampling"
+     ],
+     "wrong": [
+      "Simple random sampling (SRS) is a form of quota sampling."
+     ]
+    },
+    {
+     "blanks": [
+      "sample selection bias",
+      "randomly choosing"
+     ],
+     "wrong": [
+      "SRS avoids sample selection bias by choosing units that match the population on known demographics."
+     ]
+    },
+    {
+     "blanks": [
+      "predetermined number",
+      "without replacement",
+      "equal probability"
+     ],
+     "wrong": [
+      "Under SRS, units are selected with replacement, each with a probability proportional to its size."
+     ]
+    },
+    {
+     "blanks": [
+      "representative",
+      "observed and unobserved"
+     ],
+     "wrong": [
+      "The resulting sample is representative of the population only in terms of observed characteristics."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-log",
+   "section": "3.4.1",
+   "page": 92,
+   "term": "Natural logarithmic transformation",
+   "components": [
+    {
+     "blanks": [
+      "skewness",
+      "income and population"
+     ],
+     "wrong": [
+      "The natural log transformation is often used to make negative values positive."
+     ]
+    },
+    {
+     "blanks": [
+      "extremely large or small positive values"
+     ],
+     "wrong": [
+      "These are variables with many negative values."
+     ]
+    },
+    {
+     "blanks": [
+      "base e",
+      "2.7182"
+     ],
+     "wrong": [
+      "The natural logarithm is the logarithm with base 10, defined as y = log_10 x."
+     ]
+    },
+    {
+     "blanks": [
+      "inverse",
+      "exponential",
+      "x = e^y"
+     ],
+     "wrong": [
+      "It is the inverse of the square function, so x = y²."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-nonresp",
+   "section": "3.4.2",
+   "page": 94,
+   "term": "Unit and item nonresponse",
+   "components": [
+    {
+     "blanks": [
+      "unit nonresponse",
+      "item nonresponse"
+     ],
+     "wrong": [
+      "There are two types of nonresponse in survey research: sampling nonresponse and frame nonresponse."
+     ]
+    },
+    {
+     "blanks": [
+      "refuses to participate"
+     ],
+     "wrong": [
+      "Unit nonresponse is when a respondent skips a particular question."
+     ]
+    },
+    {
+     "blanks": [
+      "agreed to participate",
+      "a particular question"
+     ],
+     "wrong": [
+      "Item nonresponse is when a sampled person cannot be contacted at all."
+     ]
+    },
+    {
+     "blanks": [
+      "systematically different"
+     ],
+     "wrong": [
+      "Both always bias inferences, regardless of who responds."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-scatter",
+   "section": "3.6.1",
+   "page": 101,
+   "term": "Scatter plot",
+   "components": [
+    {
+     "blanks": [
+      "two variables",
+      "same set of units"
+     ],
+     "wrong": [
+      "A scatter plot graphically compares the distributions of one variable across two groups."
+     ]
+    },
+    {
+     "blanks": [
+      "against",
+      "each unit"
+     ],
+     "wrong": [
+      "It plots the quantiles of one variable against the quantiles of the other."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-gini",
+   "section": "3.6.2",
+   "page": 102,
+   "term": "Gini coefficient",
+   "components": [
+    {
+     "blanks": [
+      "income equality and inequality"
+     ],
+     "wrong": [
+      "The Gini coefficient measures the average income in a society."
+     ]
+    },
+    {
+     "blanks": [
+      "0",
+      "1",
+      "one person possesses all the wealth"
+     ],
+     "wrong": [
+      "It ranges from −1, when everyone has the same wealth, to 1, when one person possesses all the wealth."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-z",
+   "section": "3.6.2",
+   "page": 104,
+   "term": "z-score",
+   "components": [
+    {
+     "blanks": [
+      "number of standard deviations",
+      "above or below the mean"
+     ],
+     "wrong": [
+      "The z-score of the i-th observation measures its percentile rank in the data."
+     ]
+    },
+    {
+     "blanks": [
+      "(xi − x̄) / Sx"
+     ],
+     "wrong": [
+      "It is defined as (xi − Sx) / x̄, where x̄ and Sx are the mean and standard deviation of x."
+     ]
+    },
+    {
+     "blanks": [
+      "not sensitive",
+      "scaled and/or shifted"
+     ],
+     "wrong": [
+      "The z-score changes whenever the variable is rescaled, for example from dollars to thousands of dollars."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-cor",
+   "section": "3.6.2",
+   "page": 105,
+   "term": "Correlation",
+   "components": [
+    {
+     "blanks": [
+      "associated"
+     ],
+     "wrong": [
+      "Correlation measures the degree to which one variable causes another."
+     ]
+    },
+    {
+     "blanks": [
+      "average product of z-scores"
+     ],
+     "wrong": [
+      "It is defined as the average of the differences between the z-scores of x and y."
+     ]
+    },
+    {
+     "blanks": [
+      "standard deviations"
+     ],
+     "wrong": [
+      "x̄ and ȳ are the medians, and Sx and Sy are the ranges, of x and y."
+     ]
+    },
+    {
+     "blanks": [
+      "−1 to 1"
+     ],
+     "wrong": [
+      "Correlation ranges from 0 to 1."
+     ]
+    },
+    {
+     "blanks": [
+      "not sensitive"
+     ],
+     "wrong": [
+      "It doubles when one of the variables is measured in units twice as large."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-qq",
+   "section": "3.6.3",
+   "page": 107,
+   "term": "Quantile-quantile (Q-Q) plot",
+   "components": [
+    {
+     "blanks": [
+      "scatter plot of quantiles",
+      "corresponding quantile"
+     ],
+     "wrong": [
+      "A Q-Q plot plots each observation's value of one variable against its value of another variable."
+     ]
+    },
+    {
+     "blanks": [
+      "identical",
+      "45-degree line"
+     ],
+     "wrong": [
+      "If the two distributions are identical, all points lie on a horizontal line."
+     ]
+    },
+    {
+     "blanks": [
+      "steeper",
+      "vertical axis",
+      "more dispersed"
+     ],
+     "wrong": [
+      "If the points form a line steeper than 45 degrees, the distribution on the horizontal axis is more dispersed."
+     ]
+    },
+    {
+     "blanks": [
+      "less than 45 degrees",
+      "less dispersion"
+     ],
+     "wrong": [
+      "If the slope is less than 45 degrees, the distribution on the vertical axis has a larger mean."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-kmeans",
+   "section": "3.7.3",
+   "page": 111,
+   "term": "k-means algorithm",
+   "components": [
+    {
+     "blanks": [
+      "prespecified",
+      "k"
+     ],
+     "wrong": [
+      "The k-means algorithm chooses the number of clusters automatically from the data."
+     ]
+    },
+    {
+     "blanks": [
+      "initial centroids"
+     ],
+     "wrong": [
+      "Step 1: assign every observation to the same cluster."
+     ]
+    },
+    {
+     "blanks": [
+      "closest",
+      "Euclidean distance"
+     ],
+     "wrong": [
+      "Step 2: assign each observation to the cluster whose centroid is farthest away."
+     ]
+    },
+    {
+     "blanks": [
+      "within-cluster mean"
+     ],
+     "wrong": [
+      "Step 3: choose the new centroid of each cluster as the within-cluster median observation."
+     ]
+    },
+    {
+     "blanks": [
+      "Steps 2 and 3",
+      "no longer change"
+     ],
+     "wrong": [
+      "Step 4: repeat Step 1 with new random centroids until k clusters are found."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-prederr",
+   "section": "4.1.3",
+   "page": 133,
+   "term": "Prediction error, bias, RMSE",
+   "components": [
+    {
+     "blanks": [
+      "actual outcome − predicted outcome"
+     ],
+     "wrong": [
+      "Prediction error = predicted outcome − actual outcome, squared."
+     ]
+    },
+    {
+     "blanks": [
+      "bias",
+      "zero"
+     ],
+     "wrong": [
+      "The average squared prediction error is called bias; a prediction is unbiased when its bias is one."
+     ]
+    },
+    {
+     "blanks": [
+      "root-mean-squared error",
+      "average magnitude"
+     ],
+     "wrong": [
+      "The root mean square of prediction error represents the direction of the average prediction error."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-class",
+   "section": "4.1.3",
+   "page": 136,
+   "term": "Classification and misclassification",
+   "components": [
+    {
+     "blanks": [
+      "categorical outcome"
+     ],
+     "wrong": [
+      "Classification is the problem of predicting a continuous outcome."
+     ]
+    },
+    {
+     "blanks": [
+      "correct or incorrect"
+     ],
+     "wrong": [
+      "A classification is judged by its RMSE."
+     ]
+    },
+    {
+     "blanks": [
+      "false positives",
+      "false negatives"
+     ],
+     "wrong": [
+      "In binary classification there is only one type of misclassification."
+     ]
+    },
+    {
+     "blanks": [
+      "incorrectly predicted positive",
+      "incorrectly predicted negative"
+     ],
+     "wrong": [
+      "A false positive is a correctly predicted negative outcome."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-corlin",
+   "section": "4.2.2",
+   "page": 143,
+   "term": "Correlation coefficient (linear relationship)",
+   "components": [
+    {
+     "blanks": [
+      "linear relationship"
+     ],
+     "wrong": [
+      "The correlation coefficient quantifies any relationship between two variables, linear or not."
+     ]
+    },
+    {
+     "blanks": [
+      "upward",
+      "positive",
+      "downward",
+      "negative"
+     ],
+     "wrong": [
+      "An upward trend in a scatter plot's data cloud implies a negative correlation."
+     ]
+    },
+    {
+     "blanks": [
+      "nonlinear"
+     ],
+     "wrong": [
+      "Correlation is the best measure for a quadratic relationship."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-lm",
+   "section": "4.2.3",
+   "page": 144,
+   "term": "Linear regression model",
+   "components": [
+    {
+     "blanks": [
+      "α + βX + ε"
+     ],
+     "wrong": [
+      "The linear regression model is Y = αX + β + ε."
+     ]
+    },
+    {
+     "blanks": [
+      "outcome",
+      "predictor"
+     ],
+     "wrong": [
+      "X is the outcome variable and Y is the predictor."
+     ]
+    },
+    {
+     "blanks": [
+      "error",
+      "coefficients"
+     ],
+     "wrong": [
+      "ε is the residual, which is directly observed in the data."
+     ]
+    },
+    {
+     "blanks": [
+      "average outcome",
+      "one-unit increase"
+     ],
+     "wrong": [
+      "The slope β represents the average outcome when the predictor equals zero."
+     ]
+    },
+    {
+     "blanks": [
+      "Ŷ = α̂ + β̂x",
+      "fitted"
+     ],
+     "wrong": [
+      "With estimates (α̂, β̂), we predict the outcome at X = x as Ŷ = α̂x + β̂."
+     ]
+    },
+    {
+     "blanks": [
+      "ε̂ = Y − Ŷ"
+     ],
+     "wrong": [
+      "The residual is ε̂ = Ŷ − Ȳ, the fitted value minus the mean."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-ls",
+   "section": "4.2.3",
+   "page": 147,
+   "term": "Least squares",
+   "components": [
+    {
+     "blanks": [
+      "least squares"
+     ],
+     "wrong": [
+      "A common method for estimating the coefficients is to maximize the correlation between X and the residuals."
+     ]
+    },
+    {
+     "blanks": [
+      "minimizes",
+      "sum of squared residuals"
+     ],
+     "wrong": [
+      "Least squares minimizes the sum of the residuals, Σ ε̂i."
+     ]
+    },
+    {
+     "blanks": [
+      "always zero"
+     ],
+     "wrong": [
+      "The mean of the residuals equals the mean of Y."
+     ]
+    },
+    {
+     "blanks": [
+      "center of the data",
+      "(X̄, Ȳ)"
+     ],
+     "wrong": [
+      "The regression line always goes through the origin (0, 0)."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-slope",
+   "section": "4.2.3",
+   "page": 148,
+   "term": "Slope coefficient and correlation",
+   "components": [
+    {
+     "blanks": [
+      "ρ standard-deviation-unit",
+      "1 standard deviation"
+     ],
+     "wrong": [
+      "The estimated slope equals the ρ-unit increase in the outcome associated with a one-unit increase in the predictor."
+     ]
+    },
+    {
+     "blanks": [
+      "correlation"
+     ],
+     "wrong": [
+      "Here ρ is the coefficient of determination."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-rtm",
+   "section": "4.2.4",
+   "page": 149,
+   "term": "Regression towards the mean",
+   "components": [
+    {
+     "blanks": [
+      "empirical phenomenon"
+     ],
+     "wrong": [
+      "Regression towards the mean is a causal effect of the predictor."
+     ]
+    },
+    {
+     "blanks": [
+      "farther from",
+      "closer to"
+     ],
+     "wrong": [
+      "An observation whose predictor value is farther from the mean tends to have an outcome even farther from the mean."
+     ]
+    },
+    {
+     "blanks": [
+      "chance alone"
+     ],
+     "wrong": [
+      "This tendency can only be explained by a real change in the units over time."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-r2",
+   "section": "4.2.6",
+   "page": 156,
+   "term": "Coefficient of determination (R²)",
+   "components": [
+    {
+     "blanks": [
+      "model fit"
+     ],
+     "wrong": [
+      "The coefficient of determination (R²) is a measure of causal effect size."
+     ]
+    },
+    {
+     "blanks": [
+      "proportion of variation",
+      "explained by the predictor"
+     ],
+     "wrong": [
+      "It represents the proportion of observations predicted exactly by the model."
+     ]
+    },
+    {
+     "blanks": [
+      "one minus",
+      "SSR",
+      "TSS"
+     ],
+     "wrong": [
+      "It is defined as the ratio of the total sum of squares (TSS) to the sum of squared residuals (SSR)."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-lmbinary",
+   "section": "4.3.1",
+   "page": 165,
+   "term": "Regression on a binary treatment",
+   "components": [
+    {
+     "blanks": [
+      "single binary treatment",
+      "average treatment effect"
+     ],
+     "wrong": [
+      "With experimental data and a single binary treatment, the estimated intercept is the average treatment effect."
+     ]
+    },
+    {
+     "blanks": [
+      "numerically equivalent",
+      "difference-in-means"
+     ],
+     "wrong": [
+      "That slope is always smaller than the difference-in-means estimator."
+     ]
+    },
+    {
+     "blanks": [
+      "intercept",
+      "control condition"
+     ],
+     "wrong": [
+      "The estimated intercept equals the estimated average outcome under the treatment condition."
+     ]
+    },
+    {
+     "blanks": [
+      "randomization",
+      "causal interpretation"
+     ],
+     "wrong": [
+      "The linear model's functional form alone permits this causal interpretation, even without randomization."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-mlr",
+   "section": "4.3.2",
+   "page": 170,
+   "term": "Linear regression with multiple predictors",
+   "components": [
+    {
+     "blanks": [
+      "β1X1 + β2X2 + ... + βpXp"
+     ],
+     "wrong": [
+      "The multiple regression model is Y = α × X1 × X2 × ... × Xp + ε."
+     ]
+    },
+    {
+     "blanks": [
+      "one-unit increase in Xj",
+      "holding the other variables constant"
+     ],
+     "wrong": [
+      "βj is the increase in the average outcome associated with a one-unit increase in Xj, letting the other variables change freely."
+     ]
+    },
+    {
+     "blanks": [
+      "minimizing the sum of squared residuals"
+     ],
+     "wrong": [
+      "The coefficients are estimated by fitting a separate simple regression for each predictor."
+     ]
+    },
+    {
+     "blanks": [
+      "degrees-of-freedom adjustment"
+     ],
+     "wrong": [
+      "No adjustment is needed to R² when predictors are added."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-interact",
+   "section": "4.3.3",
+   "page": 172,
+   "term": "Interaction term",
+   "components": [
+    {
+     "blanks": [
+      "β3X1X2"
+     ],
+     "wrong": [
+      "An example of a model with an interaction term is Y = α + β1X1 + β2X2 + ε."
+     ]
+    },
+    {
+     "blanks": [
+      "depends linearly on X2"
+     ],
+     "wrong": [
+      "The model assumes that the effect of X1 is the same at every value of X2."
+     ]
+    },
+    {
+     "blanks": [
+      "goes up by β3"
+     ],
+     "wrong": [
+      "As X2 increases by one unit, the average outcome goes up by β3 regardless of X1."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "box-rd",
+   "section": "4.3.4",
+   "page": 181,
+   "term": "Regression discontinuity design (RD)",
+   "components": [
+    {
+     "blanks": [
+      "observational studies",
+      "confounding factors"
+     ],
+     "wrong": [
+      "The regression discontinuity design is a method for analyzing randomized experiments only."
+     ]
+    },
+    {
+     "blanks": [
+      "point of discontinuity",
+      "treatment variable alone"
+     ],
+     "wrong": [
+      "RD assumes that treated and control units are comparable at every value of the forcing variable."
+     ]
+    },
+    {
+     "blanks": [
+      "strong internal validity"
+     ],
+     "wrong": [
+      "RD often has weak internal validity."
+     ]
+    },
+    {
+     "blanks": [
+      "external validity",
+      "away from the point of discontinuity"
+     ],
+     "wrong": [
+      "RD has strong external validity because it uses the whole range of the forcing variable."
+     ]
+    }
+   ]
+  }
+ ]
+}

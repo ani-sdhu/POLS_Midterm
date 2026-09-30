@@ -1,0 +1,30 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>QSS Replay Check</title>
+<style>body{font:14px system-ui;margin:16px}pre{white-space:pre-wrap;background:#f4f4f4;padding:6px}.err{color:#b00}</style>
+<h1>Replay all book code</h1>
+<p id="status">…</p>
+<div id="out"></div>
+<script type="module">
+import { Runtime } from "./rt.js";
+const book = await (await fetch("bookcode.json")).json();
+const rt = new Runtime(book);
+const status = document.getElementById("status"), out = document.getElementById("out");
+await rt.init(m => status.textContent = m);
+const report = { ok: 0, err: [], empty: 0 };
+const t0 = performance.now();
+for (const ch of book.chapters) {
+  status.textContent = `Replaying ${ch.id}…`;
+  await rt.replayTo(ch.id, rt.byCh[ch.id].length - 1);
+}
+for (const s of book.steps) {
+  if (!s.eval) continue;
+  if ((s._out ?? "").includes("Error:")) report.err.push(s);
+  else if (!s._out) report.empty++;
+  else report.ok++;
+}
+status.textContent = `Done in ${((performance.now() - t0) / 1000).toFixed(1)}s — ${report.ok} with output, ${report.empty} silent, ${report.err.length} errors`;
+out.innerHTML = report.err.map(s => `<h3 class=err>${s.id} (${s.section})</h3><pre>${s.code}</pre><pre class=err>${s._out}</pre>`).join("");
+window.__report = { summary: status.textContent, errors: report.err.map(s => [s.id, s._out]),
+  outputs: Object.fromEntries(book.steps.filter(s => s._out).map(s => [s.id, s._out])) };
+</script>

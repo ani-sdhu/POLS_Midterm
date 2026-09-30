@@ -1,0 +1,292 @@
+{
+ "_note": "Context cards shown alongside book-code questions. Never quizzed. match: [chapter, sections this card covers].",
+ "cases": [
+  {
+   "id": "unpop",
+   "ch": "ch1",
+   "sections": [
+    "1.3.3",
+    "1.3.4",
+    "1.3.5"
+   ],
+   "title": "World population estimates",
+   "about": "UN estimates of world population (in thousands) for each decade from 1950 to 2010.",
+   "vars": {
+    "year": "decade (1950, 1960, ..., 2010)",
+    "world.pop": "world population estimate, in thousands"
+   },
+   "frames": {
+    "UNpop": "one decade's world population estimate"
+   }
+  },
+  {
+   "id": "resume",
+   "ch": "ch2",
+   "sections": [
+    "2.1",
+    "2.2.3",
+    "2.2.4",
+    "2.2.5",
+    "2.3"
+   ],
+   "title": "Résumé field experiment",
+   "about": "Researchers sent fictitious résumés to real job ads, randomly varying only the applicant's first name to signal race and sex. Unit: one résumé.",
+   "vars": {
+    "firstname": "first name on the résumé",
+    "sex": "female or male",
+    "race": "black or white (signaled by the name)",
+    "call": "1 = employer called back, 0 = no callback"
+   },
+   "frames": {
+    "resume": "one fictitious résumé sent to an employer"
+   }
+  },
+  {
+   "id": "social",
+   "ch": "ch2",
+   "sections": [
+    "2.4.2"
+   ],
+   "title": "Social pressure GOTV experiment",
+   "about": "Registered voters were randomly assigned to receive one of three get-out-the-vote mailings or no mailing (Control) before a primary election. Unit: one voter.",
+   "vars": {
+    "messages": "group: Civic Duty, Control, Hawthorne, Neighbors",
+    "primary2006": "1 = voted in the 2006 primary (outcome)",
+    "primary2004": "1 = voted in the 2004 primary (pretreatment)",
+    "yearofbirth": "year of birth",
+    "hhsize": "household size",
+    "sex": "female or male"
+   },
+   "frames": {
+    "social": "one registered voter"
+   }
+  },
+  {
+   "id": "minwage",
+   "ch": "ch2",
+   "sections": [
+    "2.5.1",
+    "2.5.2",
+    "2.5.3",
+    "2.6.1",
+    "2.6.2"
+   ],
+   "title": "Minimum-wage study",
+   "about": "New Jersey raised its minimum wage from $4.25 to $5.05; neighboring Pennsylvania did not. Fast-food restaurants in both states were surveyed before and after. Unit: one restaurant.",
+   "vars": {
+    "chain": "restaurant chain",
+    "location": "centralNJ, northNJ, shoreNJ, southNJ, or PA",
+    "wageBefore / wageAfter": "hourly wage before / after the increase",
+    "fullBefore / fullAfter": "number of full-time employees before / after",
+    "partBefore / partAfter": "number of part-time employees before / after"
+   },
+   "frames": {
+    "minwage": "one fast-food restaurant"
+   }
+  },
+  {
+   "id": "afghan",
+   "ch": "ch3",
+   "sections": [
+    "3.1",
+    "3.2",
+    "3.3.1",
+    "3.3.2",
+    "3.3.3",
+    "3.4.2"
+   ],
+   "title": "Afghanistan survey",
+   "about": "A survey of male respondents in southern Afghanistan during the war, measuring demographics, civilian victimization, and support for combatants (via a list experiment). Unit: one respondent.",
+   "vars": {
+    "province / district / village.id": "where the respondent lives",
+    "age": "age in years",
+    "educ.years": "years of education",
+    "employed": "1 = employed",
+    "income": "monthly income bracket (factor)",
+    "violent.exp.ISAF": "1 = respondent or family harmed by foreign forces (ISAF)",
+    "violent.exp.taliban": "1 = harmed by the Taliban",
+    "list.group": "randomly assigned list: control, ISAF, or taliban",
+    "list.response": "number of list items the respondent supports (0-4)"
+   },
+   "frames": {
+    "afghan": "one survey respondent"
+   }
+  },
+  {
+   "id": "village",
+   "ch": "ch3",
+   "sections": [
+    "3.4.1"
+   ],
+   "title": "Afghan villages",
+   "about": "All villages in the survey region, sampled or not. Unit: one village.",
+   "vars": {
+    "village.surveyed": "1 = sampled for the survey",
+    "altitude": "altitude in meters",
+    "population": "village population"
+   },
+   "frames": {
+    "afghan.village": "one village in the survey region"
+   }
+  },
+  {
+   "id": "congress",
+   "ch": "ch3",
+   "sections": [
+    "3.6.1",
+    "3.6.2",
+    "3.6.3",
+    "3.7.3"
+   ],
+   "title": "Congressional ideal points",
+   "about": "DW-NOMINATE ideal-point estimates for House members, 80th-112th Congresses. Negative = liberal, positive = conservative. Unit: one legislator in one Congress. USGini.csv holds the US Gini coefficient by year.",
+   "vars": {
+    "name / state / district": "the legislator",
+    "party": "Democrat, Republican, or Other",
+    "congress": "Congress number",
+    "dwnom1": "first dimension: economic liberalism/conservatism",
+    "dwnom2": "second dimension: racial liberalism/conservatism",
+    "gini (USGini)": "Gini coefficient of income inequality for that year"
+   },
+   "frames": {
+    "congress": "one legislator in one Congress",
+    "rep": "one Republican legislator in one Congress",
+    "dem": "one Democratic legislator in one Congress",
+    "gini": "one year"
+   }
+  },
+  {
+   "id": "polls08",
+   "ch": "ch4",
+   "sections": [
+    "4.1.3"
+   ],
+   "title": "2008 presidential polls",
+   "about": "State election results and pre-election polls for 2008, plus national polls. Unit: a state (results) or a poll (polls).",
+   "vars": {
+    "state": "state abbreviation",
+    "Obama / McCain": "vote share or poll support (percent)",
+    "EV": "state's electoral votes",
+    "Pollster": "polling organization",
+    "middate": "middle date of the poll's fieldwork",
+    "margin": "created: Obama minus McCain"
+   },
+   "frames": {
+    "pres08": "one state's 2008 election result",
+    "polls08": "one state-level pre-election poll",
+    "pollsUS08": "one national pre-election poll"
+   }
+  },
+  {
+   "id": "face",
+   "ch": "ch4",
+   "sections": [
+    "4.2.1",
+    "4.2.2",
+    "4.2.3"
+   ],
+   "title": "Facial competence experiment",
+   "about": "Subjects saw pairs of candidate photos for under a second and judged which looked more competent; the ratings are compared with actual election results. Unit: one congressional race.",
+   "vars": {
+    "d.votes / r.votes": "votes for the Democratic / Republican candidate",
+    "d.comp / r.comp": "share of subjects judging the Democrat / Republican more competent",
+    "w.party": "winning party",
+    "diff.share": "created: Democratic minus Republican two-party vote share"
+   },
+   "frames": {
+    "face": "one congressional race"
+   }
+  },
+  {
+   "id": "pres0812",
+   "ch": "ch4",
+   "sections": [
+    "4.2.5"
+   ],
+   "title": "2008 and 2012 state results",
+   "about": "State-level presidential results for 2008 and 2012. Unit: one state.",
+   "vars": {
+    "state": "state abbreviation (merge key)",
+    "Obama.x / Obama.y": "Obama's 2008 / 2012 vote share after merging",
+    "Obama2008.z / Obama2012.z": "created: standardized (z-score) shares"
+   },
+   "frames": {
+    "pres12": "one state's 2012 election result",
+    "pres": "one state, with its 2008 and 2012 results merged"
+   }
+  },
+  {
+   "id": "florida",
+   "ch": "ch4",
+   "sections": [
+    "4.2.6"
+   ],
+   "title": "Florida counties, 1996 and 2000",
+   "about": "County-level presidential votes in Florida. Palm Beach used the confusing 'butterfly ballot' in 2000. Unit: one county.",
+   "vars": {
+    "county": "county name",
+    "Perot96": "votes for Ross Perot in 1996",
+    "Buchanan00": "votes for Pat Buchanan in 2000"
+   },
+   "frames": {
+    "florida": "one Florida county"
+   }
+  },
+  {
+   "id": "women",
+   "ch": "ch4",
+   "sections": [
+    "4.3.1"
+   ],
+   "title": "Women as policy makers",
+   "about": "In India, one-third of village council head seats (at the Gram Panchayat level) were randomly reserved for women. Unit: one village.",
+   "vars": {
+    "GP": "Gram Panchayat (council) identifier",
+    "reserved": "1 = the GP's seat was reserved for a woman (treatment)",
+    "female": "1 = the GP had a female leader",
+    "water": "new or repaired drinking-water facilities",
+    "irrigation": "new or repaired irrigation facilities"
+   },
+   "frames": {
+    "women": "one village"
+   }
+  },
+  {
+   "id": "social4",
+   "ch": "ch4",
+   "sections": [
+    "4.3.2",
+    "4.3.3"
+   ],
+   "title": "Social pressure GOTV experiment",
+   "about": "Registered voters randomly assigned to one of three mailings or none (Control). Unit: one voter.",
+   "vars": {
+    "messages": "group: Civic Duty (base level), Control, Hawthorne, Neighbors",
+    "primary2006": "1 = voted in the 2006 primary (outcome)",
+    "primary2004": "1 = voted in the 2004 primary (pretreatment)",
+    "yearofbirth": "year of birth"
+   },
+   "frames": {
+    "social": "one registered voter"
+   }
+  },
+  {
+   "id": "mps",
+   "ch": "ch4",
+   "sections": [
+    "4.3.4"
+   ],
+   "title": "MPs' wealth (regression discontinuity)",
+   "about": "British parliamentary candidates who narrowly won or lost, and their wealth at death. Unit: one candidate.",
+   "vars": {
+    "party": "labour or tory",
+    "margin": "margin of victory (negative = lost)",
+    "ln.net": "log net wealth at death",
+    "margin.pre": "the party's margin in the previous election (placebo outcome)"
+   },
+   "frames": {
+    "MPs": "one parliamentary candidate"
+   }
+  }
+ ]
+}

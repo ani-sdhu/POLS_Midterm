@@ -1,0 +1,1039 @@
+{
+ "_note": "Objective concept questions from the inventory's Concepts items, answered from the textbook. wrong = plausible incorrect answers.",
+ "items": [
+  {
+   "id": "c-2.1-a",
+   "section": "2.1",
+   "q": "Why did the résumé study vary applicants' names instead of their race?",
+   "a": "Race cannot be manipulated, but names manipulate employers' perception of race while everything else on the résumé stays identical.",
+   "wrong": [
+    "Names were cheaper to change than photographs.",
+    "Employers are legally required to ignore names.",
+    "Varying names makes the sample representative of all job seekers."
+   ]
+  },
+  {
+   "id": "c-2.1-b",
+   "section": "2.1",
+   "q": "Why does the mean of a 0/1 variable equal a proportion?",
+   "a": "Summing 0/1 values counts the 1s; dividing by n gives the share of observations equal to 1.",
+   "wrong": [
+    "Because R converts binary variables to percentages automatically.",
+    "Because the mean of any variable is always between 0 and 1.",
+    "Because the median and mean coincide for binary variables."
+   ]
+  },
+  {
+   "id": "c-2.1-c",
+   "section": "2.1",
+   "q": "A callback rate falls from 0.097 to 0.064. How big is the difference?",
+   "a": "About 3.2 percentage points (a relative drop of about a third).",
+   "wrong": [
+    "About 3.2 percent.",
+    "About 33 percentage points.",
+    "About 0.32 percentage points."
+   ]
+  },
+  {
+   "id": "c-2.1-d",
+   "section": "2.1",
+   "q": "What can a lower callback rate for black-sounding names show, and what can't it show?",
+   "a": "It shows identical résumés are treated differently by race (discrimination), but not whether the discrimination is intentional.",
+   "wrong": [
+    "It proves employers intentionally discriminate.",
+    "It shows nothing causal because the study is observational.",
+    "It shows racial gaps in education cause the difference."
+   ]
+  },
+  {
+   "id": "c-2.3-a",
+   "section": "2.3",
+   "q": "Why can't we estimate an individual unit's causal effect directly?",
+   "a": "Only one of its two potential outcomes is ever observed; the other is counterfactual.",
+   "wrong": [
+    "Individual outcomes are measured with too much error.",
+    "Individual effects are always zero on average.",
+    "Causal effects are only defined for groups, never individuals."
+   ]
+  },
+  {
+   "id": "c-2.3-b",
+   "section": "2.3",
+   "q": "In a potential-outcomes table, what determines which cell is observed for unit i?",
+   "a": "The unit's treatment status \\(T_i\\): we see \\(Y_i(1)\\) if \\(T_i = 1\\) and \\(Y_i(0)\\) if \\(T_i = 0\\).",
+   "wrong": [
+    "The researcher's choice after seeing the data.",
+    "Whichever potential outcome is larger.",
+    "The unit's pretreatment covariates."
+   ]
+  },
+  {
+   "id": "c-2.3-c",
+   "section": "2.3",
+   "q": "Why are pretreatment characteristics (like age or education on a résumé) unaffected by the treatment?",
+   "a": "They are determined before treatment is assigned, so manipulating the treatment cannot change them.",
+   "wrong": [
+    "Because researchers hold them fixed by law.",
+    "Because they are always randomly assigned.",
+    "Because they are measured after the outcome."
+   ]
+  },
+  {
+   "id": "c-2.3-d",
+   "section": "2.3",
+   "q": "What does 'no causation without manipulation' express?",
+   "a": "Causal questions are hard to define for things that cannot be manipulated, such as immutable characteristics.",
+   "wrong": [
+    "Only laboratory experiments can establish causation.",
+    "Correlation implies causation once you manipulate the data.",
+    "Every variable in a regression must be manipulated."
+   ]
+  },
+  {
+   "id": "c-2.3-e",
+   "section": "2.3",
+   "q": "Why is the credibility of any causal estimate tied to identification assumptions?",
+   "a": "Counterfactual outcomes are unobserved, so estimating them always requires assumptions about what would have happened.",
+   "wrong": [
+    "Because statistical software requires assumptions to run.",
+    "Because assumptions make the sample larger.",
+    "Because assumptions remove measurement error."
+   ]
+  },
+  {
+   "id": "c-2.4-a",
+   "section": "2.4.1",
+   "q": "Why is the SATE not directly observable?",
+   "a": "For each group we see outcomes under only one condition; the average outcome under the other condition is missing.",
+   "wrong": [
+    "Because the sample is too small.",
+    "Because the SATE is a population quantity, not a sample quantity.",
+    "Because outcomes are measured before treatment."
+   ]
+  },
+  {
+   "id": "c-2.4-b",
+   "section": "2.4.1",
+   "q": "In the difference-in-means estimator, what stands in for the treated group's missing Y(0)?",
+   "a": "The control group's observed average outcome.",
+   "wrong": [
+    "The treated group's pretreatment outcome.",
+    "The overall sample average.",
+    "Zero, since untreated outcomes are baseline."
+   ]
+  },
+  {
+   "id": "c-2.4-c",
+   "section": "2.4.1",
+   "q": "Randomization makes treatment and control groups identical on average in what?",
+   "a": "All pretreatment characteristics, both observed and unobserved.",
+   "wrong": [
+    "Observed characteristics only.",
+    "Their outcomes.",
+    "Their treatment effects, exactly, in every sample."
+   ]
+  },
+  {
+   "id": "c-2.4-d",
+   "section": "2.4.1",
+   "q": "Which is a threat to an RCT's external validity?",
+   "a": "The study uses a convenience sample of willing volunteers unlike the target population.",
+   "wrong": [
+    "Treatment was randomly assigned.",
+    "The control group received no treatment.",
+    "Pretreatment covariates are balanced."
+   ]
+  },
+  {
+   "id": "c-2.4-e",
+   "section": "2.4.1",
+   "q": "Why do researchers run field experiments rather than lab experiments?",
+   "a": "To make settings and interventions realistic, improving external validity.",
+   "wrong": [
+    "To avoid randomizing treatment.",
+    "Because field experiments need no control group.",
+    "To increase internal validity at the cost of realism."
+   ]
+  },
+  {
+   "id": "c-2.4-f",
+   "section": "2.4.2",
+   "q": "In a randomized experiment, what do small differences in pretreatment covariate means across groups indicate?",
+   "a": "Randomization worked: the groups are balanced, supporting causal interpretation.",
+   "wrong": [
+    "The treatment had no effect.",
+    "The sample is representative of the population.",
+    "The outcome was measured correctly."
+   ]
+  },
+  {
+   "id": "c-2.4-g",
+   "section": "2.4.2",
+   "q": "Why include both a Civic Duty arm and a Neighbors arm in the social pressure study?",
+   "a": "Comparing them isolates the extra effect of social pressure beyond a generic civic appeal.",
+   "wrong": [
+    "To double the sample size.",
+    "To check balance on pretreatment covariates.",
+    "Because one arm served as a placebo for the other's outcome."
+   ]
+  },
+  {
+   "id": "c-2.5-a",
+   "section": "2.5",
+   "q": "What is the typical validity trade-off of observational studies relative to RCTs?",
+   "a": "Weaker internal validity (selection bias) but often stronger external validity (real-world settings).",
+   "wrong": [
+    "Stronger internal validity but weaker external validity.",
+    "Both stronger internal and external validity.",
+    "Identical validity, since both use real data."
+   ]
+  },
+  {
+   "id": "c-2.5-b",
+   "section": "2.5.1",
+   "q": "Why did the minimum-wage study check the share of NJ restaurants paying below $5.05 before and after?",
+   "a": "To verify the treatment actually took effect (NJ restaurants complied with the new law).",
+   "wrong": [
+    "To estimate the effect on employment.",
+    "To check balance between NJ and PA on unemployment.",
+    "To compute the DiD estimate."
+   ]
+  },
+  {
+   "id": "c-2.5-c",
+   "section": "2.5.2",
+   "q": "Why must a confounder be a pretreatment variable?",
+   "a": "A variable affected by the treatment is part of the treatment's effect, not a pre-existing difference that biases the comparison.",
+   "wrong": [
+    "Because posttreatment variables cannot be measured.",
+    "Because only pretreatment variables are numeric.",
+    "Because confounders must be randomly assigned."
+   ]
+  },
+  {
+   "id": "c-2.5-d",
+   "section": "2.5.2",
+   "q": "Why is selection bias common in social science?",
+   "a": "People and governments self-select into treatments for reasons related to their outcomes.",
+   "wrong": [
+    "Social scientists always use small samples.",
+    "Surveys never ask about treatments.",
+    "Randomization is required by law."
+   ]
+  },
+  {
+   "id": "c-2.5-e",
+   "section": "2.5.2",
+   "q": "Can confounding ever be fully ruled out in an observational study?",
+   "a": "No; statistical control can reduce it, but unobserved confounders may remain.",
+   "wrong": [
+    "Yes, by controlling for every observed variable.",
+    "Yes, with a large enough sample.",
+    "Yes, by using the median instead of the mean."
+   ]
+  },
+  {
+   "id": "c-2.5-f",
+   "section": "2.5.2",
+   "q": "When subclassifying by chain and then by location gives estimates similar to the overall one, what does that suggest?",
+   "a": "Chain and location are unlikely to be confounding the estimate.",
+   "wrong": [
+    "The treatment has no effect.",
+    "Parallel trends hold.",
+    "The sample is randomly drawn."
+   ]
+  },
+  {
+   "id": "c-2.5-g",
+   "section": "2.5.3",
+   "q": "What data does each design need: cross-section, before-and-after, DiD?",
+   "a": "Cross-section: post-treatment data for both groups. Before-and-after: pre and post for the treated group. DiD: pre and post for both groups.",
+   "wrong": [
+    "All three need pre and post data for both groups.",
+    "Cross-section: pre and post for treated; before-and-after: post for both; DiD: post only.",
+    "Only DiD needs a control group; the others need only post data."
+   ]
+  },
+  {
+   "id": "c-2.5-h",
+   "section": "2.5.3",
+   "q": "The DiD estimate exceeds the before-and-after estimate for NJ. Why?",
+   "a": "The control group (PA) trended downward, and DiD subtracts that trend.",
+   "wrong": [
+    "DiD uses medians instead of means.",
+    "NJ had more restaurants than PA.",
+    "Before-and-after double-counts the treatment."
+   ]
+  },
+  {
+   "id": "c-2.5-i",
+   "section": "2.5.3",
+   "q": "How can researchers make the parallel trends assumption more credible?",
+   "a": "Show that the groups' outcomes moved in parallel over several earlier pre-treatment periods.",
+   "wrong": [
+    "Verify it directly from post-treatment data.",
+    "Increase the sample size in the treated group.",
+    "Use medians instead of means."
+   ]
+  },
+  {
+   "id": "c-2.5-j",
+   "section": "2.5.3",
+   "q": "How does SATT differ from SATE?",
+   "a": "SATT averages causal effects over treated units only; SATE averages over all units in the sample.",
+   "wrong": [
+    "SATT averages over control units only.",
+    "SATT uses the median; SATE uses the mean.",
+    "They are identical by definition."
+   ]
+  },
+  {
+   "id": "c-2.6-a",
+   "section": "2.6.1",
+   "q": "Why is the IQR of NJ wages after the law zero?",
+   "a": "Both the lower and upper quartiles equal the new minimum wage, because many restaurants set wages exactly at $5.05.",
+   "wrong": [
+    "Because no restaurant changed its wage.",
+    "Because the IQR is always zero for wages.",
+    "Because the maximum equals the minimum."
+   ]
+  },
+  {
+   "id": "c-2.6-b",
+   "section": "2.6.1",
+   "q": "Why report median-based DiD estimates alongside mean-based ones?",
+   "a": "As a robustness check: medians are less sensitive to outliers.",
+   "wrong": [
+    "Because DiD requires medians.",
+    "Because means are biased in experiments.",
+    "To estimate the SATE instead of the SATT."
+   ]
+  },
+  {
+   "id": "c-2.6-c",
+   "section": "2.6.2",
+   "q": "The mean change is near 0.02 but the RMS of the change is about 0.30. What does that mean?",
+   "a": "Restaurants changed a lot in both directions; positive and negative changes largely cancel in the mean.",
+   "wrong": [
+    "Most restaurants barely changed.",
+    "The RMS is biased upward by the minimum wage.",
+    "The data contain an error."
+   ]
+  },
+  {
+   "id": "c-2.6-d",
+   "section": "2.6.2",
+   "q": "When does using \\(n\\) versus \\(n-1\\) in the standard deviation matter?",
+   "a": "Only in small samples; with enough data the difference is negligible.",
+   "wrong": [
+    "Always; n − 1 gives a completely different scale.",
+    "Only for binary variables.",
+    "Only when the mean is zero."
+   ]
+  },
+  {
+   "id": "c-3.1-a",
+   "section": "3.1",
+   "q": "In a joint proportion table of victimization by ISAF and by the Taliban, how do you get the share victimized by ISAF?",
+   "a": "Add the cells in the ISAF = 1 row (harmed by ISAF, whether or not also harmed by the Taliban).",
+   "wrong": [
+    "Read the single cell where both equal 1.",
+    "Add the ISAF = 1 column.",
+    "Subtract the Taliban row from the ISAF row."
+   ]
+  },
+  {
+   "id": "c-3.2-a",
+   "section": "3.2",
+   "q": "Why does listwise deletion of the whole data set leave fewer rows than dropping missing values on one variable?",
+   "a": "Listwise deletion drops a respondent missing ANY variable, including ones irrelevant to the analysis.",
+   "wrong": [
+    "Because listwise deletion also removes duplicates.",
+    "Because na.omit() removes outliers.",
+    "Because the income variable has no missing values."
+   ]
+  },
+  {
+   "id": "c-3.3-a",
+   "section": "3.3.2",
+   "q": "Why can a histogram's density exceed 1?",
+   "a": "Density is proportion divided by bin width; with narrow bins the height can exceed 1 while the area stays below 1.",
+   "wrong": [
+    "Because it counts observations, not proportions.",
+    "Because density is a percentage.",
+    "It cannot; density is always between 0 and 1."
+   ]
+  },
+  {
+   "id": "c-3.3-b",
+   "section": "3.3.2",
+   "q": "Why use density rather than frequency when comparing two histograms?",
+   "a": "Density is comparable across distributions with different numbers of observations.",
+   "wrong": [
+    "Frequency cannot show skewness.",
+    "Density histograms always have more bins.",
+    "Frequency histograms cannot show the median."
+   ]
+  },
+  {
+   "id": "c-3.3-c",
+   "section": "3.3.2",
+   "q": "Why set histogram breaks at −0.5, 0.5, 1.5, … for years of education?",
+   "a": "To center each bin on an integer value, so each bar shows the share with exactly that many years.",
+   "wrong": [
+    "To make the histogram symmetric.",
+    "Because R cannot use integer breaks.",
+    "To hide the respondents with zero years."
+   ]
+  },
+  {
+   "id": "c-3.3-d",
+   "section": "3.3.3",
+   "q": "How far do a box plot's whiskers extend?",
+   "a": "To the most extreme data point within 1.5 × IQR of the quartiles (or the min/max if within that range).",
+   "wrong": [
+    "To the minimum and maximum, always.",
+    "To 2 standard deviations from the mean.",
+    "To the 5th and 95th percentiles."
+   ]
+  },
+  {
+   "id": "c-3.3-e",
+   "section": "3.3.3",
+   "q": "When is a histogram more informative than a box plot, and vice versa?",
+   "a": "A histogram shows one distribution's full shape; box plots compare many distributions compactly.",
+   "wrong": [
+    "A histogram compares many groups; a box plot shows one shape.",
+    "They always convey the same information.",
+    "Box plots show the mean; histograms show the median."
+   ]
+  },
+  {
+   "id": "c-3.4-a",
+   "section": "3.4.1",
+   "q": "What does 'representative' mean for a random sample?",
+   "a": "Across repeated samples, sample characteristics equal the population's on average, even if one sample differs by chance.",
+   "wrong": [
+    "Every sample exactly matches the population.",
+    "The sample matches the census on age and gender.",
+    "The sample contains every type of person."
+   ]
+  },
+  {
+   "id": "c-3.4-b",
+   "section": "3.4.1",
+   "q": "What is the parallel between random sampling and random assignment?",
+   "a": "Both use randomization to guarantee balance on observed and unobserved characteristics on average: sample vs population, treatment vs control.",
+   "wrong": [
+    "Both guarantee internal validity.",
+    "Both require a control group.",
+    "Both remove nonresponse bias."
+   ]
+  },
+  {
+   "id": "c-3.4-c",
+   "section": "3.4.1",
+   "q": "Why did the 1948 polls wrongly predict Dewey would beat Truman?",
+   "a": "They used quota sampling, which can match observed quotas but still select respondents unrepresentative on unobserved traits.",
+   "wrong": [
+    "They used simple random samples that were too small.",
+    "They used random digit dialing.",
+    "Their questions were subject to social desirability bias."
+   ]
+  },
+  {
+   "id": "c-3.4-d",
+   "section": "3.4.1",
+   "q": "Why can random digit dialing produce selection bias?",
+   "a": "Some people have no phone and others have several, so selection probabilities are unequal.",
+   "wrong": [
+    "Because phone numbers are not random.",
+    "Because it uses quota sampling.",
+    "Because it only reaches unit nonrespondents."
+   ]
+  },
+  {
+   "id": "c-3.4-e",
+   "section": "3.4.1",
+   "q": "Why log-transform village population?",
+   "a": "Population is right-skewed by a few very large villages; the log reduces the skew.",
+   "wrong": [
+    "To make negative populations positive.",
+    "Because population is a factor variable.",
+    "To convert counts into proportions."
+   ]
+  },
+  {
+   "id": "c-3.4-f",
+   "section": "3.4.1",
+   "q": "What is log base 10 of 1000? Of 0.01?",
+   "a": "3 and −2.",
+   "wrong": [
+    "30 and −1.",
+    "3 and 2.",
+    "1000 and 0.01."
+   ]
+  },
+  {
+   "id": "c-3.4-g",
+   "section": "3.4.2",
+   "q": "Nonresponse to victimization questions is highest in the most violent provinces. Why does that matter?",
+   "a": "Nonresponse is systematic, not random, so analyzing only responders may bias estimates.",
+   "wrong": [
+    "It proves the survey used quota sampling.",
+    "It means those provinces should be dropped.",
+    "It has no effect because the rate is low."
+   ]
+  },
+  {
+   "id": "c-3.4-h",
+   "section": "3.4.2",
+   "q": "In a list experiment, why does no respondent in the Taliban list group answer 0 or 4?",
+   "a": "Answering 0 or 4 would reveal their view of the Taliban (floor/ceiling effects), so they avoid it.",
+   "wrong": [
+    "The list only had three items.",
+    "Randomization failed.",
+    "Those answers were coded as missing."
+   ]
+  },
+  {
+   "id": "c-3.4-i",
+   "section": "3.4.2",
+   "q": "How does the randomized response technique protect respondents?",
+   "a": "A private random device decides whether to answer honestly, so no individual answer reveals the truth, yet known probabilities allow aggregate estimates.",
+   "wrong": [
+    "Respondents answer anonymously online.",
+    "Interviewers skip sensitive questions at random.",
+    "Respondents report only a count of items."
+   ]
+  },
+  {
+   "id": "c-3.5-a",
+   "section": "3.5",
+   "q": "Under the spatial voting model, when does a legislator vote against a proposal?",
+   "a": "When their ideal point is closer to the status quo than to the proposal.",
+   "wrong": [
+    "When the proposal is closer to their ideal point.",
+    "When their party opposes it, regardless of distance.",
+    "When the proposal passes unanimously."
+   ]
+  },
+  {
+   "id": "c-3.5-b",
+   "section": "3.5",
+   "q": "Why do unanimous votes reveal nothing about legislators' ideology?",
+   "a": "Everyone votes the same way, so the votes cannot distinguish legislators' positions.",
+   "wrong": [
+    "Unanimous votes are never recorded.",
+    "They reveal only the second dimension.",
+    "They are excluded from DW-NOMINATE by law."
+   ]
+  },
+  {
+   "id": "c-3.6-a",
+   "section": "3.6.2",
+   "q": "Polarization and inequality both rose from 1947 to 2013 (correlation ≈ 0.94). Why not conclude inequality causes polarization?",
+   "a": "Many variables trend upward over time (e.g., life expectancy), so a shared trend yields high correlation without causation.",
+   "wrong": [
+    "Because the correlation is negative.",
+    "Because the Gini coefficient cannot be correlated with anything.",
+    "Because correlation above 0.9 is always spurious."
+   ]
+  },
+  {
+   "id": "c-3.6-b",
+   "section": "3.6.2",
+   "q": "What happens to a z-score if x is transformed to \\(ax + b\\) with \\(a > 0\\)? With \\(a < 0\\)?",
+   "a": "With \\(a > 0\\) it is unchanged; with \\(a < 0\\) it flips sign (same magnitude).",
+   "wrong": [
+    "It is multiplied by \\(a\\) in both cases.",
+    "It shifts by \\(b\\) in both cases.",
+    "It is unchanged in both cases."
+   ]
+  },
+  {
+   "id": "c-3.6-c",
+   "section": "3.6.2",
+   "q": "Why is correlation unchanged if income is measured in thousands of dollars instead of dollars?",
+   "a": "Correlation is built from z-scores, which do not depend on units.",
+   "wrong": [
+    "Because income has no units.",
+    "Because R rescales automatically.",
+    "It changes by a factor of 1000."
+   ]
+  },
+  {
+   "id": "c-3.6-d",
+   "section": "3.6.3",
+   "q": "In a Q-Q plot of Democrats (x) vs Republicans (y), lower quantiles lie ABOVE the 45° line. Meaning?",
+   "a": "At those quantiles Republicans have higher (more conservative) values: liberal Republicans are more conservative than liberal Democrats.",
+   "wrong": [
+    "Democrats are more conservative at every quantile.",
+    "The distributions are identical.",
+    "Republicans are more dispersed."
+   ]
+  },
+  {
+   "id": "c-3.6-e",
+   "section": "3.6.3",
+   "q": "A Q-Q plot's points form a line flatter than 45°. What does that say?",
+   "a": "The distribution on the horizontal axis is more dispersed than the one on the vertical axis.",
+   "wrong": [
+    "The vertical-axis distribution is more dispersed.",
+    "The two distributions have the same mean.",
+    "The variables are negatively correlated."
+   ]
+  },
+  {
+   "id": "c-3.7-a",
+   "section": "3.7.1",
+   "q": "What happens when a data frame with a factor and a numeric column is coerced to a matrix?",
+   "a": "Everything becomes character, since a matrix holds a single type.",
+   "wrong": [
+    "The factor is dropped.",
+    "Everything becomes numeric.",
+    "R throws an error."
+   ]
+  },
+  {
+   "id": "c-3.7-b",
+   "section": "3.7.3",
+   "q": "Why standardize variables before k-means clustering (usually)?",
+   "a": "So the clustering does not depend on each variable's measurement scale.",
+   "wrong": [
+    "So the algorithm converges in one iteration.",
+    "Because k-means needs negative values.",
+    "To choose the number of clusters automatically."
+   ]
+  },
+  {
+   "id": "c-3.7-c",
+   "section": "3.7.3",
+   "q": "Why run k-means with several random starting values (nstart)?",
+   "a": "Results depend on the initial centroids; multiple starts help find a better solution.",
+   "wrong": [
+    "To choose k automatically.",
+    "To standardize the data.",
+    "Because one start always fails to converge."
+   ]
+  },
+  {
+   "id": "c-3.7-d",
+   "section": "3.7.3",
+   "q": "Why is judging a clustering result hard?",
+   "a": "It is unsupervised: there is no outcome variable to check whether clusters are 'correct', so human judgment is needed.",
+   "wrong": [
+    "Because clusters always equal parties.",
+    "Because k-means has no objective function.",
+    "Because clusters cannot be plotted."
+   ]
+  },
+  {
+   "id": "c-3.7-e",
+   "section": "3.7.3",
+   "q": "With k = 2, clusters perfectly match party in the 112th Congress but not the 80th. What does that show?",
+   "a": "Polarization increased: the parties became ideologically distinct groups.",
+   "wrong": [
+    "k-means failed in the 80th Congress.",
+    "The 80th Congress had only one party.",
+    "The racial dimension became more important."
+   ]
+  },
+  {
+   "id": "c-4.1-a",
+   "section": "4.1.3",
+   "q": "How can poll predictions be nearly unbiased yet have an RMSE of about 6 points?",
+   "a": "Large positive and negative errors cancel in the mean, but each individual state's error can still be large.",
+   "wrong": [
+    "Because RMSE ignores large errors.",
+    "Because bias and RMSE measure the same thing.",
+    "Because the polls were only conducted in six states."
+   ]
+  },
+  {
+   "id": "c-4.1-b",
+   "section": "4.1.3",
+   "q": "Treating an Obama win as 'positive', what is a false negative?",
+   "a": "A state predicted to go to McCain that Obama actually won.",
+   "wrong": [
+    "A state predicted for Obama that McCain won.",
+    "A state predicted for Obama that Obama won.",
+    "A state with no polls."
+   ]
+  },
+  {
+   "id": "c-4.1-c",
+   "section": "4.1.3",
+   "q": "On a plot of predicted (x) vs actual (y) margins, where are the wrong-winner states?",
+   "a": "In the upper-left (predicted loss, actual win) and lower-right (predicted win, actual loss) quadrants.",
+   "wrong": [
+    "On the 45-degree line.",
+    "Anywhere above the 45-degree line.",
+    "In the upper-right and lower-left quadrants."
+   ]
+  },
+  {
+   "id": "c-4.1-d",
+   "section": "4.1.3",
+   "q": "Why is there a trade-off between false positives and false negatives?",
+   "a": "Making the classifier call 'positive' less often reduces false positives but increases false negatives, and vice versa.",
+   "wrong": [
+    "Because their sum is always constant.",
+    "Because both are measured by RMSE.",
+    "There is no trade-off; both can always be zero."
+   ]
+  },
+  {
+   "id": "c-4.1-e",
+   "section": "4.1.1",
+   "q": "Why pre-allocate a container like rep(NA, n) before a loop?",
+   "a": "So each iteration can store its result in position i of an existing vector.",
+   "wrong": [
+    "Because loops cannot print output otherwise.",
+    "To make the loop run in parallel.",
+    "Because NA values speed up arithmetic."
+   ]
+  },
+  {
+   "id": "c-4.1-f",
+   "section": "4.1.2",
+   "q": "How does ifelse() differ from if () {} else {}?",
+   "a": "ifelse() works element by element on a vector; if/else chooses which block of code to run based on one condition.",
+   "wrong": [
+    "They are identical.",
+    "if/else works on vectors; ifelse() only on single values.",
+    "ifelse() cannot return numbers."
+   ]
+  },
+  {
+   "id": "c-4.2-a",
+   "section": "4.2.2",
+   "q": "A scatter plot shows a clear U-shape but the correlation is near 0. Why?",
+   "a": "Correlation measures only linear association, which a symmetric nonlinear pattern lacks.",
+   "wrong": [
+    "The variables are independent.",
+    "There is an error in the data.",
+    "Correlation ignores outliers."
+   ]
+  },
+  {
+   "id": "c-4.2-b",
+   "section": "4.2.3",
+   "q": "In \\(\\hat{Y} = -0.31 + 0.66\\,\\text{competence}\\), how much is the predicted margin expected to change when competence rises by 0.1?",
+   "a": "By about 0.066 (6.6 percentage points).",
+   "wrong": [
+    "By 0.66.",
+    "By −0.31.",
+    "By 0.035."
+   ]
+  },
+  {
+   "id": "c-4.2-c",
+   "section": "4.2.3",
+   "q": "What is the difference between the error term \\(\\varepsilon\\) and the residual \\(\\hat{\\varepsilon}\\)?",
+   "a": "\\(\\varepsilon\\) is the unobserved deviation from the true line; \\(\\hat{\\varepsilon} = Y - \\hat{Y}\\) is its estimate from the fitted line.",
+   "wrong": [
+    "They are the same thing.",
+    "\\(\\hat{\\varepsilon}\\) is the true error; \\(\\varepsilon\\) is its estimate.",
+    "\\(\\varepsilon\\) is the difference between \\(\\hat{Y}\\) and \\(\\bar{Y}\\)."
+   ]
+  },
+  {
+   "id": "c-4.2-d",
+   "section": "4.2.3",
+   "q": "The residuals from a least-squares fit average to zero. Does this mean the linear model is correct?",
+   "a": "No; it is an algebraic property of least squares that holds for any data set.",
+   "wrong": [
+    "Yes; it proves the linear model is correct.",
+    "Yes, if the sample is large.",
+    "Only when the correlation is 1."
+   ]
+  },
+  {
+   "id": "c-4.2-e",
+   "section": "4.2.3",
+   "q": "If correlation is 0.5, what change in Y (in SDs) goes with a 1-SD increase in X?",
+   "a": "0.5 standard deviations of Y.",
+   "wrong": [
+    "2 standard deviations of Y.",
+    "1 standard deviation of Y.",
+    "0.25 standard deviations of Y."
+   ]
+  },
+  {
+   "id": "c-4.2-f",
+   "section": "4.2.4",
+   "q": "Students who aced the midterm tend to score lower on the final. What is the textbook explanation?",
+   "a": "Regression towards the mean: extreme scores partly reflect chance, which need not repeat.",
+   "wrong": [
+    "They studied less after doing well.",
+    "The final was harder.",
+    "Grades converge over time for everyone."
+   ]
+  },
+  {
+   "id": "c-4.2-g",
+   "section": "4.2.5",
+   "q": "Why prefer merge() over cbind() to combine two state-level data sets?",
+   "a": "merge() matches rows by a key; cbind() assumes identical row order and can silently misalign units.",
+   "wrong": [
+    "cbind() cannot combine data frames.",
+    "merge() is faster for large data.",
+    "cbind() drops duplicated columns."
+   ]
+  },
+  {
+   "id": "c-4.2-h",
+   "section": "4.2.5",
+   "q": "Why is the intercept zero when both variables in a regression are standardized?",
+   "a": "\\(\\hat{\\alpha} = \\bar{Y} - \\hat{\\beta}\\bar{X}\\), and standardized variables have mean zero.",
+   "wrong": [
+    "Because standardization forces the slope to 1.",
+    "Because R drops the intercept automatically.",
+    "Because the correlation is zero."
+   ]
+  },
+  {
+   "id": "c-4.2-i",
+   "section": "4.2.6",
+   "q": "Removing Palm Beach raised \\(R^2\\) from 0.51 to 0.85. What does that show?",
+   "a": "A single outlier was strongly influencing the fitted line and hurting fit.",
+   "wrong": [
+    "Perot votes cause Buchanan votes.",
+    "The model is overfit.",
+    "\\(R^2\\) is not a measure of fit."
+   ]
+  },
+  {
+   "id": "c-4.2-j",
+   "section": "4.2.6",
+   "q": "Why is a high in-sample \\(R^2\\) not a guarantee of good predictions elsewhere?",
+   "a": "The model may be overfit to idiosyncrasies of the sample and predict poorly out of sample.",
+   "wrong": [
+    "Because \\(R^2\\) is always biased downward.",
+    "Because \\(R^2\\) measures causality.",
+    "Because out-of-sample \\(R^2\\) is always higher."
+   ]
+  },
+  {
+   "id": "c-4.3-a",
+   "section": "4.3.1",
+   "q": "Why can't we compare policies in districts that elect women with districts that don't to learn women's effect?",
+   "a": "Districts electing women may differ in other ways (e.g., ideology) that also affect policy: confounding.",
+   "wrong": [
+    "Because women are rarely elected.",
+    "Because policy outcomes cannot be measured.",
+    "Because the comparison has no control group."
+   ]
+  },
+  {
+   "id": "c-4.3-b",
+   "section": "4.3.1",
+   "q": "In lm(water ~ reserved) with reserved coded 0/1, what are the intercept and slope?",
+   "a": "Intercept: mean water in unreserved villages. Slope: difference in means (reserved − unreserved).",
+   "wrong": [
+    "Intercept: overall mean; slope: correlation.",
+    "Intercept: reserved-village mean; slope: unreserved mean.",
+    "Intercept: difference in means; slope: control mean."
+   ]
+  },
+  {
+   "id": "c-4.3-c",
+   "section": "4.3.2",
+   "q": "With a factor predictor and an intercept, why is one level left out?",
+   "a": "It is the base level absorbed into the intercept; including all levels plus an intercept would be redundant.",
+   "wrong": [
+    "Because R drops the level with the fewest observations.",
+    "Because that level has no effect.",
+    "Because factors can have at most three levels."
+   ]
+  },
+  {
+   "id": "c-4.3-d",
+   "section": "4.3.2",
+   "q": "What does removing the intercept (−1) with a factor predictor change?",
+   "a": "Each coefficient becomes a group mean rather than a difference from the base level.",
+   "wrong": [
+    "It changes the fitted values.",
+    "It forces all coefficients to zero.",
+    "It drops the base level from the data."
+   ]
+  },
+  {
+   "id": "c-4.3-e",
+   "section": "4.3.2",
+   "q": "Why never rely on unadjusted \\(R^2\\) to choose between models with different numbers of predictors?",
+   "a": "Adding any predictor can only lower SSR, so unadjusted \\(R^2\\) never falls; adjusted \\(R^2\\) penalizes extra predictors.",
+   "wrong": [
+    "Because unadjusted \\(R^2\\) can be negative.",
+    "Because unadjusted \\(R^2\\) ignores the intercept.",
+    "Because adjusted \\(R^2\\) is always larger."
+   ]
+  },
+  {
+   "id": "c-4.3-f",
+   "section": "4.3.2",
+   "q": "What is the difference between fitted() and predict(newdata = ...)?",
+   "a": "fitted() gives predictions for the data used to fit the model; predict() can predict for new data.",
+   "wrong": [
+    "They are identical in every case.",
+    "predict() only works without an intercept.",
+    "fitted() returns residuals."
+   ]
+  },
+  {
+   "id": "c-4.3-g",
+   "section": "4.3.3",
+   "q": "In \\(Y = \\alpha + \\beta_1\\,\\text{primary2004} + \\beta_2\\,\\text{Neighbors} + \\beta_3(\\text{primary2004} \\times \\text{Neighbors})\\), what is the Neighbors effect for 2004 voters?",
+   "a": "\\(\\beta_2 + \\beta_3\\).",
+   "wrong": [
+    "\\(\\beta_2\\).",
+    "\\(\\beta_1 + \\beta_2\\).",
+    "\\(\\beta_3\\)."
+   ]
+  },
+  {
+   "id": "c-4.3-h",
+   "section": "4.3.3",
+   "q": "In R formulas, what is the difference between x1:x2 and x1*x2?",
+   "a": "x1:x2 is only the interaction term; x1*x2 adds both main effects and the interaction.",
+   "wrong": [
+    "They are identical.",
+    "x1*x2 multiplies the variables without an interaction.",
+    "x1:x2 includes main effects; x1*x2 does not."
+   ]
+  },
+  {
+   "id": "c-4.3-i",
+   "section": "4.3.3",
+   "q": "Why interpret a quadratic interaction model through predict() rather than its coefficients?",
+   "a": "Its coefficients have no simple individual meaning; predicted differences at chosen values are interpretable.",
+   "wrong": [
+    "Because predict() adds a causal interpretation.",
+    "Because the coefficients are always zero.",
+    "Because lm() cannot fit squared terms."
+   ]
+  },
+  {
+   "id": "c-4.3-j",
+   "section": "4.3.3",
+   "q": "What does I(age^2) do inside an lm() formula?",
+   "a": "Tells R to treat ^ arithmetically, adding age squared as a predictor.",
+   "wrong": [
+    "Creates an interaction between age and itself as a factor.",
+    "Takes the inverse of age.",
+    "Removes the intercept."
+   ]
+  },
+  {
+   "id": "c-4.3-k",
+   "section": "4.3.4",
+   "q": "Why compare MPs who barely won with candidates who barely lost?",
+   "a": "Near the threshold, winners and losers should be similar except for holding office, removing confounding.",
+   "wrong": [
+    "Because close races have larger samples.",
+    "Because losers never hold office later.",
+    "To estimate the effect for all MPs regardless of margin."
+   ]
+  },
+  {
+   "id": "c-4.3-l",
+   "section": "4.3.4",
+   "q": "Why use exp() on the RD predictions for Tory wealth?",
+   "a": "The regressions model log wealth; exp() converts predictions back to pounds.",
+   "wrong": [
+    "To make the predictions positive.",
+    "To standardize wealth.",
+    "Because the margin is in logs."
+   ]
+  },
+  {
+   "id": "c-4.3-m",
+   "section": "4.3.4",
+   "q": "In the RD placebo test, the effect on the previous election's margin is about −0.017. What does that suggest?",
+   "a": "The estimate is near zero, supporting the RD design's validity.",
+   "wrong": [
+    "Holding office changed past elections.",
+    "The design is invalid.",
+    "Tory MPs lose wealth."
+   ]
+  },
+  {
+   "id": "c-4.3-n",
+   "section": "4.3.4",
+   "q": "To whom does an RD estimate apply?",
+   "a": "Only to units near the threshold (e.g., candidates in close races).",
+   "wrong": [
+    "To all units in the population.",
+    "To units far from the threshold.",
+    "Only to the control group."
+   ]
+  },
+  {
+   "id": "c-1.3-a",
+   "section": "1.3.2",
+   "q": "An object named Result and another named result: same or different?",
+   "a": "Different: R object names are case-sensitive.",
+   "wrong": [
+    "Same: R ignores case.",
+    "Same, but R warns you.",
+    "Different only if one is a character."
+   ]
+  },
+  {
+   "id": "c-1.3-b",
+   "section": "1.3.4",
+   "q": "Why can seq(to = 2010, by = 10, from = 1950) reorder its arguments freely?",
+   "a": "Named arguments are matched by name, so their order does not matter.",
+   "wrong": [
+    "seq() sorts its inputs automatically.",
+    "R always ignores argument order.",
+    "Only numeric arguments can be reordered."
+   ]
+  },
+  {
+   "id": "c-1.3-c",
+   "section": "1.3.5",
+   "q": "Why does load() need no assignment arrow, unlike read.csv()?",
+   "a": "An RData file stores objects with their names; load() restores them under those names.",
+   "wrong": [
+    "load() only works on CSV files.",
+    "load() returns nothing useful.",
+    "read.csv() also needs no assignment."
+   ]
+  },
+  {
+   "id": "c-1.3-d",
+   "section": "1.3.3",
+   "q": "What does world.pop[-3] do to world.pop?",
+   "a": "Returns the vector without its 3rd element; world.pop itself is unchanged.",
+   "wrong": [
+    "Deletes the 3rd element from world.pop permanently.",
+    "Returns the last three elements.",
+    "Subtracts 3 from every element."
+   ]
+  },
+  {
+   "id": "c-1.3-e",
+   "section": "1.3.6",
+   "q": "Why does the book advise not saving the workspace automatically when quitting R?",
+   "a": "The hidden .RData file reloads silently, so you lose track of which objects exist; save what you need explicitly.",
+   "wrong": [
+    "Because R deletes saved workspaces.",
+    "Because saved workspaces cannot be loaded.",
+    "Because it corrupts CSV files."
+   ]
+  },
+  {
+   "id": "c-1.3-f",
+   "section": "1.3.7",
+   "q": "How often do you need install.packages() versus library()?",
+   "a": "Install once per computer; load with library() in each session.",
+   "wrong": [
+    "Both every session.",
+    "library() once; install every session.",
+    "Neither is needed for CRAN packages."
+   ]
+  }
+ ]
+}
