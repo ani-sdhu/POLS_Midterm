@@ -28,6 +28,15 @@ read.csv <- function(file, ...) {
 pdf(NULL)
 `;
 
+// A dropped download shouldn't take every dataset down with it: retry, then carry on without the file.
+async function fetchRetry(url, tries = 4) {
+  for (let i = 0; i < tries; i++) {
+    try { const r = await fetch(url, { cache: "no-store" }); if (r.ok) return await r.arrayBuffer(); } catch {}
+    await new Promise(res => setTimeout(res, 400 * (i + 1)));
+  }
+  return null;
+}
+
 export class Runtime {
   constructor(bookcode) {
     this.book = bookcode;
@@ -46,8 +55,9 @@ export class Runtime {
       for (const [name, path] of Object.entries(ch.files)) {
         const dir = `/home/web_user/${ch.id}`;
         await this.webR.FS.mkdir(dir).catch(() => {});
-        const buf = await (await fetch(encodeURI(ROOT + path))).arrayBuffer();
-        await this.webR.FS.writeFile(`${dir}/${name}`, new Uint8Array(buf));
+        const buf = await fetchRetry(encodeURI(ROOT + path));
+        if (buf) await this.webR.FS.writeFile(`${dir}/${name}`, new Uint8Array(buf));
+        else console.warn(`Could not load ${path}; code from that dataset will show an error.`);
       }
     }
     onStatus("");

@@ -15,12 +15,22 @@ const store = {
 let mastery = store.get("qss.mastery", {});        // itemId -> {n, c, s: EWMA score 0..1, t}
 let settings = store.get("qss.settings", { focus: "all" });
 
+// Spaced repetition: a correct answer retires the item for a growing interval; a miss keeps it in play.
+const INTERVALS = [10, 60, 360, 1440, 4320].map(min => min * 60000);   // 10 min, 1 h, 6 h, 1 day, 3 days
 function record(id, score) {
-  const m = mastery[id] ?? { n: 0, c: 0, s: 0 };
-  m.n++; m.c += score; m.s = m.n === 1 ? score : 0.6 * m.s + 0.4 * score; m.t = Date.now();
+  const m = mastery[id] ?? { n: 0, c: 0, s: 0 }, now = Date.now();
+  m.n++; m.c += score; m.s = m.n === 1 ? score : 0.6 * m.s + 0.4 * score; m.t = now;
+  m.streak = score >= 1 ? (m.streak ?? 0) + 1 : 0;
+  m.due = score >= 1 ? now + INTERVALS[Math.min(m.streak, INTERVALS.length) - 1] : now;
   mastery[id] = m; store.set("qss.mastery", mastery);
 }
-const weight = id => { const m = mastery[id]; const w = m ? 0.1 + 0.9 * (1 - m.s) ** 2 : 1; return id.startsWith("box:") ? w * 1.5 : w; };
+const isDue = id => (mastery[id]?.due ?? 0) <= Date.now();
+const recent = [];                                   // last questions shown this session (never repeat immediately)
+const RECENT_N = 8;
+let reviewEarly = false;                             // "review anyway" for the current focus
+const fmtWait = ms => ms < 3600000 ? `${Math.max(1, Math.round(ms / 60000))} min` : ms < 86400000 ? `${Math.round(ms / 3600000)} h` : `${Math.round(ms / 86400000)} day${ms >= 1.5 * 86400000 ? "s" : ""}`;
+// Unseen items get the most weight, then weak ones; definition boxes get a boost.
+const weight = id => { const m = mastery[id]; const w = m ? 0.1 + 0.9 * (1 - m.s) ** 2 : 3; return id.startsWith("box:") ? w * 1.5 : w; };
 function weightedPick(ids) {
   const ws = ids.map(weight), total = ws.reduce((a, b) => a + b, 0);
   let r = Math.random() * total;
@@ -79,13 +89,25 @@ async function nextQuestion() {
   const mix = { ...mixFor(settings.focus) };
   if (ai.on && (settings.focus === "all" || settings.focus === "design" || settings.focus === "concepts")) mix.ai = 1.5;
   if (!rReady) { delete mix.code; delete mix.synth; }
-  const srcs = Object.keys(mix).filter(s => candidates(s).length);
-  if (!srcs.length) return { format: "wait" };
+  const all = Object.fromEntries(Object.keys(mix).map(s => [s, candidates(s)]));
+  if (!Object.values(all).some(ids => ids.length)) return { format: "wait" };
+  const fresh = id => id.startsWith("ai:") || !recent.includes(id);
+  let pools = Object.fromEntries(Object.entries(all).map(([s, ids]) => [s, ids.filter(id => fresh(id) && (reviewEarly || id.startsWith("ai:") || isDue(id)))]));
+  if (!Object.values(pools).some(p => p.length)) {
+    if (!reviewEarly) {
+      const next = Math.min(...Object.values(all).flat().map(id => mastery[id]?.due ?? 0));
+      return { format: "caughtup", wait: next - Date.now() };
+    }
+    pools = all;                                     // tiny focus: allow repeats rather than nothing
+  }
+  const srcs = Object.keys(pools).filter(s => pools[s].length);
   for (let tries = 0; tries < 8; tries++) {
     let r = Math.random() * srcs.reduce((a, s) => a + mix[s], 0), src = srcs.at(-1);
     for (const s of srcs) if ((r -= mix[s]) <= 0) { src = s; break; }
-    const q = await sources[src].make(weightedPick(candidates(src)));
-    if (q) return q;
+    const id = weightedPick(pools[src]);
+    let q = await sources[src].make(id);
+    if (q && settings.shortAnswer && q.format === "mc" && /FALSE/.test(q.prompt)) q = null;
+    if (q) { recent.push(id); if (recent.length > RECENT_N) recent.shift(); return q; }
   }
   return null;
 }
@@ -102,9 +124,28 @@ const block = (label, inner) => `<div class=block><div class=label>${label}</div
 // ---------- quiz ----------
 let current = null, answered = false;
 
+// Short-answer mode: a multiple-choice question becomes "write it, reveal, self-grade" (typed formats stay auto-graded).
+function toShortAnswer(q) {
+  if (!settings.shortAnswer || q?.format !== "mc") return q;
+  const right = q.options[q.answer];
+  const answerHtml = q.optionsAreCode ? codeBlock(right) : `<p class=model><b>${esc(right)}</b></p>`;
+  return { ...q, format: "self", options: undefined, prompt: q.prompt + `<div class=hint>Short-answer mode: write your answer, then reveal.</div>`,
+    explain: `<div class=label>Answer</div>${answerHtml}${q.explain ? `<div class=label>Why</div><div>${q.explain}</div>` : ""}` };
+}
+
 function render(q) {
+  q = toShortAnswer(q);
   current = q; answered = false;
   const card = $("#card");
+  if (q?.format === "caughtup") {
+    card.innerHTML = `<h2 class=page>✓ All caught up</h2>
+      <p>You've answered everything in <b>${esc($("#focus").selectedOptions[0]?.dataset.label ?? "this focus")}</b> correctly, and nothing is due for review yet.
+      The next item comes back in about <b>${fmtWait(q.wait)}</b>.</p>
+      <div class=actions><button id=early>Review early anyway</button><button id=everything class=primary>Quiz everything</button></div>`;
+    $("#early").onclick = () => { reviewEarly = true; go(); };
+    $("#everything").onclick = () => { settings.focus = "all"; store.set("qss.settings", settings); $("#focus").value = "all"; updateBar(); go(); };
+    return;
+  }
   if (!q || q.format === "wait") {
     card.innerHTML = `<p class=muted>${rReady ? "No questions match this focus." : "R is still starting (about 10 seconds). Code questions will appear here automatically."}</p>`;
     if (!rReady && q) rReadyP.then(() => { if (current === q) go(); });
@@ -124,7 +165,7 @@ function render(q) {
     h += `<input id=ans autocomplete=off spellcheck=false placeholder="${q.format === "expr" ? "derivative, e.g. 6*x^2 - 2/x^3" : "your answer"}">`;
     if (q.format === "expr") h += `<div class=preview id=preview></div>`;
   }
-  h += `<div class=actions><button id=submit class=primary>${q.format === "self" ? "Reveal answer" : "Check"}</button><button id=skip>Skip</button></div><div id=feedback></div>`;
+  h += `<div class=actions><button id=submit class=primary>${q.format === "self" ? "Reveal answer" : "Check"}</button><button id=skip>Skip</button><span class=keys>${q.format === "mc" ? "1–4 to pick · " : ""}${q.format === "self" ? "Enter to reveal" : q.format === "mc" ? "Space or Enter to check" : "Enter to check"}, then Space for next</span></div><div id=feedback></div>`;
   card.innerHTML = h;
   $("#submit").onclick = submit;
   $("#skip").onclick = go;
@@ -140,13 +181,13 @@ function feedback(kind, head, body) {
 }
 
 function submit() {
-  if (answered) return go();
+  if (answered) { if (current.format !== "self") go(); return; }
   const q = current;
   if (q.format === "self") {
     answered = true;
     const mine = $("#ans").value.trim();
     const body = feedback("neutral", "Compare with the book", `<div class=explain>${q.explain}</div>
-      <div class=self>How did you do? <button data-s=1>Got it</button><button data-s=0.5>Partly</button><button data-s=0>Missed it</button>${ai.on && mine ? " <button id=aigrade>Grade with AI</button>" : ""}</div><div id=aifb></div>`);
+      <div class=self>How did you do? <button data-s=1>1 · Got it</button><button data-s=0.5>2 · Partly</button><button data-s=0>3 · Missed it</button>${ai.on && mine ? " <button id=aigrade>Grade with AI</button>" : ""}</div><div id=aifb></div>`);
     body.querySelectorAll("[data-s]").forEach(b => b.onclick = () => { record(q.id, +b.dataset.s); go(); });
     $("#aigrade")?.addEventListener("click", async e => {
       e.target.disabled = true; $("#aifb").innerHTML = "<p class=muted>Grading…</p>";
@@ -172,8 +213,10 @@ function submit() {
     ok = q.check(v);
   }
   answered = true;
+  document.activeElement?.blur();
   record(q.id, ok ? 1 : 0);
-  const body = feedback(ok ? "right" : "wrong", ok ? "✓ Correct" : `✗ Not quite${q.format !== "mc" ? ` · answer: ${q.answerHtml ?? `<code>${esc(q.answer)}</code>`}` : ""}`, `<div class=explain>${q.explain}</div>`);
+  const back = ok ? ` <span class=muted>· back for review in ${fmtWait(mastery[q.id].due - Date.now())}</span>` : "";
+  const body = feedback(ok ? "right" : "wrong", ok ? `✓ Correct${back}` : `✗ Not quite${q.format !== "mc" ? ` · answer: ${q.answerHtml ?? `<code>${esc(q.answer)}</code>`}` : ""}`, `<div class=explain>${q.explain}</div>`);
   $("#submit").textContent = "Next question →";
   updateBar();
   addPassage(q, body);
@@ -208,9 +251,28 @@ async function go() {
 }
 
 // ---------- progress ----------
+// Quiz items a focus covers (what "seen it all" means for that menu entry).
+const TYPE_SRC = { boxes: "box", code: "code", rpractice: "synth", concepts: "concept", design: "scen", compute: "stats", calculus: "calc", vocab: "vocab" };
+function focusItems(f) {
+  if (f === "all") return AREAS.flatMap(([k]) => sources[k].items());
+  if (TYPE_SRC[f]) return sources[TYPE_SRC[f]].items();
+  if (f === "sec:calc") return [...sources.calc.items(), ...sources.stats.items()];
+  const keep = f.startsWith("sec:") ? id => inSection(f.slice(4), sectionOf(id)) : id => chapterOf(id) === f;
+  return ["code", "box", "vocab", "concept", "scen"].flatMap(k => sources[k].items()).filter(keep);
+}
 function updateBar() {
   const vals = Object.values(mastery), n = vals.reduce((a, m) => a + m.n, 0), c = vals.reduce((a, m) => a + m.c, 0);
   $("#bar").textContent = n ? `${n} answered · ${Math.round(100 * c / n)}% correct` : "No answers yet";
+  // live coverage of the current focus
+  const s = summary(focusItems(settings.focus)), done = s.total && s.seen === s.total;
+  $("#cover").innerHTML = s.total ? `<div class=track title="${s.seen} of ${s.total} quiz items seen"><span class=seen style="width:${100 * s.seen / s.total}%"></span><span class=mast style="width:${100 * s.mastered}%"></span></div>
+    <span class="covtext ${done ? "done" : ""}">${done ? "✓ all " : ""}${s.seen}/${s.total} seen · ${Math.round(100 * s.mastered)}% mastered</span>` : "";
+  // per-entry counts in the menu (sections and chapters), ✓ when everything has been seen
+  for (const o of $("#focus").options) {
+    if (!/^(sec:|ch\d)/.test(o.value)) continue;
+    const t = summary(focusItems(o.value));
+    o.textContent = `${t.total && t.seen === t.total ? "✓ " : ""}${o.dataset.label} · ${t.seen}/${t.total}`;
+  }
 }
 function label(id) {
   const [kind, a, b] = id.split(":");
@@ -281,7 +343,9 @@ const studySections = [...new Set([
 const secLabel = s => s === "calc" ? "Calculus Fundamentals" : `${s} ${SECTION_TITLES[s] ?? ""}`;
 function ensureFocusOption(f) {
   if (!f.startsWith("sec:") || [...$("#focus").options].some(o => o.value === f)) return;
-  $("#focus").add(new Option(`Section: ${secLabel(f.slice(4))}`, f));
+  const o = new Option(`Section: ${secLabel(f.slice(4))}`, f);
+  o.dataset.label = o.text;
+  $("#focus").add(o);
 }
 const PLOT = /^(plot|hist|barplot|boxplot|lines|points|abline|text|qqplot|par|pdf|dev\.off)\(/;
 const GENERIC = { units: "units", unit: "unit", treatment: "the treatment", outcome: "the outcome", confounder: "a confounder", running: "the running variable", cutoff: "the cutoff" };
@@ -419,17 +483,36 @@ $("#search").addEventListener("input", e => {
 });
 $("#search").addEventListener("keydown", e => { if (e.key === "Escape") { e.target.value = ""; renderStudy(); } });
 
-ensureFocusOption(settings.focus);
+// Quiz focus menu: mixes, whole chapters, then every section grouped by chapter.
+const CHAPTER_NAMES = { 1: "Introduction", 2: "Causality", 3: "Measurement", 4: "Prediction" };
+function buildFocusMenu() {
+  const groups = [
+    ["Mix", [["all", "Everything"], ["boxes", "★ Definition boxes"], ["code", "Book code"], ["rpractice", "R practice (random code)"], ["concepts", "Concepts"],
+      ["design", "Research design scenarios"], ["compute", "Computation"], ["calculus", "Calculus"], ["vocab", "Vocabulary"]]],
+    ["Whole chapters", [1, 2, 3, 4].map(n => [`ch${n}`, `Chapter ${n}: ${CHAPTER_NAMES[n]}`])],
+    ...[1, 2, 3, 4].map(n => [`Chapter ${n} sections`, studySections.filter(s => s[0] === String(n)).map(s => [`sec:${s}`, secLabel(s)])]),
+  ];
+  $("#focus").innerHTML = groups.map(([label, opts]) => `<optgroup label="${esc(label)}">${opts.map(([v, t]) => `<option value="${v}" data-label="${esc(t)}">${esc(t)}</option>`).join("")}</optgroup>`).join("");
+}
+buildFocusMenu();
+if (![...$("#focus").options].some(o => o.value === settings.focus)) settings.focus = "all";
 $("#focus").value = settings.focus;
-$("#focus").onchange = e => { settings.focus = e.target.value; store.set("qss.settings", settings); go(); };
+$("#shortans").checked = !!settings.shortAnswer;
+$("#shortans").onchange = e => { settings.shortAnswer = e.target.checked; store.set("qss.settings", settings); go(); };
+$("#focus").onchange = e => { settings.focus = e.target.value; reviewEarly = false; store.set("qss.settings", settings); updateBar(); go(); };
+bookReadyP.then(() => updateBar());                 // box items exist once the PDF has been read
+// Keyboard: Space or Enter = check / next; 1-4 pick an option; after a self-graded reveal, 1-3 = Got it / Partly / Missed.
+const typing = el => el.tagName === "TEXTAREA" || el.tagName === "SELECT" || (el.tagName === "INPUT" && el.type !== "radio");
 document.addEventListener("keydown", e => {
   if ($("#quiz").hidden || !current || e.target.id === "search") return;
-  if (e.key === "Enter" && !e.shiftKey && e.target.tagName !== "TEXTAREA") { e.preventDefault(); submit(); }
-  if (current.format === "mc" && !answered && /^[1-4]$/.test(e.key) && e.target.tagName !== "INPUT") {
+  if (current.format === "self" && answered && /^[1-3]$/.test(e.key)) { document.querySelectorAll("[data-s]")[+e.key - 1]?.click(); return; }
+  if (e.key === "Enter" && !e.shiftKey && e.target.tagName !== "TEXTAREA") { e.preventDefault(); submit(); return; }
+  if (e.key === " " && !typing(e.target) && e.target.tagName !== "BUTTON" && !(e.target.type === "radio" && !e.target.checked)) { e.preventDefault(); submit(); return; }
+  if (current.format === "mc" && !answered && /^[1-4]$/.test(e.key) && !typing(e.target)) {
     const r = document.querySelectorAll("input[name=opt]")[+e.key - 1]; if (r) r.checked = true;
   }
 });
-if (location.search.includes("debug")) window.__app = { candidates, sources, mixFor, nextQuestion, get settings() { return settings; } };
+if (location.search.includes("debug")) window.__app = { candidates, sources, mixFor, nextQuestion, get settings() { return settings; }, get current() { return current; } };
 if (new URLSearchParams(location.search).has("selftest")) selftest(); else go();
 
 // ?selftest: generate many questions per source and check their invariants.

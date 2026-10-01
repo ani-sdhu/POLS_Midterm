@@ -47,6 +47,13 @@ nav button.on { background:var(--surface); color:var(--ink); box-shadow:var(--sh
 .iconbtn { border:1px solid var(--line); background:var(--surface2); border-radius:10px; padding:6px 10px; cursor:pointer; white-space:nowrap; }
 select { padding:7px 10px; border:1px solid var(--line); border-radius:10px; background:var(--surface); }
 .stat { font-size:14px; color:var(--muted); }
+.toggle { display:flex; align-items:center; gap:6px; font-size:14px; white-space:nowrap; cursor:pointer; user-select:none; }
+.toggle input { accent-color:var(--accent); width:16px; height:16px; }
+p.model { font-size:16.5px; margin:4px 0 10px; }
+.cover { display:flex; align-items:center; gap:10px; flex:1 1 260px; min-width:220px; max-width:440px; }
+.cover .track { flex:1; height:10px; }
+.covtext { font-size:13.5px; color:var(--muted); white-space:nowrap; font-variant-numeric:tabular-nums; }
+.covtext.done { color:var(--ok); font-weight:650; }
 #rstatus:empty { display:none; }
 #rstatus { font-size:14px; color:var(--accent); }
 
@@ -99,6 +106,7 @@ button:disabled { opacity:.45; cursor:default; }
 .fb-body { padding:14px 16px; }
 .fb-body > * + * { margin-top:12px; }
 .explain ul { margin:6px 0; padding-left:22px; }
+.keys { align-self:center; font-size:13px; color:var(--muted); margin-left:auto; }
 .self { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
 .self button { padding:7px 14px; border:1px solid var(--line); border-radius:10px; background:var(--surface); cursor:pointer; }
 .bookpass blockquote { font-family:Georgia, "Times New Roman", serif; font-size:16px; line-height:1.6; }
@@ -176,21 +184,9 @@ ol.weak { margin:0; padding-left:22px; } ol.weak li { margin:6px 0; }
     <button id="theme" class="iconbtn" title="Theme: Auto / Light / Dark">◐ Auto</button>
   </div>
   <div class="hrow" id="quizbar">
-    <select id="focus" aria-label="Quiz focus">
-      <option value="all">Everything</option>
-      <option value="boxes">★ Definition boxes</option>
-      <option value="code">Book code</option>
-      <option value="rpractice">R practice (random code)</option>
-      <option value="concepts">Concepts</option>
-      <option value="design">Research design scenarios</option>
-      <option value="compute">Computation</option>
-      <option value="calculus">Calculus</option>
-      <option value="vocab">Vocabulary</option>
-      <option value="ch1">Chapter 1</option>
-      <option value="ch2">Chapter 2</option>
-      <option value="ch3">Chapter 3</option>
-      <option value="ch4">Chapter 4</option>
-    </select>
+    <select id="focus" aria-label="Quiz focus"></select>   <!-- filled by app.js -->
+    <label class="toggle" title="Turn every multiple-choice question into a written answer"><input type="checkbox" id="shortans"> Short answer only</label>
+    <div id="cover" class="cover" aria-live="polite"></div>
     <span id="bar" class="stat"></span>
     <span class="spacer"></span>
     <span id="rstatus">Starting R…</span>
