@@ -1,7 +1,7 @@
 import { Runtime } from "./rt.js";
 import { BookCode, Boxes, Vocab, Stats, Calculus, Concepts, Scenarios, SynthR, esc, PAGE, SECTION_TITLES, sectionKey, exprPreview } from "./gen.js";
 import { AI } from "./ai.js";
-import { BookBoxes } from "./pdfbox.js";
+import { BookBoxes, findPdf, savePdf, forgetPdf } from "./pdfbox.js";
 
 const KNOWLEDGE = ["steps_ch1", "steps_ch2", "steps_ch3", "steps_ch4", "cases", "boxes", "vocab", "concepts", "scenarios", "box_geom", "calculus"];
 const $ = s => document.querySelector(s);
@@ -50,8 +50,27 @@ const factPool = [
 ];
 const aiError = e => { console.warn(e); $("#rstatus").textContent = "AI add-on: " + e.message; };
 const bookBoxes = new BookBoxes();
-const bookReadyP = bookBoxes.init(boxes.boxes, boxGeom).then(() => true)
+const openBook = data => bookBoxes.init(boxes.boxes, boxGeom, data).then(() => true)
   .catch(e => { $("#rstatus").textContent = "Could not read the textbook PDF (box questions disabled): " + e.message; return false; });
+// No PDF found (the website never hosts it): box questions wait until the student opens their own copy.
+let bookReadyP = findPdf().then(data => data ? openBook(data) : false);
+bookReadyP.then(ok => { $("#openbook").hidden = ok; });
+$("#openbook").onclick = () => $("#bookfile").click();
+$("#bookfile").onchange = async e => {
+  const file = e.target.files[0];
+  e.target.value = "";
+  if (!file) return;
+  $("#openbook").textContent = "📖 Reading…";
+  const data = await file.arrayBuffer();
+  const ok = await (bookReadyP = openBook(data));
+  $("#openbook").textContent = "📖 Open textbook PDF";
+  $("#openbook").hidden = ok;
+  if (!ok) return;
+  await savePdf(data);
+  for (const k in passageCache) delete passageCache[k];
+  if (!$("#study").hidden) renderStudy();
+  if (!$("#quiz").hidden && !answered) go();
+};
 const rt = new Runtime(book);
 let rReady = false;
 const rReadyP = rt.init(m => { $("#rstatus").textContent = m; }).then(() => { rReady = true; $("#rstatus").textContent = ""; return true; })
@@ -317,7 +336,10 @@ function renderProgress() {
 // ---------- settings (AI add-on) ----------
 function renderSettings() {
   const u = ai.usage();
-  $("#settings").innerHTML = `<div class=panel><h2 class=page>AI add-on <span class=muted>(optional)</span></h2>
+  $("#settings").innerHTML = `<div class=panel><h2 class=page>Textbook PDF</h2>
+  <p class=muted>${bookBoxes.ready ? "Loaded." : "Not loaded: open your copy with the 📖 button at the top."} The definition boxes and book passages are read from your own copy of the course's <i>QSS Ch1-4.pdf</i>. It stays in this browser and is never uploaded.</p>
+  <div class=actions><button id=bookforget>Forget saved copy</button></div></div>
+  <div class=panel><h2 class=page>AI add-on <span class=muted>(optional)</span></h2>
   <p class=muted>Everything works without this. When enabled, a free Groq model writes new scenario questions from the textbook's own definitions and grades your written answers. Your key is stored only in this browser (localStorage), never in a file.</p>
   <label class=row><input type=checkbox id=aion ${ai.s.enabled ? "checked" : ""}> Enable AI questions and grading</label>
   <label class=field>Groq API key <input id=aikey type=password autocomplete=off value="${esc(ai.s.key)}" placeholder="gsk_..."></label>
@@ -327,6 +349,7 @@ function renderSettings() {
   <p class=muted>Today: ${u.n} requests, ${u.tokens.toLocaleString()} tokens (the app stops at 900 requests / 190,000 tokens per day, under Groq's free limits).</p></div>`;
   const read = () => ({ enabled: $("#aion").checked, key: $("#aikey").value.trim(), model: $("#aimodel").value.trim() || "openai/gpt-oss-120b" });
   $("#aisave").onclick = () => { ai.set(read()); $("#aistatus").textContent = ai.on ? "Saved. AI questions will mix into Everything / Concepts / Research design." : "Saved (AI off)."; };
+  $("#bookforget").onclick = async () => { await forgetPdf(); $("#bookforget").textContent = "Forgotten (takes effect on reload)"; };
   $("#aiclear").onclick = () => { ai.set({ key: "", enabled: false }); renderSettings(); };
   $("#aitest").onclick = async () => {
     ai.set(read()); $("#aistatus").textContent = "Testing…";
@@ -404,10 +427,14 @@ async function renderStudy(sec = settings.studySec ?? studySections[0], anchor =
   else window.scrollTo(0, 0);
 
   // Slow parts fill in afterwards: box images, then book passages, then R outputs.
+  const hasBook = await bookReadyP;
+  if (mine !== studyGen) return;
   for (const el of document.querySelectorAll("[data-box]")) {
-    if (!(await bookReadyP) || mine !== studyGen) return;
+    if (!hasBook) { el.innerHTML = `<p class=muted>Open your copy of the textbook PDF (📖 button at the top) to see this box.</p>`; continue; }
     const b = boxes.boxes.find(x => x.id === el.dataset.box);
-    el.innerHTML = `<img src="${await bookBoxes.image(b.id)}" alt="${esc(b.term)} definition box, QSS p. ${b.page}">`;
+    const img = await bookBoxes.image(b.id);
+    if (mine !== studyGen) return;
+    el.innerHTML = `<img src="${img}" alt="${esc(b.term)} definition box, QSS p. ${b.page}">`;
   }
   let lastPassage = null;                            // consecutive groups often share one book block
   for (const el of document.querySelectorAll("[data-pass]")) {
@@ -518,7 +545,8 @@ if (new URLSearchParams(location.search).has("selftest")) selftest(); else go();
 // ?selftest: generate many questions per source and check their invariants.
 async function selftest() {
   $("#card").innerHTML = "<p>Self-test running…</p>";
-  while (!rReady || !bookBoxes.ready) await new Promise(r => setTimeout(r, 300));
+  while (!rReady) await new Promise(r => setTimeout(r, 300));
+  await bookReadyP;
   const report = {}, t0 = performance.now();
   const N = { code: 400, box: 300, vocab: 100, stats: 300, calc: 200, concept: 200, scen: 300, synth: 300 };
   for (const [src, n] of Object.entries(N)) {

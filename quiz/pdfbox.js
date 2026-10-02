@@ -3,12 +3,35 @@
 import * as pdfjs from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
 pdfjs.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
 
-const PDF_URL = "../QSS%20Ch1-4.pdf";
+const PDF_URL = "../QSS%20Ch1-4.pdf";           // only exists when running from the course folder
 const SPLITS = { "box-causal": [0, "The fundamental problem"], "box-fpci": ["The fundamental problem", null] };  // two definitions share one box
 
+// The book is never put on the website. Online, each student opens their own copy once and this browser keeps it.
+function idb(mode, fn) {
+  return new Promise((res, rej) => {
+    const open = indexedDB.open("qss.book", 1);
+    open.onupgradeneeded = () => open.result.createObjectStore("files");
+    open.onerror = () => rej(open.error);
+    open.onsuccess = () => {
+      const tx = open.result.transaction("files", mode), req = fn(tx.objectStore("files"));
+      tx.oncomplete = () => { open.result.close(); res(req.result); };
+      tx.onerror = tx.onabort = () => { open.result.close(); rej(tx.error); };
+    };
+  });
+}
+export const savePdf = buf => idb("readwrite", s => s.put(buf, "pdf")).catch(() => {});
+export const forgetPdf = () => idb("readwrite", s => s.delete("pdf")).catch(() => {});
+
+// The PDF next to the quiz if there is one, else the copy saved in this browser, else null.
+export async function findPdf() {
+  try { const r = await fetch(PDF_URL); if (r.ok && r.headers.get("content-type")?.includes("pdf")) return await r.arrayBuffer(); } catch {}
+  try { return (await idb("readonly", s => s.get("pdf"))) ?? null; } catch { return null; }
+}
+
 export class BookBoxes {
-  async init(boxes, geoms) {
-    this.doc = await pdfjs.getDocument(PDF_URL).promise;
+  async init(boxes, geoms, data) {
+    this.ready = false;
+    this.doc = await pdfjs.getDocument({ data: new Uint8Array(data.slice(0)) }).promise;   // copy: pdf.js takes ownership of the buffer
     this.geom = {};
     const byPage = {};
     for (const g of geoms) (byPage[g.page] ??= []).push(g);
@@ -18,7 +41,9 @@ export class BookBoxes {
       this.geom[b.id] = gs[Math.min(i, gs.length - 1)];
     }
     this.texts = {}; this.images = {};
-    await Promise.all(boxes.map(b => this.load(b.id)));
+    await Promise.all(boxes.map(b => this.load(b.id).catch(() => {})));
+    if (!Object.values(this.texts).some(t => t.length > 40))
+      throw new Error("this doesn't look like the course's QSS Ch1-4.pdf (no definition boxes found where expected)");
     this.ready = true;
   }
 

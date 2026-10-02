@@ -2,6 +2,10 @@
 import { WebR } from "https://webr.r-wasm.org/v0.6.0/webr.mjs";
 
 const ROOT = "../../";                       // quiz lives at <root>/Midterm Prep/quiz/
+// Online there is no course folder, so the data sets come from the book's own public repository
+// (GPL-2), pinned to one commit. Folder names match: "Data Sets/CAUSALITY/resume.csv" -> "CAUSALITY/resume.csv".
+const QSS_DATA = "https://raw.githubusercontent.com/kosukeimai/qss/3d6144d4c6fa29ff1fb0a7edb681490b22340bbb/";
+let localData = true;                        // stop asking the course folder after its first miss
 const PRELUDE = `
 .qcache <- new.env()
 # The book predates R 4.0: read.csv made factors. Memoize reads so chapter replays are cheap.
@@ -36,6 +40,14 @@ async function fetchRetry(url, tries = 4) {
   }
   return null;
 }
+async function fetchData(path) {
+  if (localData) {
+    const buf = await fetchRetry(encodeURI(ROOT + path), 1);
+    if (buf) return buf;
+    localData = false;
+  }
+  return fetchRetry(QSS_DATA + path.split("/").slice(-2).join("/"));
+}
 
 export class Runtime {
   constructor(bookcode) {
@@ -55,7 +67,7 @@ export class Runtime {
       for (const [name, path] of Object.entries(ch.files)) {
         const dir = `/home/web_user/${ch.id}`;
         await this.webR.FS.mkdir(dir).catch(() => {});
-        const buf = await fetchRetry(encodeURI(ROOT + path));
+        const buf = await fetchData(path);
         if (buf) await this.webR.FS.writeFile(`${dir}/${name}`, new Uint8Array(buf));
         else console.warn(`Could not load ${path}; code from that dataset will show an error.`);
       }
