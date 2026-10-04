@@ -9,7 +9,7 @@ This folder only holds the Mac launcher.
    textbook PDF (`Midterm Prep/QSS Ch1-4.pdf`), the datasets (`Data Sets/…`) and
    `Week 1/INTRO/` from it, so it must stay intact.
 2. Double-click **`Start Quiz.command`**. A Terminal window opens (that's the server) and the
-   quiz opens in your browser at `http://localhost:8765/Midterm%20Prep/quiz/index.html`.
+   quiz opens in your browser at `http://localhost:8765/quiz/index.html`.
 3. Close the Terminal window when you're done.
 
 ## First-time fixes

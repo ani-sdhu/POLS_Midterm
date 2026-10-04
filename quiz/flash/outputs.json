@@ -1,0 +1,286 @@
+{
+ "cmd-c": {
+  "text": "[1] 2525779 3026003 3691173 4449049 5320817 6127700 6916183\n[1] 2525779 3026003 3691173 4449049 5320817 6127700 6916183",
+  "img": false
+ },
+ "cmd-seq": {
+  "text": "[1] 1950 1960 1970 1980 1990 2000 2010\n[1] 1950 1960 1970 1980 1990 2000 2010\n[1] 2010 2000 1990 1980 1970 1960 1950\n[1] 2008 2009 2010 2011 2012\n[1] 2012 2011 2010 2009 2008",
+  "img": false
+ },
+ "cmd-rep": {
+  "text": "[1] 1 1\n[1] NA NA NA NA NA",
+  "img": false
+ },
+ "cmd-length-names": {
+  "text": "[1] 7\nNULL\n   1950    1960    1970    1980    1990    2000    2010 \n2525779 3026003 3691173 4449049 5320817 6127700 6916183",
+  "img": false
+ },
+ "cmd-index": {
+  "text": "[1] 3026003\n[1] 3026003 4449049\n[1] 4449049 3026003\n[1] 2525779 3026003 4449049 5320817 6127700 6916183",
+  "img": false
+ },
+ "cmd-head": {
+  "text": "  firstname    sex  race call\n1   Allison female white    0\n2   Kristen female white    0\n3   Lakisha female black    0\n4   Latonya female black    0\n5    Carrie female white    0\n6       Jay   male white    0",
+  "img": false
+ },
+ "cmd-dim": {
+  "text": "[1] 4870    4\n[1] 4870\n[1] 4",
+  "img": false
+ },
+ "cmd-summary": {
+  "text": "   firstname        sex          race           call        \n Tamika : 256   female:3746   black:2435   Min.   :0.00000  \n Anne   : 242   male  :1124   white:2435   1st Qu.:0.00000  \n Allison: 232                              Median :0.00000  \n Latonya: 230                              Mean   :0.08049  \n Emily  : 227                              3rd Qu.:0.00000  \n Latoya : 226                              Max.   :1.00000  \n (Other):3457",
+  "img": false
+ },
+ "cmd-class": {
+  "text": "[1] \"numeric\"\n[1] \"character\"\n[1] \"function\"\n[1] \"logical\"",
+  "img": false
+ },
+ "cmd-dataframe-index": {
+  "text": "[1] 2525779 3026003 3691173 4449049 5320817 6127700 6916183\n[1] 2525779 3026003 3691173 4449049 5320817 6127700 6916183\n  year world.pop\n1 1950   2525779\n2 1960   3026003\n3 1970   3691173\n[1] 1950 1960 1970",
+  "img": false
+ },
+ "cmd-list": {
+  "text": " [1]  1  2  3  4  5  6  7  8  9 10\n[1] \"hi\"    \"hello\" \"hey\"  \n  z1   z2\n1  1 good\n2  2  bad\n3  3 ugly\n[1] 3",
+  "img": false
+ },
+ "cmd-subset": {
+  "text": "   call firstname\n3     0   Lakisha\n4     0   Latonya\n8     0     Kenya\n9     0   Latonya\n11    0     Aisha\n13    0     Aisha\n[1] 1886    2",
+  "img": false
+ },
+ "cmd-relational": {
+  "text": "[1] TRUE\n[1] FALSE\n[1] TRUE\n[1]  TRUE  TRUE FALSE FALSE FALSE\n[1]  TRUE  TRUE FALSE  TRUE  TRUE",
+  "img": false
+ },
+ "cmd-logical": {
+  "text": "[1] FALSE  TRUE  TRUE FALSE FALSE\n[1]  TRUE FALSE FALSE  TRUE  TRUE\n[1] 0.4\n[1] 2",
+  "img": false
+ },
+ "cmd-logical-index": {
+  "text": "[1] 0.06447639\n[1] FALSE FALSE  TRUE  TRUE FALSE",
+  "img": false
+ },
+ "cmd-ifelse": {
+  "text": ", , BlackFemale = 0\n\n       sex\nrace    female male\n  black      0  549\n  white   1860  575\n\n, , BlackFemale = 1\n\n       sex\nrace    female male\n  black   1886    0\n  white      0    0",
+  "img": false
+ },
+ "cmd-factor": {
+  "text": "[1] \"character\"\n[1] \"BlackFemale\" \"BlackMale\"   \"WhiteFemale\" \"WhiteMale\"  \n\nBlackFemale   BlackMale WhiteFemale   WhiteMale \n       1886         549        1860         575",
+  "img": false
+ },
+ "cmd-table": {
+  "text": "       call\nrace       0    1\n  black 2278  157\n  white 2200  235",
+  "img": false
+ },
+ "cmd-addmargins": {
+  "text": "       call\nrace       0    1  Sum\n  black 2278  157 2435\n  white 2200  235 2435\n  Sum   4478  392 4870",
+  "img": false
+ },
+ "cmd-table-rates": {
+  "text": "[1] 0.08049281\n[1] 0.06447639\n[1] 0.09650924",
+  "img": false
+ },
+ "cmd-proptable": {
+  "text": "    Taliban\nISAF         0         1\n   0 0.4953445 0.1318436\n   1 0.1769088 0.1959032",
+  "img": false
+ },
+ "cmd-tapply": {
+  "text": "Civic Duty    Control  Hawthorne  Neighbors \n 0.3145377  0.2966383  0.3223746  0.3779482 \nCivic Duty    Control  Hawthorne  Neighbors \n0.01789934 0.00000000 0.02573631 0.08130991",
+  "img": false
+ },
+ "cmd-mean-median": {
+  "text": "[1] 3.5\n[1] 4.5\n[1] 4\n[1] 20",
+  "img": false
+ },
+ "cmd-sd-var": {
+  "text": "[1] 0.2304592\n[1] 0.2510016\n[1] 0.05311145",
+  "img": false
+ },
+ "cmd-quantile": {
+  "text": "   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  5.000   5.050   5.050   5.081   5.050   5.750 \n[1] 0.62\n[1] 0\n  0%  10%  20%  30%  40%  50%  60%  70%  80%  90% 100% \n5.00 5.05 5.05 5.05 5.05 5.05 5.05 5.05 5.05 5.15 5.75",
+  "img": false
+ },
+ "cmd-isna": {
+  "text": " [1] 2,001-10,000  2,001-10,000  2,001-10,000  2,001-10,000  2,001-10,000 \n [6] <NA>          10,001-20,000 2,001-10,000  2,001-10,000  <NA>         \n5 Levels: 10,001-20,000 2,001-10,000 20,001-30,000 ... over 30,000\n [1] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE\n[1] 154\n[1] 0.05591866",
+  "img": false
+ },
+ "cmd-narm": {
+  "text": "[1] NA\n[1] 2",
+  "img": false
+ },
+ "cmd-naomit": {
+  "text": "[1] 2554\n[1] 2600",
+  "img": false
+ },
+ "cmd-exclude": {
+  "text": "      Taliban\nISAF             0           1        <NA>\n  0    0.482933914 0.128540305 0.007988381\n  1    0.172476398 0.190994916 0.007988381\n  <NA> 0.002541757 0.002904866 0.003631082",
+  "img": false
+ },
+ "cmd-log": {
+  "text": "[1] 3\n[1] -2\n[1] 2\n[1] 5\n[1] 0",
+  "img": false
+ },
+ "cmd-scale": {
+  "text": "[1] 0\n[1] 1",
+  "img": false
+ },
+ "cmd-cor": {
+  "text": "[1] 0.4327743",
+  "img": false
+ },
+ "cmd-lm": {
+  "text": "\nCall:\nlm(formula = diff.share ~ d.comp, data = face)\n\nCoefficients:\n(Intercept)       d.comp  \n    -0.3122       0.6604",
+  "img": false
+ },
+ "cmd-coef-fitted": {
+  "text": "(Intercept)      d.comp \n -0.3122259   0.6603815 \n          1           2           3           4           5           6 \n 0.06060411 -0.08643340  0.09217061  0.04539236  0.13698690 -0.10057206 \n          1           2           3           4           5           6 \n 0.14952531  0.20586439 -0.04226314  0.15112452  0.35878274 -0.24896790",
+  "img": false
+ },
+ "cmd-predict": {
+  "text": "    messages\n1 Civic Duty\n2  Hawthorne\n3    Control\n4  Neighbors\n        1         2         3         4 \n0.3145377 0.3223746 0.2966383 0.3779482",
+  "img": false
+ },
+ "cmd-rsq": {
+  "text": "[1] 0.5130333\n[1] 0.5055415",
+  "img": false
+ },
+ "cmd-factor-base": {
+  "text": "[1] \"Civic Duty\" \"Control\"    \"Hawthorne\"  \"Neighbors\" \n\nCall:\nlm(formula = primary2006 ~ messages, data = social)\n\nCoefficients:\n      (Intercept)    messagesControl  messagesHawthorne  messagesNeighbors  \n         0.314538          -0.017899           0.007837           0.063411",
+  "img": false
+ },
+ "cmd-noint": {
+  "text": "\nCall:\nlm(formula = primary2006 ~ -1 + messages, data = social)\n\nCoefficients:\nmessagesCivic Duty     messagesControl   messagesHawthorne   messagesNeighbors  \n            0.3145              0.2966              0.3224              0.3779",
+  "img": false
+ },
+ "cmd-interaction": {
+  "text": "\nCall:\nlm(formula = primary2006 ~ primary2004 * messages, data = social.neighbor)\n\nCoefficients:\n                  (Intercept)                    primary2004  \n                      0.23711                        0.14870  \n            messagesNeighbors  primary2004:messagesNeighbors  \n                      0.06930                        0.02723",
+  "img": false
+ },
+ "cmd-iwrap": {
+  "text": "[1] \"(Intercept)\"                \"age\"                       \n[3] \"I(age^2)\"                   \"messagesNeighbors\"         \n[5] \"age:messagesNeighbors\"      \"I(age^2):messagesNeighbors\"",
+  "img": false
+ },
+ "cmd-merge": {
+  "text": "  state Obama.x Obama.y\n8    DC      92      91\n9    DE      62      59\n  state Obama state.1 Obama.1\n8    DC    92      DE      59\n9    DE    62      DC      91",
+  "img": false
+ },
+ "cmd-kmeans": {
+  "text": "        [,1]       [,2]\n1 -0.3912687 0.03260696\n2  0.6776736 0.09061157\n            cluster\nparty          1   2\n  Democrat   200   0\n  Other        0   0\n  Republican   1 242",
+  "img": false
+ },
+ "cmd-matrix": {
+  "text": "     [,1] [,2] [,3] [,4]\n[1,]    1    2    3    4\n[2,]    5    6    7    8\n[3,]    9   10   11   12\n[1] 15 18 21 24\n[1]  2.5  6.5 10.5\n[1] 1.290994 1.290994 1.290994",
+  "img": false
+ },
+ "cmd-for": {
+  "text": "2 times 2 is equal to 4 \n4 times 2 is equal to 8 \n6 times 2 is equal to 12 \n[1]  4  8 12",
+  "img": false
+ },
+ "cmd-if": {
+  "text": "\"subtract\" is invalid. Use either \"add\" or \"multiply.\"",
+  "img": false
+ },
+ "cmd-modulo": {
+  "text": "[1]  1  4  9  8 25",
+  "img": false
+ },
+ "cmd-sign": {
+  "text": "[1] IN MO NC\n51 Levels: AK AL AR AZ CA CO CT DC DE FL GA HI IA ID IL IN KS KY LA MA ... WY\n[1]  1 -1  1\n[1] 0.05882353",
+  "img": false
+ },
+ "cmd-plot-layers": {
+  "text": "",
+  "img": true
+ },
+ "cmd-par": {
+  "text": "",
+  "img": true
+ },
+ "inf-summary-overview": {
+  "text": "\nCall:\nlm(formula = water ~ reserved, data = women)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-23.991 -14.738  -7.865   2.262 316.009 \n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept)   14.738      2.286   6.446 4.22e-10 ***\nreserved       9.252      3.948   2.344   0.0197 *  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 33.45 on 320 degrees of freedom\nMultiple R-squared:  0.01688,\tAdjusted R-squared:  0.0138 \nF-statistic: 5.493 on 1 and 320 DF,  p-value: 0.0197",
+  "img": false
+ },
+ "inf-estimate-se": {
+  "text": "             Estimate Std. Error  t value     Pr(>|t|)\n(Intercept) 14.738318   2.286300 6.446363 4.216474e-10\nreserved     9.252423   3.947746 2.343723 1.970398e-02",
+  "img": false
+ },
+ "inf-tvalue": {
+  "text": "  Estimate Std. Error    t value   Pr(>|t|) \n9.25242298 3.94774607 2.34372293 0.01970398",
+  "img": false
+ },
+ "inf-pvalue": {
+  "text": "\nCall:\nlm(formula = water ~ reserved, data = women)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-23.991 -14.738  -7.865   2.262 316.009 \n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept)   14.738      2.286   6.446 4.22e-10 ***\nreserved       9.252      3.948   2.344   0.0197 *  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 33.45 on 320 degrees of freedom\nMultiple R-squared:  0.01688,\tAdjusted R-squared:  0.0138 \nF-statistic: 5.493 on 1 and 320 DF,  p-value: 0.0197",
+  "img": false
+ },
+ "inf-intercept-row": {
+  "text": "    Estimate   Std. Error      t value     Pr(>|t|) \n1.473832e+01 2.286300e+00 6.446363e+00 4.216474e-10",
+  "img": false
+ },
+ "inf-model-lines": {
+  "text": "\nCall:\nlm(formula = water ~ reserved, data = women)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-23.991 -14.738  -7.865   2.262 316.009 \n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept)   14.738      2.286   6.446 4.22e-10 ***\nreserved       9.252      3.948   2.344   0.0197 *  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 33.45 on 320 degrees of freedom\nMultiple R-squared:  0.01688,\tAdjusted R-squared:  0.0138 \nF-statistic: 5.493 on 1 and 320 DF,  p-value: 0.0197",
+  "img": false
+ },
+ "inf-confint": {
+  "text": "                2.5 %   97.5 %\n(Intercept) 10.240240 19.23640\nreserved     1.485608 17.01924",
+  "img": false
+ },
+ "inf-summary-continuous": {
+  "text": "\nCall:\nlm(formula = diff.share ~ d.comp, data = face)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-0.67487 -0.16600  0.01399  0.17741  0.74297 \n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept) -0.31223    0.06596  -4.733 6.24e-06 ***\nd.comp       0.66038    0.12718   5.193 8.85e-07 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.2665 on 117 degrees of freedom\nMultiple R-squared:  0.1873,\tAdjusted R-squared:  0.1803 \nF-statistic: 26.96 on 1 and 117 DF,  p-value: 8.854e-07",
+  "img": false
+ },
+ "inf-summary-multi": {
+  "text": "\nCall:\nlm(formula = fullPropAfter ~ -1 + NJ + fullPropBefore + wageBefore + \n    chain, data = minwage)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-0.48617 -0.18135 -0.02809  0.15127  0.75091 \n\nCoefficients:\n                Estimate Std. Error t value Pr(>|t|)   \nNJ               0.05422    0.03321   1.633  0.10343   \nfullPropBefore   0.16879    0.05662   2.981  0.00307 **\nwageBefore       0.08133    0.03892   2.090  0.03737 * \nchainburgerking -0.11563    0.17888  -0.646  0.51844   \nchainkfc        -0.15080    0.18310  -0.824  0.41074   \nchainroys       -0.20639    0.18671  -1.105  0.26974   \nchainwendys     -0.22013    0.18840  -1.168  0.24343   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.2438 on 351 degrees of freedom\nMultiple R-squared:  0.6349,\tAdjusted R-squared:  0.6277 \nF-statistic: 87.21 on 7 and 351 DF,  p-value: < 2.2e-16",
+  "img": false
+ },
+ "inf-multi-other": {
+  "text": "                   Estimate Std. Error    t value    Pr(>|t|)\nNJ               0.05422001 0.03320865  1.6327076 0.103427222\nfullPropBefore   0.16879400 0.05661885  2.9812334 0.003071294\nwageBefore       0.08133448 0.03892224  2.0896659 0.037367289\nchainburgerking -0.11562535 0.17887508 -0.6464028 0.518440970\nchainkfc        -0.15080004 0.18310421 -0.8235749 0.410740349\nchainroys       -0.20638625 0.18670757 -1.1053984 0.269744097\nchainwendys     -0.22013268 0.18840105 -1.1684260 0.243427942",
+  "img": false
+ },
+ "inf-multi-base": {
+  "text": "   (Intercept)             NJ fullPropBefore     wageBefore       chainkfc \n   -0.11562535     0.05422001     0.16879400     0.08133448    -0.03517469 \n     chainroys    chainwendys \n   -0.09076090    -0.10450734",
+  "img": false
+ },
+ "inf-multi-fit": {
+  "text": "\nCall:\nlm(formula = fullPropAfter ~ -1 + NJ + fullPropBefore + wageBefore + \n    chain, data = minwage)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-0.48617 -0.18135 -0.02809  0.15127  0.75091 \n\nCoefficients:\n                Estimate Std. Error t value Pr(>|t|)   \nNJ               0.05422    0.03321   1.633  0.10343   \nfullPropBefore   0.16879    0.05662   2.981  0.00307 **\nwageBefore       0.08133    0.03892   2.090  0.03737 * \nchainburgerking -0.11563    0.17888  -0.646  0.51844   \nchainkfc        -0.15080    0.18310  -0.824  0.41074   \nchainroys       -0.20639    0.18671  -1.105  0.26974   \nchainwendys     -0.22013    0.18840  -1.168  0.24343   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.2438 on 351 degrees of freedom\nMultiple R-squared:  0.6349,\tAdjusted R-squared:  0.6277 \nF-statistic: 87.21 on 7 and 351 DF,  p-value: < 2.2e-16",
+  "img": false
+ },
+ "inf-confint-multi": {
+  "text": "      2.5 %      97.5 % \n-0.01109295  0.11953297",
+  "img": false
+ },
+ "gr-bar": {
+  "text": "",
+  "img": true
+ },
+ "gr-hist": {
+  "text": "",
+  "img": true
+ },
+ "gr-scatter": {
+  "text": "",
+  "img": true
+ },
+ "gr-box": {
+  "text": "",
+  "img": true
+ },
+ "gr-line": {
+  "text": "",
+  "img": true
+ },
+ "gr-qq": {
+  "text": "",
+  "img": true
+ },
+ "gr-residual": {
+  "text": "",
+  "img": true
+ },
+ "gr-lorenz": {
+  "text": "",
+  "img": true
+ },
+ "gr-did": {
+  "text": "NJ.change PA.change       DiD \n    0.024    -0.038     0.062",
+  "img": true
+ }
+}

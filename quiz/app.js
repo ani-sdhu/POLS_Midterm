@@ -2,6 +2,16 @@ import { Runtime } from "./rt.js";
 import { BookCode, Boxes, Vocab, Stats, Calculus, Concepts, Scenarios, SynthR, esc, PAGE, SECTION_TITLES, sectionKey, exprPreview } from "./gen.js";
 import { AI } from "./ai.js";
 import { BookBoxes, findPdf, savePdf, forgetPdf } from "./pdfbox.js";
+import ch1 from "./assess/ch1.js";
+import ch2 from "./assess/ch2.js";
+import ch3 from "./assess/ch3.js";
+import ch4 from "./assess/ch4.js";
+import calcAssess from "./assess/calc.js";
+import { DICTS, TOPICS } from "./flash/topics.js";
+import fCommands from "./flash/cards_commands.js";
+import fConcepts from "./flash/cards_concepts.js";
+import fEquations from "./flash/cards_equations.js";
+import fGraphs from "./flash/cards_graphs.js";
 
 const KNOWLEDGE = ["steps_ch1", "steps_ch2", "steps_ch3", "steps_ch4", "cases", "boxes", "vocab", "concepts", "scenarios", "box_geom", "calculus"];
 const $ = s => document.querySelector(s);
@@ -42,6 +52,7 @@ function weightedPick(ids) {
 const [book, ...kn] = await Promise.all([getJSON("bookcode.json"), ...KNOWLEDGE.map(k => getJSON(`knowledge/${k}.json`))]);
 const [s1, s2, s3, s4, cases, boxes, vocab, concepts, scenarios, boxGeom, calcSheet] = kn;
 const notes = { ...s1, ...s2, ...s3, ...s4 };
+const flashOut = await getJSON("flash/outputs.json").catch(() => ({}));   // built by build_flash.mjs
 const ai = new AI();
 const factPool = [
   ...boxes.boxes.map(b => ({ section: b.section, get text() { return `${b.term}: ${bookBoxes.texts?.[b.id] ?? ""}`; } })),
@@ -152,6 +163,16 @@ function toShortAnswer(q) {
     explain: `<div class=label>Answer</div>${answerHtml}${q.explain ? `<div class=label>Why</div><div>${q.explain}</div>` : ""}` };
 }
 
+// Everything above the answer area: topic, case, code, output, prompt.
+function questionHtml(q) {
+  let h = `<div class=q-meta><span class="chip ${q.star ? "star" : ""}">${esc(q.topic)}</span><span class=ref>${esc(q.ref)}</span></div>`;
+  if (q.caseCard) h += caseHtml(q.caseCard);
+  if (q.originalCode) h += block("Original code", codeBlock(q.originalCode)) + (q.output ? block("Original output", codeBlock(q.output, "out")) : "");
+  if (q.code) h += block(q.originalCode ? "Changed code" : "Code", (q.originalCode ? "" : commentBlock(q.comment) + (q.codeBefore ? codeBlock(q.codeBefore, "dim") : "")) + codeBlock(q.code, "hl"));
+  if (q.output && !q.originalCode) h += block("Output", codeBlock(q.output, "out"));
+  return h + `<div class=prompt>${q.prompt}</div>`;
+}
+
 function render(q) {
   q = toShortAnswer(q);
   current = q; answered = false;
@@ -170,12 +191,7 @@ function render(q) {
     if (!rReady && q) rReadyP.then(() => { if (current === q) go(); });
     return;
   }
-  let h = `<div class=q-meta><span class="chip ${q.star ? "star" : ""}">${esc(q.topic)}</span><span class=ref>${esc(q.ref)}</span></div>`;
-  if (q.caseCard) h += caseHtml(q.caseCard);
-  if (q.originalCode) h += block("Original code", codeBlock(q.originalCode)) + (q.output ? block("Original output", codeBlock(q.output, "out")) : "");
-  if (q.code) h += block(q.originalCode ? "Changed code" : "Code", (q.originalCode ? "" : commentBlock(q.comment) + (q.codeBefore ? codeBlock(q.codeBefore, "dim") : "")) + codeBlock(q.code, "hl"));
-  if (q.output && !q.originalCode) h += block("Output", codeBlock(q.output, "out"));
-  h += `<div class=prompt>${q.prompt}</div>`;
+  let h = questionHtml(q);
   if (q.format === "mc") {
     h += `<div class=opts>${q.options.map((o, i) => `<label class=opt><input type=radio name=opt value=${i}><span class=key>${i + 1}</span>${q.optionsAreCode ? codeBlock(o) : `<span>${esc(o)}</span>`}</label>`).join("")}</div>`;
   } else if (q.format === "self") {
@@ -258,9 +274,37 @@ async function addPassage(q, el) {
   if (p && current === q) el.insertAdjacentHTML("beforeend", passageHtml(p));
 }
 
+// Show-all mode: every question in the current focus on one page, answers folded away (browse only, nothing is recorded).
+const answerHtml = q => q.format === "self" ? q.explain
+  : `<div class=label>Answer</div>${q.format !== "mc" ? `<p class=model><b>${q.answerHtml ?? `<code>${esc(q.answer)}</code>`}</b></p>`
+    : q.optionsAreCode ? codeBlock(q.options[q.answer]) : `<p class=model><b>${esc(q.options[q.answer])}</b></p>`}${q.explain ? `<div class=label>Why</div><div>${q.explain}</div>` : ""}`;
+async function renderAll(mine) {
+  const card = $("#card");
+  card.innerHTML = `<p class=muted>Waiting for R and the textbook…</p>`;
+  await Promise.all([rReadyP, bookReadyP]);
+  if (mine !== generation) return;
+  const mix = { ...mixFor(settings.focus) };
+  if (!rReady) { delete mix.code; delete mix.synth; }
+  const todo = Object.keys(mix).flatMap(s => candidates(s).map(id => [s, id]));
+  card.innerHTML = `<h2 class=page>${esc($("#focus").selectedOptions[0]?.dataset.label ?? "All questions")} · ${todo.length} questions</h2><p class=muted id=allstat></p><div id=alllist></div>`;
+  for (const [i, [src, id]] of todo.entries()) {
+    $("#allstat").textContent = `Generating ${i + 1} of ${todo.length}…`;
+    const q = toShortAnswer(await Promise.resolve(sources[src].make(id)).catch(e => (console.error(e), null)));
+    if (mine !== generation) return;
+    if (!q) continue;
+    const opts = q.format === "mc" ? `<ol>${q.options.map(o => `<li>${q.optionsAreCode ? codeBlock(o) : esc(o)}</li>`).join("")}</ol>` : "";
+    const el = Object.assign(document.createElement("div"), { className: "allq",
+      innerHTML: `${questionHtml(q)}${opts}<details><summary>Show answer</summary><div class=explain>${answerHtml(q)}</div></details>` });
+    $("#alllist").append(el);
+    typeset(el);
+  }
+  $("#allstat").textContent = "";
+}
+
 let generation = 0;                                  // ignore stale results when focus changes mid-generation
 async function go() {
   const mine = ++generation;
+  if (settings.showAll) { current = null; return renderAll(mine); }
   $("#card").innerHTML = `<p class=muted>Generating…</p>`;
   const q = await nextQuestion().catch(e => (console.error(e), null));
   if (mine !== generation) return;
@@ -324,6 +368,10 @@ function renderProgress() {
   h += `<div class=panel><h3 class=sub>By chapter</h3>${legend}${["ch1", "ch2", "ch3", "ch4"].map(ch =>
     meter(`Chapter ${ch[2]}`, null, summary(["code", "box", "vocab", "concept", "scen"].flatMap(s => sources[s].items()).filter(i => chapterOf(i) === ch)))).join("")}</div>`;
   h += `<div class=panel><h3 class=sub>★ Definition boxes</h3>${legend}${boxes.boxes.map(b => meter(esc(b.term), `QSS ${b.section} · p. ${b.page}`, summary(sources.box.items().filter(i => i.startsWith(`box:${b.id}:`))))).join("")}</div>`;
+  h += `<div class=panel><h3 class=sub>Flashcards</h3><div class=legend><span><i style="background:var(--accent)"></i>known</span><span><i style="background:color-mix(in srgb, var(--accent) 38%, transparent)"></i>marked still learning</span></div>${FSETS.filter(([v]) => v !== "starred").map(([v, t]) => {
+    const cs = fSetCards(v, true), k = cs.filter(c => flash.marks[c.id] === "know").length;
+    return meter(esc(t), `${k} of ${cs.length} known`, { seen: cs.filter(c => flash.marks[c.id]).length, total: cs.length, mastered: cs.length ? k / cs.length : 0 });
+  }).join("")}</div>`;
   const weak = Object.entries(mastery).filter(([, m]) => m.n).sort((x, y) => x[1].s - y[1].s).slice(0, 12);
   h += `<div class=panel><h3 class=sub>Weakest items</h3>${weak.length ? `<ol class=weak>${weak.map(([id, m]) => `<li>${esc(label(id))} <span class=muted>· ${Math.round(100 * m.s)}%</span></li>`).join("")}</ol>` : "<p class=muted>Answer some questions first.</p>"}</div>`;
   h += `<div class=panel><h3 class=sub>Backup</h3><div class=actions><button id=exp>Export progress</button><label class=btn>Import<input type=file id=imp accept=.json hidden></label><button id=reset>Reset</button></div></div>`;
@@ -481,6 +529,244 @@ function renderSearch(query) {
   document.querySelectorAll(".result").forEach(b => b.onclick = () => { const e = shown[+b.dataset.i]; $("#search").value = ""; renderStudy(e.sec, e.anchor); });
 }
 
+// ---------- assessment: new problems, written answers, graded against a rubric ----------
+const ASSESS = [ch1, ch2, ch3, ch4, calcAssess];
+const KIND = { write: "Written answer", predict: "Predict the output", interpret: "Interpret the code and output" };
+const PH = { write: "Answer in full sentences, as you would on the exam.", predict: "Write the exact output you expect, then reveal.", interpret: "Explain what the code does and interpret its output in full sentences." };
+let assessState = store.get("qss.assess", {});        // partId -> { draft, score (0..1), checks: [bool] }
+let draftTimer;
+const saveAssess = () => store.set("qss.assess", assessState);
+const partIds = it => it.parts.map((_, k) => `${it.id}.${k}`);
+const findPart = pid => { const i = pid.lastIndexOf("."), it = ASSESS.flatMap(c => c.items).find(x => x.id === pid.slice(0, i)); return [it, it.parts[+pid.slice(i + 1)]]; };
+function chapterScore(ch) {
+  const ids = ch.items.flatMap(partIds), graded = ids.filter(id => assessState[id]?.score !== undefined);
+  return { total: ids.length, graded: graded.length, pct: ids.length ? graded.reduce((a, id) => a + assessState[id].score, 0) / ids.length : 0 };
+}
+const itemScore = it => { const s = partIds(it).map(id => assessState[id]?.score); return s.every(x => x !== undefined) ? s.reduce((a, b) => a + b, 0) / s.length : null; };
+const tabLabel = c => { const s = chapterScore(c), ready = s.pct >= 0.9; return `<b>${esc(c.short)}</b><small class="${ready ? "ready" : ""}">${ready ? "✓ exam-ready · " : ""}${Math.round(100 * s.pct)}% · ${s.graded}/${s.total} graded</small>`; };
+
+function renderAssess(chId = settings.assessCh ?? ASSESS[0].id) {
+  const ch = ASSESS.find(c => c.id === chId) ?? ASSESS[0];
+  settings.assessCh = ch.id; store.set("qss.settings", settings);
+  let h = `<div class=panel><h2 class=page>Assessment</h2>
+    <p class=muted>New problems built on the book's methods and R functions, not its examples. As on the exam, you never write code: you predict what code prints or interpret code and its output. Write your answer before you reveal anything. Then tick only the rubric points your answer actually made. A chapter's mastery counts ungraded parts as 0; 90% means exam-ready.</p>
+    <div class=chtabs>${ASSESS.map(c => `<button data-ch="${c.id}" class="${c.id === ch.id ? "on" : ""}">${tabLabel(c)}</button>`).join("")}</div></div>
+    <div class=panel><h2 class=page>${esc(ch.title)}</h2><p class=muted>${ch.intro}</p></div>`;
+  for (const it of ch.items) {
+    const s = itemScore(it);
+    h += `<details class="panel aitem" data-item="${it.id}"><summary><span class=chip>${esc(it.sec)}</span>${esc(it.title)}<span class="ascore ${s === null ? "" : "done"}">${s === null ? `${it.parts.length} parts` : `${Math.round(100 * s)}%`}</span></summary>
+      <div class=abody><div class=actx>${it.context}</div>${it.parts.map((p, k) => {
+        const pid = `${it.id}.${k}`, st = assessState[pid] ?? {};
+        return `<div class=apart data-pid="${pid}"><div class=label>Part (${String.fromCharCode(97 + k)}) · ${KIND[p.kind]}<span class="ptag done">${st.score === undefined ? "" : `scored ${Math.round(100 * st.score)}%`}</span></div>
+          <div class=prompt>${p.q}</div>${p.show ? codeBlock(p.show) : ""}${p.kind === "interpret" ? "<div class=label>Output</div><div class=showout></div>" : ""}
+          <textarea class="${p.kind === "predict" ? "rcode" : ""}" rows=${p.kind === "predict" ? 6 : 5} spellcheck=${p.kind !== "predict"} placeholder="${PH[p.kind]}">${esc(st.draft ?? "")}</textarea>
+          <div class=actions><button data-act=reveal class=primary>Reveal model answer</button></div>
+          <div class=areveal></div></div>`;
+      }).join("")}</div></details>`;
+  }
+  $("#assess").innerHTML = h;
+  typeset($("#assess"));
+  // Interpret parts show their code's output; run it when the problem is first opened.
+  for (const d of document.querySelectorAll("#assess details.aitem")) d.addEventListener("toggle", () => {
+    if (!d.open) return;
+    for (const box of d.querySelectorAll(".apart")) {
+      const el = box.querySelector(".showout"), [it, p] = findPart(box.dataset.pid);
+      if (el && !el.innerHTML) runR(it.setup, p.show, el);
+    }
+  });
+}
+
+// One R run at a time: every run shares the scratch environment .aenv.
+let rQueue = Promise.resolve();
+async function runR(setup, code, el) {
+  el.innerHTML = `<p class=muted>${rReady ? "Running…" : "Waiting for R to start (about 10 seconds)…"}</p>`;
+  if (!(await rReadyP)) { el.innerHTML = "<p class=muted>R failed to load, so code can't run here.</p>"; return; }
+  const { text, images } = await (rQueue = rQueue.then(() => rt.capture(setup, code)));
+  el.innerHTML = (text.trim() ? `<pre class="code out">${esc(text)}</pre>` : images.length ? "" : "<p class=muted>(no printed output)</p>") + (images.length ? "<div class=plots></div>" : "");
+  for (const img of images) {
+    const c = Object.assign(document.createElement("canvas"), { width: img.width, height: img.height });
+    c.getContext("2d").drawImage(img, 0, 0);
+    el.querySelector(".plots").append(c);
+  }
+}
+
+function revealPart(box, it, p) {
+  const st = assessState[box.dataset.pid] ?? {}, el = box.querySelector(".areveal");
+  el.innerHTML = (p.kind === "predict" ? "<div><div class=label>Actual output</div><div class=solout></div></div>" : "")
+    + `<div><div class=label>Model answer</div><div class=explain>${p.a}</div></div>
+    <div class=rubric><div class=label>Grade yourself: tick each point your answer actually made</div>${p.rubric.map((r, i) => `<label><input type=checkbox data-r=${i} ${st.checks?.[i] ? "checked" : ""}><span>${r}</span></label>`).join("")}</div>
+    <div class=actions><button data-act=grade class=primary>Save score</button>${ai.on ? "<button data-act=ai>Ask AI to check my answer</button>" : ""}</div><div class=aifb></div>`;
+  typeset(el);
+  if (p.kind === "predict") runR(it.setup, p.show, el.querySelector(".solout"));
+}
+
+function refreshScores(box, it) {
+  const st = assessState[box.dataset.pid];
+  box.querySelector(".ptag").textContent = `scored ${Math.round(100 * st.score)}%`;
+  const s = itemScore(it), tag = box.closest(".aitem").querySelector(".ascore");
+  if (s !== null) { tag.textContent = `${Math.round(100 * s)}%`; tag.classList.add("done"); }
+  for (const b of document.querySelectorAll(".chtabs [data-ch]")) b.innerHTML = tabLabel(ASSESS.find(c => c.id === b.dataset.ch));
+}
+
+$("#assess").addEventListener("click", async e => {
+  const tab = e.target.closest("[data-ch]");
+  if (tab) { renderAssess(tab.dataset.ch); return; }
+  const btn = e.target.closest("[data-act]");
+  if (!btn) return;
+  const box = btn.closest(".apart"), [it, p] = findPart(box.dataset.pid), mine = box.querySelector("textarea").value;
+  if (btn.dataset.act === "reveal") revealPart(box, it, p);
+  if (btn.dataset.act === "grade") {
+    const checks = [...box.querySelectorAll(".rubric input")].map(x => x.checked);
+    assessState[box.dataset.pid] = { draft: mine, checks, score: checks.filter(Boolean).length / checks.length };
+    saveAssess(); refreshScores(box, it);
+  }
+  if (btn.dataset.act === "ai") {
+    const plain = h => Object.assign(document.createElement("div"), { innerHTML: h }).textContent, fb = box.querySelector(".aifb");
+    btn.disabled = true; fb.innerHTML = "<p class=muted>Checking…</p>";
+    try {
+      const g = await ai.grade(plain(it.context + " " + p.q + (p.show ?? "")), plain(p.a) + " Rubric: " + p.rubric.map(plain).join("; "), mine);
+      fb.innerHTML = `<div class=explain><b>AI: ${esc(g.score)}/2.</b> ${esc(g.feedback ?? "")}${g.missing ? `<br><i>Missing:</i> ${esc(g.missing)}` : ""}</div>`;
+    } catch (err) { fb.innerHTML = `<p class=muted>AI check failed: ${esc(err.message)}</p>`; }
+    btn.disabled = false;
+  }
+});
+$("#assess").addEventListener("input", e => {
+  if (e.target.tagName !== "TEXTAREA") return;
+  const pid = e.target.closest(".apart").dataset.pid;
+  (assessState[pid] ??= {}).draft = e.target.value;
+  clearTimeout(draftTimer); draftTimer = setTimeout(saveAssess, 400);
+});
+
+// ---------- flashcards: Quizlet-style sorting over the study-guide deck ----------
+const FCARDS = [...fCommands, ...fConcepts, ...fEquations, ...fGraphs];
+const FBYID = Object.fromEntries(FCARDS.map(c => [c.id, c]));
+const FLABEL = { command: "Command", concept: "Concept", equation: "Equation", graph: "Graph" };
+const FSETS = [["all", "All cards"], ...Object.entries(DICTS).map(([k, v]) => [`dict:${k}`, v]),
+  ...Object.entries(TOPICS).map(([k, v]) => [`topic:${k}`, v]), ["starred", "Starred"]];
+let flash = { marks: {}, stars: {}, set: "all", backFirst: false, starredOnly: false, rounds: {}, ...store.get("qss.flash", {}) };
+let fFlipped = false, fUndo = [];
+const saveFlash = () => store.set("qss.flash", flash);
+function fSetCards(set, ignoreStarFilter = false) {
+  const cs = set === "all" ? FCARDS : set === "starred" ? FCARDS.filter(c => flash.stars[c.id])
+    : set.startsWith("dict:") ? FCARDS.filter(c => c.dict === set.slice(5)) : FCARDS.filter(c => c.topics.includes(set.slice(6)));
+  return flash.starredOnly && !ignoreStarFilter ? cs.filter(c => flash.stars[c.id]) : cs;
+}
+const fKey = () => flash.set + (flash.starredOnly ? "*" : "");
+// A round works through the set's cards not yet marked "know"; its queue and position are saved per set.
+const fNewRound = n => ({ n, pos: 0, know: 0, learn: 0, queue: fSetCards(flash.set).filter(c => flash.marks[c.id] !== "know").map(c => c.id) });
+function fRound() {
+  const valid = new Set(fSetCards(flash.set).map(c => c.id)), r = flash.rounds[fKey()];
+  return r && r.queue.every(id => valid.has(id)) ? r : (flash.rounds[fKey()] = fNewRound(1));
+}
+
+function fCodeOut(c) {
+  const o = flashOut[c.id];
+  if (!o) return codeBlock(c.code) + "<p class=muted>Output not built yet (run quiz/build_flash.mjs).</p>";
+  return codeBlock(c.code) + (o.text ? `<pre class="code out">${esc(o.text)}</pre>` : "")
+    + (o.img ? `<img class=fplot src="flash/img/${c.id}.png" alt="Plot drawn by this code">` : "");
+}
+// Prompt side and answer side. "Show back first" swaps them for reversible (concept/equation) cards.
+function fFace(c, answer) {
+  const term = c.code ? `<p class=fq>${c.front}</p>${fCodeOut(c)}` : `<div class=fterm>${c.front}</div>`;
+  const explain = (c.book ? `<div><div class=label>Book definition · p. ${c.page}</div><blockquote>${c.book}</blockquote></div>` : "") + `<div class=explain>${c.back}</div>`;
+  if (flash.backFirst && c.reversible) return answer ? term : explain;
+  if (!answer) return term;
+  return (c.code ? term : `<div class=fq>${c.front}</div>`) + explain;
+}
+
+function renderFlash() {
+  const cards = fSetCards(flash.set), r = fRound();
+  const known = cards.filter(c => flash.marks[c.id] === "know").length, learning = cards.filter(c => flash.marks[c.id] === "learn").length;
+  const opts = list => list.map(([v, t]) => `<option value="${v}" ${v === flash.set ? "selected" : ""}>${esc(t)} (${fSetCards(v, true).length})</option>`).join("");
+  let h = `<div class="panel fhead"><div class=row1>
+      <select id=fset aria-label="Card set"><option value="all" ${flash.set === "all" ? "selected" : ""}>All cards (${FCARDS.length})</option>
+        <optgroup label="Study guide dictionaries">${opts(FSETS.filter(([v]) => v.startsWith("dict:")))}</optgroup>
+        <optgroup label="Topics">${opts(FSETS.filter(([v]) => v.startsWith("topic:")))}</optgroup>
+        <optgroup label="Yours">${opts([["starred", "Starred"]])}</optgroup></select>
+      <div class=fctl><button id=fshuffle title="Shuffle the rest of this round (H)">⇄ Shuffle</button><button id=fstaronly class="${flash.starredOnly ? "on" : ""}">☆ Starred only</button>
+        <button id=fback class="${flash.backFirst ? "on" : ""}" title="Concept and equation cards show the definition first (B)">Show back first</button><button id=freset>Reset set</button></div></div>
+    <div class=fprog><div class=track title="${known} known, ${learning} still learning"><span class=learn style="width:${cards.length ? 100 * (known + learning) / cards.length : 0}%"></span><span class=mast style="width:${cards.length ? 100 * known / cards.length : 0}%"></span></div>
+      <span class=fstat>${known} known · ${learning} still learning · ${cards.length - known - learning} new · Round ${r.n}</span></div></div>`;
+  const live = cards.length && r.pos < r.queue.length;
+  if (!cards.length) h += `<div class="fcard fdone"><div class=big>No cards here yet</div><p class=muted>Star cards with ☆ or the S key to collect them here.</p></div>`;
+  else if (!live) {
+    const left = cards.length - known;
+    h += left ? `<div class="fcard fdone"><div class=big>Round ${r.n} done</div><p>Know <b>${r.know}</b> · Still learning <b>${r.learn}</b></p><p class=muted>${left} card${left === 1 ? "" : "s"} left to learn in this set.</p>
+        <div class=actions><button id=fnext class=primary>Keep going: round ${r.n + 1}</button><button id=frestart>Restart set</button></div></div>`
+      : `<div class="fcard fdone"><div class=big>✓ You know ${cards.length === 1 ? "the 1 card" : `all ${cards.length} cards`} in this set</div><div class=actions><button id=frestart class=primary>Restart set</button></div></div>`;
+  } else {
+    const c = FBYID[r.queue[r.pos]], on = flash.stars[c.id];
+    h += `<div class=fcard id=fcard tabindex=0><div class=ftop><span class=chip>${FLABEL[c.dict]}</span><span class=ref>QSS ${esc(c.sec)} · p. ${c.page}</span><span class=side>${fFlipped ? "Answer" : "Prompt"}</span>
+        <button class="star ${on ? "on" : ""}" id=fstar title="Star (S)" aria-label="${on ? "Unstar" : "Star"} this card">${on ? "★" : "☆"}</button></div>
+      <div class=fbody>${fFace(c, fFlipped)}</div>${fFlipped ? "" : "<div class=fhint>Click or press Space to flip</div>"}</div>
+      <div class=fnav><button id=flearn>← Still learning</button><span class=fpos>${r.pos + 1} / ${r.queue.length}</span><button id=fknow>Know →</button></div>`;
+  }
+  h += `<p class=fkeys><kbd>Space</kbd> flip · <kbd>→</kbd> know · <kbd>←</kbd> still learning · <kbd>S</kbd> star · <kbd>Z</kbd> undo · <kbd>H</kbd> shuffle · <kbd>B</kbd> back first</p>`;
+  $("#flash").innerHTML = h;
+  typeset($("#flash"));
+  for (const img of document.querySelectorAll("#flash img.fplot")) img.onerror = () => img.replaceWith(Object.assign(document.createElement("p"), { className: "muted", textContent: "(Plot image missing; rebuild with quiz/build_flash.mjs.)" }));
+  $("#fset").onchange = e => { flash.set = e.target.value; fFlipped = false; fUndo = []; saveFlash(); renderFlash(); };
+  $("#fshuffle").onclick = fShuffle;
+  $("#fstaronly").onclick = () => { flash.starredOnly = !flash.starredOnly; fFlipped = false; fUndo = []; saveFlash(); renderFlash(); };
+  $("#fback").onclick = fToggleBack;
+  $("#freset").onclick = () => { if (confirm("Clear Know / Still learning marks for every card in this set?")) fRestart(); };
+  $("#fnext")?.addEventListener("click", () => { flash.rounds[fKey()] = fNewRound(r.n + 1); fUndo = []; saveFlash(); renderFlash(); });
+  $("#frestart")?.addEventListener("click", fRestart);
+  $("#fknow")?.addEventListener("click", () => fMark("know"));
+  $("#flearn")?.addEventListener("click", () => fMark("learn"));
+  $("#fstar")?.addEventListener("click", e => { e.stopPropagation(); fStar(); });
+  $("#fcard")?.addEventListener("click", e => { if (!e.target.closest("button, summary, details, a")) fFlip(); });
+}
+
+function fFlip() {
+  const r = fRound();
+  if (r.pos >= r.queue.length) return;
+  fFlipped = !fFlipped; renderFlash();
+  $("#fcard")?.classList.add("anim");
+}
+function fMark(m) {
+  const r = fRound();
+  if (r.pos >= r.queue.length) return;
+  const id = r.queue[r.pos];
+  fUndo.push({ key: fKey(), id, prev: flash.marks[id], pos: r.pos, m });
+  flash.marks[id] = m; r[m]++; r.pos++; fFlipped = false;
+  saveFlash(); renderFlash();
+}
+function fUndoLast() {
+  const u = fUndo.pop();
+  if (!u || u.key !== fKey()) return;
+  const r = fRound();
+  if (u.prev === undefined) delete flash.marks[u.id]; else flash.marks[u.id] = u.prev;
+  r[u.m]--; r.pos = u.pos; fFlipped = false;
+  saveFlash(); renderFlash();
+}
+function fStar() {
+  const r = fRound(), id = r.queue[r.pos];
+  if (!id) return;
+  flash.stars[id] ? delete flash.stars[id] : (flash.stars[id] = true);
+  saveFlash(); renderFlash();
+}
+function fShuffle() {
+  const r = fRound(), rest = r.queue.slice(r.pos);
+  for (let i = rest.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [rest[i], rest[j]] = [rest[j], rest[i]]; }
+  r.queue = r.queue.slice(0, r.pos).concat(rest); fFlipped = false;
+  saveFlash(); renderFlash();
+}
+function fToggleBack() { flash.backFirst = !flash.backFirst; fFlipped = false; saveFlash(); renderFlash(); }
+function fRestart() {
+  for (const c of fSetCards(flash.set)) delete flash.marks[c.id];
+  flash.rounds[fKey()] = fNewRound(1); fFlipped = false; fUndo = [];
+  saveFlash(); renderFlash();
+}
+document.addEventListener("keydown", e => {
+  if ($("#flash").hidden || e.ctrlKey || e.metaKey || e.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+  const k = e.key.toLowerCase();
+  if (e.target.tagName === "BUTTON" && (k === " " || k === "enter")) return;    // let a focused button act normally
+  const act = { " ": fFlip, enter: fFlip, arrowright: () => fMark("know"), k: () => fMark("know"), arrowleft: () => fMark("learn"), j: () => fMark("learn"),
+    s: fStar, z: fUndoLast, h: fShuffle, b: fToggleBack }[k];
+  if (act) { e.preventDefault(); act(); }
+});
+
 // ---------- chrome: tabs, theme, search ----------
 function showTab(tab) {
   document.querySelectorAll("nav button").forEach(x => x.classList.toggle("on", x.dataset.tab === tab));
@@ -492,6 +778,8 @@ document.querySelectorAll("nav button").forEach(b => b.onclick = () => {
   if (b.dataset.tab === "progress") renderProgress();
   if (b.dataset.tab === "settings") renderSettings();
   if (b.dataset.tab === "study") renderStudy();
+  if (b.dataset.tab === "assess" && !$("#assess").innerHTML) renderAssess();
+  if (b.dataset.tab === "flash") renderFlash();
 });
 const THEMES = ["auto", "light", "dark"], THEME_LABEL = { auto: "◐ Auto", light: "☀ Light", dark: "☾ Dark" };
 function applyTheme(t) {
@@ -526,6 +814,8 @@ if (![...$("#focus").options].some(o => o.value === settings.focus)) settings.fo
 $("#focus").value = settings.focus;
 $("#shortans").checked = !!settings.shortAnswer;
 $("#shortans").onchange = e => { settings.shortAnswer = e.target.checked; store.set("qss.settings", settings); go(); };
+$("#showall").checked = !!settings.showAll;
+$("#showall").onchange = e => { settings.showAll = e.target.checked; store.set("qss.settings", settings); go(); };
 $("#focus").onchange = e => { settings.focus = e.target.value; reviewEarly = false; store.set("qss.settings", settings); updateBar(); go(); };
 bookReadyP.then(() => updateBar());                 // box items exist once the PDF has been read
 // Keyboard: Space or Enter = check / next; 1-4 pick an option; after a self-graded reveal, 1-3 = Got it / Partly / Missed.
@@ -539,7 +829,7 @@ document.addEventListener("keydown", e => {
     const r = document.querySelectorAll("input[name=opt]")[+e.key - 1]; if (r) r.checked = true;
   }
 });
-if (location.search.includes("debug")) window.__app = { candidates, sources, mixFor, nextQuestion, get settings() { return settings; }, get current() { return current; } };
+if (location.search.includes("debug")) window.__app = { candidates, sources, mixFor, nextQuestion, rt, get settings() { return settings; }, get current() { return current; } };
 if (new URLSearchParams(location.search).has("selftest")) selftest(); else go();
 
 // ?selftest: generate many questions per source and check their invariants.

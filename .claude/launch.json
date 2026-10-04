@@ -5,7 +5,7 @@
       "name": "quiz",
       "runtimeExecutable": "python",
       "runtimeArgs": [
-        "C:/Users/sandh/OneDrive/Documents/PhD_Fall2026/7012_POLS/Midterm Prep/quiz/serve.py",
+        "quiz/serve.py",
         "8766"
       ],
       "port": 8766

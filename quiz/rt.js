@@ -103,6 +103,27 @@ export class Runtime {
     }
   }
 
+  // Assessment: run `setup` silently in a fresh environment, then `code` in it, capturing printed text and plots.
+  // Returns { text, images: ImageBitmap[] }; an R error ends the run and appears in the text, as in the console.
+  async capture(setup, code) {
+    const shelter = await new this.webR.Shelter();
+    try {
+      await this.webR.evalRVoid(`.aenv <- new.env(); set.seed(1); eval(parse(text = ${JSON.stringify(setup || "")}), envir = .aenv); set.seed(1)`);
+      const env = await shelter.evalR(".aenv");
+      const r = await shelter.captureR(code, { env, withAutoprint: true, captureStreams: true, captureConditions: true, throwJsException: false,
+        captureGraphics: { width: 560, height: 420 } });
+      const lines = [];
+      for (const o of r.output) {
+        if (typeof o.data === "string") { lines.push(o.data); continue; }         // stdout / stderr
+        const msg = await (await o.data.get("message")).toString();              // conditions arrive as R objects
+        lines.push(o.type === "error" ? `Error: ${msg}` : o.type === "warning" ? `Warning: ${msg}` : msg.trimEnd());
+      }
+      return { text: lines.join("\n"), images: r.images ?? [] };
+    } catch (e) {
+      return { text: "Error: " + (e.message ?? e), images: [] };
+    } finally { shelter.purge(); }
+  }
+
   // True output of a step (cached after the first replay).
   async output(step) {
     if (step._out === undefined) await this.replayTo(step.ch, this.byCh[step.ch].indexOf(step));

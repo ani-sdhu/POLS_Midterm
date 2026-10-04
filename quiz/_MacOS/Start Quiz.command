@@ -4,7 +4,7 @@
 
 cd "$(dirname "$0")/.." || exit 1          # the quiz folder (serve.py lives there)
 PORT=8765
-URL="http://localhost:$PORT/Midterm%20Prep/quiz/index.html"
+URL="http://localhost:$PORT/quiz/index.html"
 
 if ! command -v python3 >/dev/null 2>&1; then
   echo "Python 3 is needed to run the quiz server."
@@ -15,7 +15,7 @@ if ! command -v python3 >/dev/null 2>&1; then
 fi
 
 # Already running (e.g. you double-clicked twice)? Just open the page.
-if curl -s -o /dev/null "http://localhost:$PORT/Midterm%20Prep/quiz/index.html"; then
+if curl -s -o /dev/null "http://localhost:$PORT/quiz/index.html"; then
   open "$URL"
   exit 0
 fi
