@@ -146,6 +146,29 @@ async function nextQuestion() {
 // Typeset LaTeX written as \( inline \), \[ display \] or $$ display $$ (KaTeX auto-render; code and pre are skipped).
 const MATH_OPTS = { delimiters: [{ left: "$$", right: "$$", display: true }, { left: "\\[", right: "\\]", display: true }, { left: "\\(", right: "\\)", display: false }], throwOnError: false };
 const typeset = el => { if (!el) return; if (window.renderMathInElement) window.renderMathInElement(el, MATH_OPTS); else window.addEventListener("load", () => window.renderMathInElement?.(el, MATH_OPTS), { once: true }); };
+// Scroll mode shell (flashcards and assessment): a full-screen vertical feed with one slide per swipe, then an end slide.
+// fill(i, slide) runs when slide i first comes near the screen; at(i) runs when slide i is the one mostly on screen.
+const PHONE = () => matchMedia("(max-width:640px)").matches;
+function feedShell({ label, bar, n, end, fill, at, click }) {
+  const el = document.createElement("div");
+  el.className = "ffeed"; el.setAttribute("role", "dialog"); el.setAttribute("aria-label", label);
+  el.innerHTML = `<div class=ffbar><button data-act=close aria-label="Exit scroll mode">✕</button>${bar}<span class=ffpos></span><div class=fftrack><span></span></div></div>
+    <div class=ffscroll tabindex=-1>${Array.from({ length: n }, (_, i) => `<section class=fslide data-i=${i}></section>`).join("")}<section class="fslide end" data-i=${n}>${end()}</section></div>`;
+  document.body.append(el); document.documentElement.classList.add("feedopen");
+  const scroller = el.querySelector(".ffscroll"), slide = i => el.querySelector(`.fslide[data-i="${i}"]`);
+  const near = new IntersectionObserver(es => es.forEach(e => { const i = +e.target.dataset.i;
+    if (e.isIntersecting && i < n && !e.target.childElementCount) fill(i, e.target); }), { root: scroller, rootMargin: "100% 0px" });
+  const seen = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) at(+e.target.dataset.i); }), { root: scroller, threshold: 0.6 });
+  for (const s of el.querySelectorAll(".fslide")) { near.observe(s); seen.observe(s); }
+  el.addEventListener("click", click);
+  scroller.focus({ preventScroll: true });    // keys go to the feed, not the button that opened it
+  return {
+    el, slide,
+    go: (i, behavior = "smooth") => slide(Math.max(0, Math.min(i, n)))?.scrollIntoView({ behavior }),
+    pos(text, frac) { el.querySelector(".ffpos").textContent = text; el.querySelector(".fftrack span").style.width = `${100 * frac}%`; },
+    close() { near.disconnect(); seen.disconnect(); el.remove(); document.documentElement.classList.remove("feedopen"); },
+  };
+}
 const codeBlock = (code, cls = "") => `<pre class="code ${cls}">${esc(code)}</pre>`;
 const commentBlock = c => c ? codeBlock(c.split("\n").map(l => "## " + l).join("\n"), "dim") : "";
 const caseHtml = (c, open = false) => `<details class=case ${open ? "open" : ""}><summary>Case context: ${esc(c.title)}</summary><p>${esc(c.about)}</p><table>${Object.entries(c.vars).map(([k, v]) => `<tr><td><code>${esc(k)}</code></td><td>${esc(v)}</td></tr>`).join("")}</table></details>`;
@@ -550,7 +573,8 @@ function renderAssess(chId = settings.assessCh ?? ASSESS[0].id) {
   settings.assessCh = ch.id; store.set("qss.settings", settings);
   let h = `<div class=panel><h2 class=page>Assessment</h2>
     <p class=muted>New problems built on the book's methods and R functions, not its examples. As on the exam, you never write code: you predict what code prints or interpret code and its output. Write your answer before you reveal anything. Then tick only the rubric points your answer actually made. A chapter's mastery counts ungraded parts as 0; 90% means exam-ready.</p>
-    <div class=chtabs>${ASSESS.map(c => `<button data-ch="${c.id}" class="${c.id === ch.id ? "on" : ""}">${tabLabel(c)}</button>`).join("")}</div></div>
+    <div class=chtabs>${ASSESS.map(c => `<button data-ch="${c.id}" class="${c.id === ch.id ? "on" : ""}">${tabLabel(c)}</button>`).join("")}</div>
+    <div class=actions><button data-act=feed title="Full-screen feed: one part per swipe, tap to reveal the answer">▶ Scroll mode</button></div></div>
     <div class=panel><h2 class=page>${esc(ch.title)}</h2><p class=muted>${ch.intro}</p></div>`;
   for (const it of ch.items) {
     const s = itemScore(it);
@@ -574,6 +598,7 @@ function renderAssess(chId = settings.assessCh ?? ASSESS[0].id) {
       if (el && !el.innerHTML) runR(it.setup, p.show, el);
     }
   });
+  if (settings.assessFeed ?? PHONE()) aFeedOpen(ch.id);    // phones start in scroll mode until it is closed
 }
 
 // One R run at a time: every run shares the scratch environment .aenv.
@@ -613,6 +638,7 @@ $("#assess").addEventListener("click", async e => {
   if (tab) { renderAssess(tab.dataset.ch); return; }
   const btn = e.target.closest("[data-act]");
   if (!btn) return;
+  if (btn.dataset.act === "feed") { aFeedOpen(); return; }
   const box = btn.closest(".apart"), [it, p] = findPart(box.dataset.pid), mine = box.querySelector("textarea").value;
   if (btn.dataset.act === "reveal") revealPart(box, it, p);
   if (btn.dataset.act === "grade") {
@@ -636,6 +662,93 @@ $("#assess").addEventListener("input", e => {
   (assessState[pid] ??= {}).draft = e.target.value;
   clearTimeout(draftTimer); draftTimer = setTimeout(saveAssess, 400);
 });
+
+// Scroll mode for the assessment: one part per slide. The front is the problem and question; flipping reveals the
+// model answer and the rubric. Saving a score moves on to the next part.
+let aFeed = null;    // { ch, parts: [{ it, p, pid, k }], cur, ...feedShell }
+const aLetter = k => String.fromCharCode(97 + k);
+const aTag = pid => { const s = assessState[pid]?.score; return s === undefined ? "" : `scored ${Math.round(100 * s)}%`; };
+function aFeedFill(i, slide) {
+  const { it, p, pid, k } = aFeed.parts[i];
+  slide.classList.add("aslide");
+  slide.innerHTML = `<div class="fcard acard"><div class=ftop><span class=chip>${esc(it.sec)}</span><span class=side>Question</span><span class="ptag done">${aTag(pid)}</span></div>
+    <div class=atitle>${esc(it.title)} · part (${aLetter(k)}) of ${it.parts.length}</div>
+    <div class=front><details class=actxd ${k === 0 ? "open" : ""}><summary>Problem setup</summary><div class=actx>${it.context}</div></details>
+      <div class=label>${KIND[p.kind]}</div><div class=prompt>${p.q}</div>${p.show ? codeBlock(p.show) : ""}${p.kind === "interpret" ? "<div class=label>Output</div><div class=showout></div>" : ""}
+      <div class=fhint>Answer it in your head, then tap to reveal</div></div>
+    <div class=back hidden></div></div>`;
+  typeset(slide);
+  const out = slide.querySelector(".showout");
+  if (out) runR(it.setup, p.show, out);
+}
+function aFeedBack(i, back) {
+  const { it, p, pid } = aFeed.parts[i], st = assessState[pid] ?? {};
+  back.innerHTML = `<div class=prompt>${p.q}</div>${st.draft ? `<div><div class=label>Your written answer</div><blockquote>${esc(st.draft)}</blockquote></div>` : ""}
+    ${p.kind === "predict" ? "<div><div class=label>Actual output</div><div class=solout></div></div>" : ""}
+    <div><div class=label>Model answer</div><div class=explain>${p.a}</div></div>
+    <div class=rubric><div class=label>Grade yourself: tick each point you got</div>${p.rubric.map((r, j) => `<label><input type=checkbox data-r=${j} ${st.checks?.[j] ? "checked" : ""}><span>${r}</span></label>`).join("")}</div>
+    <div class=actions><button data-act=grade data-i=${i} class=primary>Save score</button></div><div class=fhint>Tap the card to see the question again</div>`;
+  typeset(back);
+  if (p.kind === "predict") runR(it.setup, p.show, back.querySelector(".solout"));
+}
+function aFeedFlip(i) {
+  const card = aFeed?.slide(i)?.querySelector(".acard");
+  if (!card) return;
+  const front = card.querySelector(".front"), back = card.querySelector(".back"), flipped = back.hidden;
+  if (flipped && !back.childElementCount) aFeedBack(i, back);
+  front.hidden = flipped; back.hidden = !flipped;
+  card.querySelector(".side").textContent = flipped ? "Answer" : "Question";
+  card.scrollTop = 0; card.classList.remove("anim"); void card.offsetWidth; card.classList.add("anim");
+}
+function aFeedGrade(i) {
+  const { pid } = aFeed.parts[i], slide = aFeed.slide(i), checks = [...slide.querySelectorAll(".rubric input")].map(x => x.checked);
+  assessState[pid] = { draft: assessState[pid]?.draft, checks, score: checks.filter(Boolean).length / checks.length };
+  saveAssess();
+  slide.querySelector(".ptag").textContent = aTag(pid);
+  slide.querySelector("[data-act=grade]").textContent = `Saved: ${Math.round(100 * assessState[pid].score)}%`;
+  setTimeout(() => aFeed?.cur === i && aFeed.go(i + 1), 350);
+}
+function aFeedEnd() {
+  const ch = ASSESS.find(c => c.id === (aFeed?.ch ?? settings.assessCh)) ?? ASSESS[0], s = chapterScore(ch), next = ASSESS[ASSESS.indexOf(ch) + 1];
+  return `<div class="fcard fdone"><div class=big>${esc(ch.short)} done</div><p>Mastery <b>${Math.round(100 * s.pct)}%</b> · ${s.graded} of ${s.total} parts graded</p>
+    <p class=muted>${s.pct >= 0.9 ? "✓ Exam-ready." : "Ungraded parts count as 0; 90% means exam-ready."}</p>
+    <div class=actions>${next ? `<button data-act=chapter data-ch="${next.id}" class=primary>Next: ${esc(next.short)}</button>` : ""}<button data-act=top>Back to the first part</button><button data-act=close>Exit scroll mode</button></div></div>`;
+}
+function aFeedAt(i) {
+  if (!aFeed) return;
+  const n = aFeed.parts.length;
+  aFeed.cur = i;
+  (settings.assessPos ??= {})[aFeed.ch] = Math.min(i, n - 1); store.set("qss.settings", settings);
+  aFeed.pos(i < n ? `${i + 1} / ${n}` : "Done", n ? i / n : 1);
+  if (i === n) aFeed.slide(n).innerHTML = aFeedEnd();
+}
+function aFeedOpen(chId = settings.assessCh) {
+  if (aFeed) aFeed.close();
+  const ch = ASSESS.find(c => c.id === chId) ?? ASSESS[0];
+  settings.assessCh = ch.id; settings.assessFeed = true; store.set("qss.settings", settings);
+  const parts = ch.items.flatMap(it => it.parts.map((p, k) => ({ it, p, k, pid: `${it.id}.${k}` })));
+  const bar = `<select class=ffsel aria-label="Chapter">${ASSESS.map(c => `<option value="${c.id}" ${c.id === ch.id ? "selected" : ""}>${esc(c.short)}</option>`).join("")}</select>`;
+  aFeed = { ch: ch.id, parts, cur: 0, ...feedShell({ label: "Assessment, scroll mode", bar, n: parts.length, end: aFeedEnd, fill: aFeedFill, at: aFeedAt, click: aFeedClick }) };
+  aFeed.el.querySelector(".ffsel").onchange = e => aFeedOpen(e.target.value);
+  const start = Math.min(settings.assessPos?.[ch.id] ?? 0, parts.length);
+  aFeed.go(start, "instant"); aFeedAt(start);
+}
+function aFeedClose() {
+  if (!aFeed) return;
+  const ch = aFeed.ch;
+  aFeed.close(); aFeed = null;
+  settings.assessFeed = false; store.set("qss.settings", settings);
+  renderAssess(ch);
+}
+function aFeedClick(e) {
+  const b = e.target.closest("button[data-act]");
+  if (b) {
+    ({ close: aFeedClose, grade: () => aFeedGrade(+b.dataset.i), chapter: () => aFeedOpen(b.dataset.ch), top: () => aFeed.go(0) })[b.dataset.act]?.();
+    return;
+  }
+  const card = e.target.closest(".fslide:not(.end) .acard");
+  if (card && !e.target.closest("button, summary, details, a, input, label, select")) aFeedFlip(+card.parentElement.dataset.i);
+}
 
 // ---------- flashcards: Quizlet-style sorting over the study-guide deck ----------
 const FCARDS = [...fCommands, ...fConcepts, ...fEquations, ...fGraphs];
@@ -717,20 +830,20 @@ function renderFlash() {
   $("#flearn")?.addEventListener("click", () => fMark("learn"));
   $("#fstar")?.addEventListener("click", e => { e.stopPropagation(); fStar(); });
   $("#fcard")?.addEventListener("click", e => { if (!e.target.closest("button, summary, details, a")) fFlip(); });
-  if (flash.feed ?? matchMedia("(max-width:640px)").matches) fFeedOpen();    // phones start in scroll mode until it is closed
+  if (flash.feed ?? PHONE()) fFeedOpen();    // phones start in scroll mode until it is closed
 }
 
 // ---------- scroll mode: a full-screen vertical feed, one card per swipe ----------
 // Swiping past a card moves the round on (like Know / Still learning in the card view, but without a mark);
 // the rail buttons mark it. Tapping a lit rail button again takes that mark back.
-let fFeed = null;    // { el, start, ids, cur, flipped: Set, marked: {id: {m, prev}}, io }
+let fFeed = null;    // { start, ids, cur, flipped: Set, marked: {id: {m, prev}}, ...feedShell }
 const fFeedRail = (id, i) => { const mk = fFeed.marked[id]?.m;
   return `<div class=rail>
     <button class="star ${flash.stars[id] ? "on" : ""}" data-act=star data-i=${i} aria-label="Star"><b>${flash.stars[id] ? "★" : "☆"}</b><small>Star</small></button>
     <button class="learn ${mk === "learn" ? "on" : ""}" data-act=learn data-i=${i} aria-label="Still learning"><b>↻</b><small>Learning</small></button>
     <button class="know ${mk === "know" ? "on" : ""}" data-act=know data-i=${i} aria-label="Know"><b>✓</b><small>Know</small></button></div>`; };
 function fFeedFill(i) {
-  const id = fFeed.ids[i], slide = fFeed.el.querySelector(`.fslide[data-i="${i}"]`), c = FBYID[id], flipped = fFeed.flipped.has(i);
+  const id = fFeed.ids[i], slide = fFeed.slide(i), c = FBYID[id], flipped = fFeed.flipped.has(i);
   slide.innerHTML = `<div class="fcard${flipped ? " flipped" : ""}"><div class=ftop><span class=chip>${FLABEL[c.dict]}</span><span class=ref>QSS ${esc(c.sec)} · p. ${c.page}</span>
       <span class=side>${flipped ? "Answer" : "Prompt"}</span></div><div class=fbody>${fFace(c, flipped)}</div>${flipped ? "" : "<div class=fhint>Tap to flip · swipe up for the next card</div>"}</div>${fFeedRail(id, i)}`;
   typeset(slide);
@@ -746,22 +859,8 @@ function fFeedOpen() {
   if (fFeed) return;
   flash.feed = true; fUndo = []; fFlipped = false; saveFlash();
   const r = fRound(), ids = r.queue.slice(r.pos), set = FSETS.find(([v]) => v === flash.set)?.[1] ?? "All cards";
-  const el = document.createElement("div");
-  el.className = "ffeed"; el.setAttribute("role", "dialog"); el.setAttribute("aria-label", "Flashcards, scroll mode");
-  el.innerHTML = `<div class=ffbar><button data-act=close aria-label="Exit scroll mode">✕</button><span class=ffset>${esc(set)}</span><span class=ffpos></span>
-      <div class=fftrack><span></span></div></div>
-    <div class=ffscroll tabindex=-1>${ids.map((_, i) => `<section class=fslide data-i=${i}></section>`).join("")}<section class="fslide end" data-i=${ids.length}>${fFeedEnd()}</section></div>`;
-  document.body.append(el); document.documentElement.classList.add("feedopen");
-  fFeed = { el, start: r.pos, ids, cur: 0, flipped: new Set(), marked: {} };
-  const scroller = el.querySelector(".ffscroll");
-  // Fill cards as they come near the screen; the one mostly on screen is the current card.
-  const near = new IntersectionObserver(es => es.forEach(e => { const i = +e.target.dataset.i;
-    if (e.isIntersecting && i < ids.length && !e.target.childElementCount) fFeedFill(i); }), { root: scroller, rootMargin: "100% 0px" });
-  const seen = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) fFeedAt(+e.target.dataset.i); }), { root: scroller, threshold: 0.6 });
-  for (const s of el.querySelectorAll(".fslide")) { near.observe(s); seen.observe(s); }
-  fFeed.io = [near, seen];
-  el.addEventListener("click", fFeedClick);
-  scroller.focus({ preventScroll: true });    // keys go to the feed, not the button that opened it
+  fFeed = { start: r.pos, ids, cur: 0, flipped: new Set(), marked: {},
+    ...feedShell({ label: "Flashcards, scroll mode", bar: `<span class=ffset>${esc(set)}</span>`, n: ids.length, end: fFeedEnd, fill: fFeedFill, at: fFeedAt, click: fFeedClick }) };
   fFeedAt(0);
 }
 function fFeedAt(i) {
@@ -769,11 +868,9 @@ function fFeedAt(i) {
   fFeed.cur = i;
   const r = fRound(), n = fFeed.ids.length;
   r.pos = Math.min(fFeed.start + i, r.queue.length); saveFlash();
-  fFeed.el.querySelector(".ffpos").textContent = i < n ? `${fFeed.start + i + 1} / ${r.queue.length}` : "Done";
-  fFeed.el.querySelector(".fftrack span").style.width = `${r.queue.length ? 100 * r.pos / r.queue.length : 100}%`;
+  fFeed.pos(i < n ? `${fFeed.start + i + 1} / ${r.queue.length}` : "Done", r.queue.length ? r.pos / r.queue.length : 1);
   if (i === n) fFeed.el.querySelector(".fslide.end").innerHTML = fFeedEnd();
 }
-const fFeedGo = i => fFeed.el.querySelector(`.fslide[data-i="${Math.max(0, Math.min(i, fFeed.ids.length))}"]`)?.scrollIntoView({ behavior: "smooth" });
 function fFeedFlip(i) {
   if (i >= fFeed.ids.length) return;
   fFeed.flipped.has(i) ? fFeed.flipped.delete(i) : fFeed.flipped.add(i);
@@ -788,7 +885,7 @@ function fFeedMark(i, m) {
   saveFlash();
   const rail = fFeed.el.querySelector(`.fslide[data-i="${i}"] .rail`);
   if (rail) rail.outerHTML = fFeedRail(id, i);
-  if (had?.m !== m) setTimeout(() => fFeed?.cur === i && fFeedGo(i + 1), 220);    // a new mark moves on, like Know / Still learning
+  if (had?.m !== m) setTimeout(() => fFeed?.cur === i && fFeed.go(i + 1), 220);    // a new mark moves on, like Know / Still learning
 }
 function fFeedStar(i) {
   const id = fFeed.ids[i];
@@ -800,12 +897,11 @@ function fFeedStar(i) {
 }
 function fFeedClose() {
   if (!fFeed) return;
-  fFeed.io.forEach(o => o.disconnect()); fFeed.el.remove(); fFeed = null;
-  document.documentElement.classList.remove("feedopen");
+  fFeed.close(); fFeed = null;
   flash.feed = false; saveFlash(); renderFlash();
 }
 function fFeedRestart(newRound) {
-  fFeed.io.forEach(o => o.disconnect()); fFeed.el.remove(); fFeed = null;
+  fFeed.close(); fFeed = null;
   if (newRound) { flash.rounds[fKey()] = fNewRound(fRound().n + 1); saveFlash(); }
   else { for (const c of fSetCards(flash.set)) delete flash.marks[c.id]; flash.rounds[fKey()] = fNewRound(1); saveFlash(); }
   fFeedOpen();
@@ -863,12 +959,20 @@ function fRestart() {
   saveFlash(); renderFlash();
 }
 document.addEventListener("keydown", e => {
+  if (aFeed) {
+    if (e.ctrlKey || e.metaKey || e.altKey || /^(INPUT|TEXTAREA|SELECT|BUTTON|SUMMARY)$/.test(e.target.tagName)) return;
+    const k = e.key.toLowerCase(), i = aFeed.cur;
+    const act = { escape: aFeedClose, " ": () => aFeedFlip(i), enter: () => aFeedFlip(i), arrowdown: () => aFeed.go(i + 1), pagedown: () => aFeed.go(i + 1),
+      arrowup: () => aFeed.go(i - 1), pageup: () => aFeed.go(i - 1) }[k];
+    if (act) { e.preventDefault(); act(); }
+    return;
+  }
   if (fFeed) {
-    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.ctrlKey || e.metaKey || e.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
     const k = e.key.toLowerCase(), i = fFeed.cur;
     if (e.target.tagName === "BUTTON" && (k === " " || k === "enter")) return;
-    const act = { escape: fFeedClose, " ": () => fFeedFlip(i), enter: () => fFeedFlip(i), arrowdown: () => fFeedGo(i + 1), pagedown: () => fFeedGo(i + 1),
-      arrowup: () => fFeedGo(i - 1), pageup: () => fFeedGo(i - 1), arrowright: () => fFeedMark(i, "know"), k: () => fFeedMark(i, "know"),
+    const act = { escape: fFeedClose, " ": () => fFeedFlip(i), enter: () => fFeedFlip(i), arrowdown: () => fFeed.go(i + 1), pagedown: () => fFeed.go(i + 1),
+      arrowup: () => fFeed.go(i - 1), pageup: () => fFeed.go(i - 1), arrowright: () => fFeedMark(i, "know"), k: () => fFeedMark(i, "know"),
       arrowleft: () => fFeedMark(i, "learn"), j: () => fFeedMark(i, "learn"), s: () => fFeedStar(i) }[k];
     if (act) { e.preventDefault(); act(); }
     return;
@@ -892,7 +996,7 @@ document.querySelectorAll("nav button").forEach(b => b.onclick = () => {
   if (b.dataset.tab === "progress") renderProgress();
   if (b.dataset.tab === "settings") renderSettings();
   if (b.dataset.tab === "study") renderStudy();
-  if (b.dataset.tab === "assess" && !$("#assess").innerHTML) renderAssess();
+  if (b.dataset.tab === "assess" && (!$("#assess").innerHTML || (settings.assessFeed ?? PHONE()))) renderAssess();
   if (b.dataset.tab === "flash") renderFlash();
 });
 const THEMES = ["auto", "light", "dark"], THEME_LABEL = { auto: "◐ Auto", light: "☀ Light", dark: "☾ Dark" };
