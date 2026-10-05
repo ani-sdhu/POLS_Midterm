@@ -683,7 +683,7 @@ function renderFlash() {
         <optgroup label="Study guide dictionaries">${opts(FSETS.filter(([v]) => v.startsWith("dict:")))}</optgroup>
         <optgroup label="Topics">${opts(FSETS.filter(([v]) => v.startsWith("topic:")))}</optgroup>
         <optgroup label="Yours">${opts([["starred", "Starred"]])}</optgroup></select>
-      <div class=fctl><button id=fshuffle title="Shuffle the rest of this round (H)">⇄ Shuffle</button><button id=fstaronly class="${flash.starredOnly ? "on" : ""}">☆ Starred only</button>
+      <div class=fctl><button id=ffeed title="Full-screen feed: swipe up for the next card">▶ Scroll mode</button><button id=fshuffle title="Shuffle the rest of this round (H)">⇄ Shuffle</button><button id=fstaronly class="${flash.starredOnly ? "on" : ""}">☆ Starred only</button>
         <button id=fback class="${flash.backFirst ? "on" : ""}" title="Concept and equation cards show the definition first (B)">Show back first</button><button id=freset>Reset set</button></div></div>
     <div class=fprog><div class=track title="${known} known, ${learning} still learning"><span class=learn style="width:${cards.length ? 100 * (known + learning) / cards.length : 0}%"></span><span class=mast style="width:${cards.length ? 100 * known / cards.length : 0}%"></span></div>
       <span class=fstat>${known} known · ${learning} still learning · ${cards.length - known - learning} new · Round ${r.n}</span></div></div>`;
@@ -707,6 +707,7 @@ function renderFlash() {
   for (const img of document.querySelectorAll("#flash img.fplot")) img.onerror = () => img.replaceWith(Object.assign(document.createElement("p"), { className: "muted", textContent: "(Plot image missing; rebuild with quiz/build_flash.mjs.)" }));
   $("#fset").onchange = e => { flash.set = e.target.value; fFlipped = false; fUndo = []; saveFlash(); renderFlash(); };
   $("#fshuffle").onclick = fShuffle;
+  $("#ffeed").onclick = fFeedOpen;
   $("#fstaronly").onclick = () => { flash.starredOnly = !flash.starredOnly; fFlipped = false; fUndo = []; saveFlash(); renderFlash(); };
   $("#fback").onclick = fToggleBack;
   $("#freset").onclick = () => { if (confirm("Clear Know / Still learning marks for every card in this set?")) fRestart(); };
@@ -716,6 +717,109 @@ function renderFlash() {
   $("#flearn")?.addEventListener("click", () => fMark("learn"));
   $("#fstar")?.addEventListener("click", e => { e.stopPropagation(); fStar(); });
   $("#fcard")?.addEventListener("click", e => { if (!e.target.closest("button, summary, details, a")) fFlip(); });
+  if (flash.feed ?? matchMedia("(max-width:640px)").matches) fFeedOpen();    // phones start in scroll mode until it is closed
+}
+
+// ---------- scroll mode: a full-screen vertical feed, one card per swipe ----------
+// Swiping past a card moves the round on (like Know / Still learning in the card view, but without a mark);
+// the rail buttons mark it. Tapping a lit rail button again takes that mark back.
+let fFeed = null;    // { el, start, ids, cur, flipped: Set, marked: {id: {m, prev}}, io }
+const fFeedRail = (id, i) => { const mk = fFeed.marked[id]?.m;
+  return `<div class=rail>
+    <button class="star ${flash.stars[id] ? "on" : ""}" data-act=star data-i=${i} aria-label="Star"><b>${flash.stars[id] ? "★" : "☆"}</b><small>Star</small></button>
+    <button class="learn ${mk === "learn" ? "on" : ""}" data-act=learn data-i=${i} aria-label="Still learning"><b>↻</b><small>Learning</small></button>
+    <button class="know ${mk === "know" ? "on" : ""}" data-act=know data-i=${i} aria-label="Know"><b>✓</b><small>Know</small></button></div>`; };
+function fFeedFill(i) {
+  const id = fFeed.ids[i], slide = fFeed.el.querySelector(`.fslide[data-i="${i}"]`), c = FBYID[id], flipped = fFeed.flipped.has(i);
+  slide.innerHTML = `<div class="fcard${flipped ? " flipped" : ""}"><div class=ftop><span class=chip>${FLABEL[c.dict]}</span><span class=ref>QSS ${esc(c.sec)} · p. ${c.page}</span>
+      <span class=side>${flipped ? "Answer" : "Prompt"}</span></div><div class=fbody>${fFace(c, flipped)}</div>${flipped ? "" : "<div class=fhint>Tap to flip · swipe up for the next card</div>"}</div>${fFeedRail(id, i)}`;
+  typeset(slide);
+  for (const img of slide.querySelectorAll("img.fplot")) img.onerror = () => img.replaceWith(Object.assign(document.createElement("p"), { className: "muted", textContent: "(Plot image missing; rebuild with quiz/build_flash.mjs.)" }));
+}
+function fFeedEnd() {
+  const r = fRound(), cards = fSetCards(flash.set), left = cards.length - cards.filter(c => flash.marks[c.id] === "know").length;
+  return `<div class="fcard fdone"><div class=big>${left ? `Round ${r.n} done` : `✓ You know ${cards.length === 1 ? "the 1 card" : `all ${cards.length} cards`} in this set`}</div>
+    <p>Know <b>${r.know}</b> · Still learning <b>${r.learn}</b></p>${left ? `<p class=muted>${left} card${left === 1 ? "" : "s"} left to learn in this set.</p>` : ""}
+    <div class=actions>${left ? `<button data-act=next class=primary>Keep going: round ${r.n + 1}</button>` : ""}<button data-act=restart ${left ? "" : "class=primary"}>Restart set</button><button data-act=close>Exit scroll mode</button></div></div>`;
+}
+function fFeedOpen() {
+  if (fFeed) return;
+  flash.feed = true; fUndo = []; fFlipped = false; saveFlash();
+  const r = fRound(), ids = r.queue.slice(r.pos), set = FSETS.find(([v]) => v === flash.set)?.[1] ?? "All cards";
+  const el = document.createElement("div");
+  el.className = "ffeed"; el.setAttribute("role", "dialog"); el.setAttribute("aria-label", "Flashcards, scroll mode");
+  el.innerHTML = `<div class=ffbar><button data-act=close aria-label="Exit scroll mode">✕</button><span class=ffset>${esc(set)}</span><span class=ffpos></span>
+      <div class=fftrack><span></span></div></div>
+    <div class=ffscroll tabindex=-1>${ids.map((_, i) => `<section class=fslide data-i=${i}></section>`).join("")}<section class="fslide end" data-i=${ids.length}>${fFeedEnd()}</section></div>`;
+  document.body.append(el); document.documentElement.classList.add("feedopen");
+  fFeed = { el, start: r.pos, ids, cur: 0, flipped: new Set(), marked: {} };
+  const scroller = el.querySelector(".ffscroll");
+  // Fill cards as they come near the screen; the one mostly on screen is the current card.
+  const near = new IntersectionObserver(es => es.forEach(e => { const i = +e.target.dataset.i;
+    if (e.isIntersecting && i < ids.length && !e.target.childElementCount) fFeedFill(i); }), { root: scroller, rootMargin: "100% 0px" });
+  const seen = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) fFeedAt(+e.target.dataset.i); }), { root: scroller, threshold: 0.6 });
+  for (const s of el.querySelectorAll(".fslide")) { near.observe(s); seen.observe(s); }
+  fFeed.io = [near, seen];
+  el.addEventListener("click", fFeedClick);
+  scroller.focus({ preventScroll: true });    // keys go to the feed, not the button that opened it
+  fFeedAt(0);
+}
+function fFeedAt(i) {
+  if (!fFeed) return;
+  fFeed.cur = i;
+  const r = fRound(), n = fFeed.ids.length;
+  r.pos = Math.min(fFeed.start + i, r.queue.length); saveFlash();
+  fFeed.el.querySelector(".ffpos").textContent = i < n ? `${fFeed.start + i + 1} / ${r.queue.length}` : "Done";
+  fFeed.el.querySelector(".fftrack span").style.width = `${r.queue.length ? 100 * r.pos / r.queue.length : 100}%`;
+  if (i === n) fFeed.el.querySelector(".fslide.end").innerHTML = fFeedEnd();
+}
+const fFeedGo = i => fFeed.el.querySelector(`.fslide[data-i="${Math.max(0, Math.min(i, fFeed.ids.length))}"]`)?.scrollIntoView({ behavior: "smooth" });
+function fFeedFlip(i) {
+  if (i >= fFeed.ids.length) return;
+  fFeed.flipped.has(i) ? fFeed.flipped.delete(i) : fFeed.flipped.add(i);
+  fFeedFill(i);
+  fFeed.el.querySelector(`.fslide[data-i="${i}"] .fcard`).classList.add("anim");
+}
+function fFeedMark(i, m) {
+  const id = fFeed.ids[i], r = fRound(), had = fFeed.marked[id];
+  if (id === undefined) return;
+  if (had) { r[had.m]--; had.prev === undefined ? delete flash.marks[id] : (flash.marks[id] = had.prev); delete fFeed.marked[id]; }
+  if (had?.m !== m) { fFeed.marked[id] = { m, prev: had ? had.prev : flash.marks[id] }; flash.marks[id] = m; r[m]++; }
+  saveFlash();
+  const rail = fFeed.el.querySelector(`.fslide[data-i="${i}"] .rail`);
+  if (rail) rail.outerHTML = fFeedRail(id, i);
+  if (had?.m !== m) setTimeout(() => fFeed?.cur === i && fFeedGo(i + 1), 220);    // a new mark moves on, like Know / Still learning
+}
+function fFeedStar(i) {
+  const id = fFeed.ids[i];
+  if (id === undefined) return;
+  flash.stars[id] ? delete flash.stars[id] : (flash.stars[id] = true);
+  saveFlash();
+  const rail = fFeed.el.querySelector(`.fslide[data-i="${i}"] .rail`);
+  if (rail) rail.outerHTML = fFeedRail(id, i);
+}
+function fFeedClose() {
+  if (!fFeed) return;
+  fFeed.io.forEach(o => o.disconnect()); fFeed.el.remove(); fFeed = null;
+  document.documentElement.classList.remove("feedopen");
+  flash.feed = false; saveFlash(); renderFlash();
+}
+function fFeedRestart(newRound) {
+  fFeed.io.forEach(o => o.disconnect()); fFeed.el.remove(); fFeed = null;
+  if (newRound) { flash.rounds[fKey()] = fNewRound(fRound().n + 1); saveFlash(); }
+  else { for (const c of fSetCards(flash.set)) delete flash.marks[c.id]; flash.rounds[fKey()] = fNewRound(1); saveFlash(); }
+  fFeedOpen();
+}
+function fFeedClick(e) {
+  const b = e.target.closest("button[data-act]");
+  if (b) {
+    const i = +b.dataset.i;
+    ({ close: fFeedClose, next: () => fFeedRestart(true), restart: () => { if (confirm("Clear Know / Still learning marks for every card in this set?")) fFeedRestart(false); },
+      star: () => fFeedStar(i), know: () => fFeedMark(i, "know"), learn: () => fFeedMark(i, "learn") })[b.dataset.act]?.();
+    return;
+  }
+  const card = e.target.closest(".fslide:not(.end) .fcard");
+  if (card && !e.target.closest("button, summary, details, a")) fFeedFlip(+card.parentElement.dataset.i);
 }
 
 function fFlip() {
@@ -759,6 +863,16 @@ function fRestart() {
   saveFlash(); renderFlash();
 }
 document.addEventListener("keydown", e => {
+  if (fFeed) {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    const k = e.key.toLowerCase(), i = fFeed.cur;
+    if (e.target.tagName === "BUTTON" && (k === " " || k === "enter")) return;
+    const act = { escape: fFeedClose, " ": () => fFeedFlip(i), enter: () => fFeedFlip(i), arrowdown: () => fFeedGo(i + 1), pagedown: () => fFeedGo(i + 1),
+      arrowup: () => fFeedGo(i - 1), pageup: () => fFeedGo(i - 1), arrowright: () => fFeedMark(i, "know"), k: () => fFeedMark(i, "know"),
+      arrowleft: () => fFeedMark(i, "learn"), j: () => fFeedMark(i, "learn"), s: () => fFeedStar(i) }[k];
+    if (act) { e.preventDefault(); act(); }
+    return;
+  }
   if ($("#flash").hidden || e.ctrlKey || e.metaKey || e.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
   const k = e.key.toLowerCase();
   if (e.target.tagName === "BUTTON" && (k === " " || k === "enter")) return;    // let a focused button act normally
