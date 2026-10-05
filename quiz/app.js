@@ -143,8 +143,8 @@ async function nextQuestion() {
 }
 
 // ---------- shared rendering helpers ----------
-// Typeset LaTeX written as \( inline \) or $$ display $$ (KaTeX auto-render; code and pre are skipped).
-const MATH_OPTS = { delimiters: [{ left: "$$", right: "$$", display: true }, { left: "\\(", right: "\\)", display: false }], throwOnError: false };
+// Typeset LaTeX written as \( inline \), \[ display \] or $$ display $$ (KaTeX auto-render; code and pre are skipped).
+const MATH_OPTS = { delimiters: [{ left: "$$", right: "$$", display: true }, { left: "\\[", right: "\\]", display: true }, { left: "\\(", right: "\\)", display: false }], throwOnError: false };
 const typeset = el => { if (!el) return; if (window.renderMathInElement) window.renderMathInElement(el, MATH_OPTS); else window.addEventListener("load", () => window.renderMathInElement?.(el, MATH_OPTS), { once: true }); };
 const codeBlock = (code, cls = "") => `<pre class="code ${cls}">${esc(code)}</pre>`;
 const commentBlock = c => c ? codeBlock(c.split("\n").map(l => "## " + l).join("\n"), "dim") : "";
